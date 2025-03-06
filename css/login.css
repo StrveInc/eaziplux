@@ -1,0 +1,440 @@
+html{
+    overflow-x: hidden;
+}
+
+body{
+    font-family: "poppins";
+    font-size: 1.125;
+    margin: 0;
+    overflow-y: hidden;
+    background: linear-gradient(137deg, #043927, #000000);
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+header .container{
+    width: 90%;
+    border: 0px solid blue;
+    margin:0 auto;
+    opacity: 100%;
+    color: black;
+}
+
+
+header .container-nav{
+    display: flex;
+    justify-content: space-between;
+    border: 0px solid black;
+}
+
+@media (max-width: 670px){
+    .container-nav{
+        flex-direction: column;
+    }
+}
+
+
+header{
+    padding: .2rem;
+    width: 100%;
+    border: 0px solid black;
+    margin: 0;
+    background-color: white;
+}
+
+@media (max-width:670px){
+
+    html{
+        overflow-x: hidden;
+    }
+    
+    
+    header{
+        text-align: center;
+        padding: 0;
+    }
+}
+
+
+header h1{
+    font-size: 2rem;
+    color: #143774;
+    font-weight: 900;
+    margin: 0;
+}
+
+
+.all{
+    display: flex;
+}
+
+img{
+    width: 100%;
+}
+
+.subtitle{
+    font-weight: 700;
+    color: #1792d2;
+    font-size: .75rem;
+    margin: 0;
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    color: black;
+}
+
+
+
+nav li{
+    margin-left:2em;
+    color: black;
+}
+
+nav a{
+    text-decoration: none;
+    font-weight: 700;
+    color: purple;
+}
+
+
+nav a:hover,
+nav a:focus,
+nav a:active{
+    color: red;
+    text-decoration: underline;
+}
+
+@media (max-width:670px){
+
+    nav{ 
+        display: none;
+    }
+    nav ul{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    nav li{
+        margin: .5em 0;
+    }
+
+    nav a{
+        font-size: small;
+    }
+
+    .all{
+        display: flex;
+        margin-left: 3rem;
+    }
+    
+    img{
+        width: 100%;
+    }
+}
+
+
+/*********MAIN BODY*********/
+
+
+main{
+    height: 100vh;
+}
+
+main .cont{
+    width: 95%;
+    margin: auto;
+}
+
+.logo{
+    border: 0px solid black;
+    width: 70%;
+    margin: auto;
+    visibility: hidden;
+}
+
+.cont form {
+    margin: auto;
+    padding: 20px 40px;
+    border: 1px solid #7e7e7e;
+    width: 70%;
+    border-radius: 1rem;
+    background: #ffffff1c;
+    backdrop-filter: blur(-16px) saturate(110.5);
+    box-shadow: -3px 20px 20px 13px #00000080;
+}
+.column1{
+    width: 40%;
+    border-radius: 1rem;
+    display: flex;
+}
+
+img{
+    width: 100%;
+}
+
+.column2{
+    width: 60%;
+    margin-top: -45rem;
+    margin-left: 15rem;
+}
+
+.column2 .container{
+    width: 60%;
+    border: 0px solid black;
+    margin: auto;
+}
+
+@media (max-width:670px){
+    main{
+        height: 100vh;
+        margin-top: -5rem;
+    }
+    
+    main .cont{
+        width: 95%;
+        margin: auto;
+        margin-top: 5rem;
+    }
+
+    
+    .logo{
+        border: 0px solid black;
+        width: 70%;
+        margin: auto;
+        visibility: visible;
+    }
+    
+
+    .cont form {
+        padding: 20px 40px;
+        margin-top: 10rem;
+        border: 1px solid #7e7e7e;
+        width: 70%;
+        margin: auto;
+        margin-top: 12rem;
+        border-radius: 1rem;
+        background: #ffffff1c;
+        backdrop-filter: blur(-16px) saturate(110.5);
+        box-shadow: -3px 20px 20px 13px #00000080;
+    }
+    .column1{
+        width: 40%;
+        border-radius: 1rem;
+        display: flex;
+    }
+    
+    img{
+        width: 100%;
+    }
+    
+    .column2 .container{
+        width: 60%;
+        border: 0px solid black;
+        margin: auto;
+    }
+    .column2{
+        margin-top: -12rem;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .column2 .container{
+        width: 100%;
+        margin: 0;
+    }
+    
+    img{
+        width: 100%;
+    }
+
+}
+
+@media (min-width:653px){
+    main{
+        border: 2px solid yellow;
+    }
+}
+
+form .txt-field{
+    background: transparent;
+    position: relative;
+    border-bottom: 0px solid gold;
+    margin: 50px 0;
+}
+
+.txt-field input{
+    width: 100%;
+    padding: .2rem;
+    padding-left: .5rem;
+    height: 40px;
+    font-size: .9rem;
+    color: white;
+    border: 0px solid black;
+    border-radius: 5rem;
+    background: #ffffff1c;
+    outline: none;
+}
+
+.txt-field input::after{
+    background: transparent;
+}
+
+
+.txt-field label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: .5s;
+    color: grey;
+}
+
+.txt-field span::before{
+    content: "";
+    position: absolute;
+    top: 40px;
+    left: 0 ;
+    width: 0%;
+    height: 2px;
+    background: #2691d9;
+    transition: .5s;
+
+}
+
+.txt-field input:focus ~ label,
+.txt-field input:valid ~ label{
+    top:-5px;
+    color: purple;
+}
+
+.txt-field input:focus ~ span::before,
+.txt-field span:valid ~ span::before{
+    width: 100%;
+}
+
+
+.forgotpass{
+    margin:-5px 0 20px 5px;
+    color: red;
+    cursor: pointer;
+}
+
+.forgotpass a{
+    color: beige;
+}
+
+.forgotpass:hover{
+    text-decoration: underline;
+}
+
+input[type="submit"] {
+    width: 100%;
+    height: 50px;
+    border: 0px solid;
+    background: #ffffff6e;
+    border-radius: 25px;
+    font-size: 18px;
+    color: black;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+h2{
+    color: beige;
+}
+
+input[type="submit"]:hover{
+    border-color:#2691d9;
+
+}
+
+.signup{
+    margin: 30px 0;
+    text-align: center;
+    font-size: 1rem;
+    color:rgb(228, 228, 228);
+}
+
+em{
+    color: red;
+}
+
+.signup a{
+    color: white;
+    text-decoration: none;
+}
+
+
+.signup a:hover{
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+footer{
+    background: rgb(41, 6, 41);
+    text-align: center;
+    justify-content: space-around;
+}
+
+
+
+.slider {
+    width: 100%;
+    overflow: hidden; /* Hide overflowing content */
+    margin: auto;
+    border: 0px solid black;
+  }
+  
+  .slides {
+    border: 0px solid black;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-around; /* Make slides a flex container */
+    transition: transform 0.5s ease; /* Smooth transition effect */
+  }
+  
+  .slides img {
+    border: 0px solid black;
+    width: 100%;
+    border-radius: 1rem;
+    margin: auto;
+    padding: 1rem;
+    justify-content: space-evenly; /* Ensure images fill the slider width */
+  }
+  
+  /* Animation for slide transition */
+  @keyframes slideAnimation {
+    from {
+      transform: translateX(65%); /* Start position */
+    }
+    to {
+      transform: translateX(-165%); /* End position */
+    }
+  }
+  
+  /* Apply animation to slides */
+  .slides {
+    animation: slideAnimation 10s infinite; /* Repeat infinitely every 5 seconds */
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  /* Hover effect to pause animation on hover */
+  .slider:hover .slides {
+    animation-play-state: paused;
+  }
+  

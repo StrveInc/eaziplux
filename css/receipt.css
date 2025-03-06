@@ -1,0 +1,109 @@
+html{
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+body{
+    background: linear-gradient(137deg, #043927, #000000);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;    
+}
+
+main{
+    margin-top: 5rem;
+    border: 0px solid yellow;
+}
+
+main .container{
+    border: 1px solid white;
+    box-shadow: -4px 4px 9px black;
+    width: fit-content;
+    margin: auto;
+    text-align: center;
+    padding: .5rem;
+    margin-top: 20rem;
+    border-radius: 3rem;
+}
+
+
+.gb{
+    width: 20%;
+    margin: auto;
+}
+
+input{
+    padding: .5rem;
+    margin-top: 0rem;
+    width: 50%;
+    border-radius: 2rem;
+    font-size: large;
+
+}
+
+
+.logo{
+    border: 0px solid black;
+    width: 20%;
+    margin: auto;
+    margin-top: -3rem;
+}
+
+img{
+    width: 100%;
+}
+
+p{
+    font-size: large;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+@media (max-width:670px){
+
+    main{
+        margin-top: 6rem;
+        height: 100vh;
+    }
+
+    main .container{
+        width: 80%;
+        margin: auto;
+        text-align: center;
+        padding: .2rem;
+        margin-top:  12rem;
+        border-radius: 1rem;
+        background: #ffffff1c;
+        backdrop-filter: blur(-16px) saturate(110.5);
+
+    }
+
+    p{
+        margin-top: 4rem;
+        font-size: large;
+        font-weight: bold;
+        padding: 1rem;
+    }
+
+    .logo{
+        border: 0px solid black;
+        width: 20%;
+        margin: auto;
+        margin-top: -2rem;
+    }
+
+    input{
+        padding: .5rem;
+        margin-top: 2rem;
+        border: 0px solid;
+        background: #ffffff6e;
+        border-radius: 25px;
+        font-size: 18px;
+        color: black;
+        font-weight: 700;
+        cursor: pointer;
+        outline: none;
+        margin-bottom: 1rem;
+    }
+}

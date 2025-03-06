@@ -1,0 +1,9 @@
+{
+    "require": {
+        "twig/twig": "^3.7",
+        "yabacon/paystack-php": "^2.2",
+        "rmccue/requests": "*",
+        "flutterwavedev/flutterwave-v3": "*",
+        "wildbit/postmark-php": "^6.0"
+    }
+}

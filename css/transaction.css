@@ -1,0 +1,112 @@
+body {
+    font-family: "poppins";
+    font-size: 21.125px;
+    background: linear-gradient(137deg, black, #000000);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.back i{
+    font-size: 2rem;
+    color: white;
+}
+
+header{
+    border: 0px solid white;
+    width: 91%;
+    margin: auto;
+    margin-top: .2rem;
+}
+
+.head{
+    margin: auto;
+    border: 0px solid black;
+    width: fit-content;
+    font-weight: 600;
+    font-size: large;
+}
+
+.date{
+    border: 0px solid black;
+    width: 80%;
+    margin: auto;
+    margin-top: .5rem;
+}
+
+#monthSelector{
+    border: none;
+    border-bottom: 3px solid #043927;
+    outline: none;
+    width: fit-content;
+    color: white;
+    text-align: center;
+    height: 2.5rem;
+    font-size: small;
+    background: transparent;
+    margin-left: -1rem;
+}
+
+select option{
+    color: black;
+}
+
+.head{
+    border: 0px solid black;
+    width: fit-content;
+    margin: auto;
+    font-size: large;
+    font-weight: 600;
+}
+
+.col1 i{
+    font-size: medium;
+    font-weight: 200;
+    color: white;
+
+}
+
+main{
+    margin-top: 1rem;
+    border-top: 0px solid black;
+    width: 100%;
+}
+
+
+
+.column{
+    border-bottom: 3px solid  #043927;
+    margin-top: 1rem;
+    width: 99%;
+    margin: auto;
+    padding: .2rem;
+}
+
+.col1{
+    border: 0px solid white;
+    width: 95%;
+    margin: auto;
+    display: flex;
+    font-size: large;
+    font-weight: 350;
+    justify-content: space-between;
+    color: #ffffff;
+
+}
+
+.col1 .amount{
+    font-weight: 200;
+}
+
+.col2{
+    border: 0px solid black;
+    width: 95%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: small;
+    margin-top: .5rem;
+    color: rgb(111, 105, 105);
+    font-weight: bold;
+}

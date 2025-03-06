@@ -1,0 +1,231 @@
+html{
+    overflow-x: hidden;
+}
+
+body {
+    font-family: "poppins";
+    font-size: 21.125px;
+    background: linear-gradient(137deg, #043927, #000000);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    height: 100vh;
+}
+.back i{
+    font-size: 2rem;
+}
+
+header{
+    padding-top: 1rem;
+    width: 90%;
+    margin: auto;
+    display: flex;
+}
+
+.head{
+    font-size: large;
+    font-weight: 600;
+    border: 0px solid black;
+    width: fit-content;
+    margin: auto;
+}
+
+
+
+img{
+    width: 100%;
+}
+
+
+@media (max-width:670px){
+    nav ul{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    nav li{
+        margin: .5em 0;
+    }
+
+    nav a{
+        font-size: small;
+    }
+
+    .logo{
+        width: 20%;
+        margin-top: -.9rem;
+    }
+    
+    .all{
+        display: flex;
+        margin-left: 3rem;
+    }
+    
+    img{
+        width: 100%;
+    }
+}
+
+/************************MAIN BODY***************************/
+
+
+.mobilelogo{
+    width: 35%;
+    border: 0px solid red;
+    margin: auto;
+}
+
+.network{
+    border: 0px solid black;
+    margin-top: 4rem;
+}
+
+
+
+.net1{
+    border: 0px solid black;
+    width: 40%;
+    padding: .4rem;
+    background: white;
+    margin: auto;
+    border-radius: 1rem;
+    align-items: center;
+}
+
+.net2{
+    border: 0px solid black;
+    width: 40%;
+    padding: .4rem;
+    background: white;
+    margin: auto;
+    border-radius: 1rem;
+    align-items: center;
+}
+
+.net3{
+    border: 0px solid black;
+    width: 40%;
+    padding: .4rem;
+    background: white;
+    margin: auto;
+    border-radius: 1rem;
+    align-items: center;
+}
+
+.net4{
+    border: 0px solid black;
+    width: 40%;
+    padding: .4rem;
+    background: white;
+    margin: auto;
+    border-radius: 1rem;
+    align-items: center;
+}
+
+
+.col1{
+    display: flex;
+    height: 20vh;
+}
+
+.col2{
+    display: flex;
+    height: 20vh;
+}
+
+@media (max-width:670px){
+    .mobilelogo{
+        width: 50%;
+        border: 0px solid red;
+        margin: auto;
+    }
+    
+    .network{
+        border: 0px solid black;
+        margin-top: 10rem;
+    }
+
+    .company{
+        border: 0px solid black;
+        margin-top: 3rem;
+    }
+    
+    .net1{
+        border: 0px solid black;
+        width: 40%;
+        height: 80%;
+        align-content: center;
+        padding: .4rem;
+background: black;
+        margin: auto;
+        border-radius: 1rem;
+        align-items: center;
+    }
+
+    .net2{
+        border: 0px solid black;
+        width: 40%;
+        height: 80%;
+        align-content: center;
+        padding: .4rem;
+background:black;
+        margin: auto;
+        border-radius: 1rem;
+        align-items: center;
+    }
+    
+    .net3{
+        border: 0px solid black;
+        width: 40%;
+        height: 80%;
+        padding: .4rem;
+        align-content: center;
+background:white;
+        margin: auto;
+        border-radius: 1rem;
+        align-items: center;
+    }
+
+    .net4{
+        border: 0px solid black;
+        width: 40%;
+        height: 80%;
+        padding: .4rem;
+background: white;
+        margin: auto;
+        align-content: center;
+        border-radius: 1rem;
+        align-items: center;
+    }
+
+    .col1{
+        display: flex;
+        justify-content: space-around;
+        border: 0px solid white;
+        margin-bottom: 1rem;
+    }
+    
+    .col2{
+        display: flex;
+    }
+}
+
+.col1{
+    display:inline-flex;
+    justify-content: space-around;
+}
+
+.elect{
+    width: 40%;
+    background: black;
+    padding: .4rem;
+    margin: auto;
+    border-radius: 1rem;
+    align-content: center;
+    height: 80%;
+}
+
+a i{
+    color: white;
+}

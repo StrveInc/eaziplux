@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!--  created with sitemap generator https://octopus.do  -->
+
+    <url>
+        <loc>https://globalbills.com.ng</loc>
+        <lastmod>2024-01-01</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://globalbills.com.ng/home/ourservices.php</loc>
+        <lastmod>2024-01-01</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://globalbills.com.ng/home/getintouch.php</loc>
+        <lastmod>2024-01-01</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://globalbills.com.ng/home/signup.php</loc>
+        <lastmod>2024-01-01</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://globalbills.com.ng/home/login.php</loc>
+        <lastmod>2024-01-01</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://globalbills.com.ng/index.php</loc>
+        <lastmod>2024-01-01</lastmod>
+        <changefreq>always</changefreq>
+        <priority>0.5</priority>
+    </url>
+</urlset>

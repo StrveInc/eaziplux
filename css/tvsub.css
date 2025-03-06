@@ -1,0 +1,349 @@
+html{
+    overflow-x: hidden;
+}
+
+body{
+    font-size: 1.125;
+    margin: 0;
+    background: linear-gradient(120deg,aqua,#deb1f0);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: "poppins";
+}
+
+
+header .container{
+    width: 90%;
+    border: 0px solid blue;
+    margin:0 auto;
+    opacity: 100%;
+    color: black;
+}
+
+
+header .container-nav{
+    display: flex;
+    justify-content: space-between;
+    border: 0px solid black;
+}
+
+@media (max-width: 670px){
+    .container-nav{
+        flex-direction: column;
+    }
+}
+
+
+header{
+    padding: .2rem;
+    width: 100%;
+    border: 0px solid black;
+    margin: 0;
+    background-color: white;
+}
+
+@media (max-width:670px){
+
+    html{
+        overflow-x: hidden;
+    }
+    
+    
+    header{
+        text-align: center;
+        padding: 0;
+    }
+}
+
+
+header h1{
+    font-size: 2rem;
+    color: #143774;
+    font-weight: 900;
+    margin: 0;
+}
+
+.logo{
+    width: 13%;
+    margin-top: -1.5rem;
+}
+
+.all{
+    display: flex;
+}
+
+img{
+    width: 100%;
+}
+
+.subtitle{
+    font-weight: 700;
+    color: #1792d2;
+    font-size: .75rem;
+    margin: 0;
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    color: black;
+}
+
+
+
+nav li{
+    margin-left:2em;
+    color: black;
+}
+
+nav a{
+    text-decoration: none;
+    font-weight: 700;
+    color: purple;
+}
+
+
+nav a:hover,
+nav a:focus,
+nav a:active{
+    color: red;
+    text-decoration: underline;
+}
+
+@media (max-width:670px){
+    nav ul{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    nav li{
+        margin: .5em 0;
+    }
+
+    nav a{
+        font-size: small;
+    }
+
+    .logo{
+        width: 20%;
+        margin-top: -.9rem;
+    }
+    
+    .all{
+        display: flex;
+        margin-left: 3rem;
+    }
+    
+    img{
+        width: 100%;
+    }
+}
+
+
+/************************MAIN BODY***************************/
+
+
+main .container{
+    border: 0px solid black;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    margin-top: 5%;
+    padding: .5%;
+    color: blueviolet;
+}
+
+
+.container h1{
+    border: 0px solid black;
+    width: fit-content;
+    margin: auto;
+}
+
+
+                                                            
+
+
+.network{
+    display: flex;
+    justify-content: space-around;
+    border: 0px solid black;
+    margin: 5.5rem;
+}
+
+
+
+a .MTN{
+    border: 0px solid black;
+    width: 40%;
+    text-align: center;
+}
+
+
+.mtnlogo{
+    width: 40%;
+    margin: auto;
+}
+
+
+a{
+    text-decoration: none;
+}
+
+.MOBILEMTN{
+    border: 0px solid black;
+    width: 40%;
+    text-align: center;
+    font-weight: 900;
+    font-size: larger;
+    color: blue;
+    text-decoration: none;
+}
+
+.MOBILE9MOBILE{
+    border: 0px solid black;
+    width: 40%;
+    text-align: center;
+    font-weight: 900;
+    color: green;
+    font-size: larger;
+}
+
+.MOBILEAIRTEL{
+    border: 0px solid black;
+    width: 40%;
+    text-align: center;
+    font-weight: 900;
+    color: orange;
+    font-size: larger;
+}
+
+.MOBILEGLO{
+    border: 0px solid black;
+    width: 40%;
+    text-align: center;
+    font-weight: 900;
+    color: green;
+    font-size: larger;
+}
+
+.mobilelogo{
+    width: 40%;
+    margin: auto;
+}
+
+
+img{
+    width: 100%;
+}
+
+@media (max-width:670px){
+    .container{
+        border: 2px solid black;
+    }
+
+
+    .network{
+        flex-direction: column;
+        justify-content: space-around;
+        border: 0px solid black;
+        margin: auto;
+        width: 100%;
+    }
+    
+    
+    
+    .MTN{
+        border: 0px solid black;
+        width: 70%;
+        text-align: center;
+    }
+    
+    
+    .mtnlogo{
+        width: 40%;
+        margin: auto;
+    }
+    
+    .MOBILEMTN{
+        border: 1px solid black;
+        border-style: outset;
+        width: 100%;
+        text-align: center;
+        font-weight: bolder;
+        color: blue;
+        margin: auto;
+        font-size: larger;
+        margin-top: .3rem;
+        border-radius: .8rem;
+        background: linear-gradient(120deg,aqua,purple);
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    
+    .MOBILE9MOBILE{
+        border: 1px solid black;
+        border-style: outset;
+        width: 100%;
+        text-align: center;
+        font-weight: bolder;
+        color: rgb(200, 198, 198);
+        font-size: larger;
+        margin: auto;
+        margin-top: .3rem;
+        border-radius: .8rem;
+        background: linear-gradient(120deg,aqua,purple);
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    .MOBILEAIRTEL{
+        border: 1px solid black;
+        border-style: outset;
+        width: 100%;
+        text-align: center;
+        font-weight: bolder;
+        color: rgb(216, 49, 49);
+        font-size: larger;
+        margin: auto;
+        margin-top: .3rem;
+        border-radius: .8rem;
+        background: linear-gradient(120deg,aqua,purple);
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    .MOBILEGLO{
+        border: 1px solid black;
+        border-style: outset;
+        width: 100%;
+        text-align: center;
+        font-weight: bolder;
+        color: rgb(50, 164, 50);
+        font-size: largerr;
+        margin: auto;
+        margin-top: .3rem;
+        border-radius: .8rem;
+        background: linear-gradient(120deg,aqua,purple);
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    
+    .mobilelogo{
+        width: 40%;
+        margin: auto;
+    }
+    
+    
+    img{
+        width: 100%;
+    }
+}

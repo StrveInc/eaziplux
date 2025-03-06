@@ -1,0 +1,236 @@
+html{
+    overflow-x: hidden;
+}
+
+body {
+    font-family: "poppins";
+    font-size: 21.125px;
+    background: linear-gradient(137deg, #043927, #000000);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: white;
+}
+
+.back i{
+    font-size: 2rem;
+}
+
+header{
+    padding-top: 1rem;
+    width: 90%;
+    margin: auto;
+    display: flex;
+}
+
+.head{
+    font-size: large;
+    font-weight: 600;
+    border: 0px solid black;
+    width: fit-content;
+    margin: auto;
+}
+
+
+
+img{
+    width: 100%;
+}
+
+
+@media (max-width:670px){
+    nav ul{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    nav li{
+        margin: .5em 0;
+    }
+
+    nav a{
+        font-size: small;
+    }
+
+    .logo{
+        width: 20%;
+        margin-top: -.9rem;
+    }
+    
+    .all{
+        display: flex;
+        margin-left: 3rem;
+    }
+    
+    img{
+        width: 100%;
+    }
+}
+
+/*****main**********/
+
+
+form{
+    border: 0px solid black;
+    text-align: center;
+    font-family: "poppins";
+    margin-top: rem;
+}
+
+
+.MOBILEMTN{
+    width: 20%;
+    margin: auto;
+    margin-bottom: 5rem;
+}
+
+
+input{
+    background: transparent;
+    border: none;
+    width: 50%;
+    text-align: center;
+    margin-left: .5rem;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    outline: none;
+    overflow: hidden;
+    font-size: 10px;
+    color: white;
+}
+
+
+.submit{
+    font-size: 1.1rem;
+}
+
+
+input::placeholder{
+    font-size: 20px;
+}
+
+select{
+        background: transparent;
+        border: none;
+        width: 75%;
+        text-align: left;
+        margin-left: .5rem;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        outline: none;
+        overflow: hidden;
+        font-size: 20px;
+        color: white;
+}
+
+select option{
+    color: black;
+}
+
+.fig{
+    border: 1px solid black;
+    display: flex;
+    border-bottom: 1px solid grey;
+    width: 70%;
+    margin: auto;
+    padding: 0;
+    font-size: larger;
+    align-items:end;
+    text-align: center;
+}
+
+.figa{
+    border-bottom: 1px solid grey;
+    width: 60%;
+    margin: auto;
+    padding: 0;
+    font-size: larger;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+}
+
+.figa input{
+    font-size: 20px;
+    width: 80%;
+}
+
+.num{
+    border: 0px solid black;
+    display: flex;
+    border-bottom: 1px solid grey;
+    width: 70%;
+    margin: auto;
+    padding: 0;
+    font-size: 20px;
+    margin-top: 2rem;
+    align-items:end;
+    text-align: center;
+}
+
+
+.num1{
+    border: 0px solid black;
+    display: block;
+    border-bottom: 1px solid grey;
+    width: 70%;
+    margin: auto;
+    padding: 0;
+    font-size: larger;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.number1{
+    font-size: 1.4rem;
+}
+
+.num input{
+    width: 90%;
+    text-align: left;
+    margin-bottom: 0;
+    padding: 0;
+    border-bottom: 0px solid black;
+    margin-top: -1rem;
+    font-size: larger;
+}
+
+.num p {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    font-size: 25px;
+    margin-left: 2rem;
+}
+
+.fig p {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    margin-left: 2rem;
+    font-size: x-large;
+}
+
+.fig input{
+    width: 90%;
+    text-align: center;
+    margin-bottom: 0;
+    padding: 0;
+    border-bottom: 0px solid black;
+    font-size: 20px;
+
+}
+
+
+.submit{
+    border-radius: .4rem;
+    margin-top: 3rem;
+    background: linear-gradient(17deg, #043927, #212020);
+    color: white;
+    width: fit-content;
+    padding: .5rem;
+    text-align: center;
+}
+
+a i{
+    color: white;
+}

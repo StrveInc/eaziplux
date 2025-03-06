@@ -1,0 +1,383 @@
+html{
+    overflow-x: hidden;
+}
+
+body{
+    font-size: 1.125;
+    font-family: "poppins";
+    margin: 0;
+    background: black;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+header .container{
+    width: 90%;
+    border: 0px solid blue;
+    margin:0 auto;
+    opacity: 100%;
+    color: black;
+}
+
+
+header .container-nav{
+    display: flex;
+    justify-content: space-between;
+    border: 0px solid black;
+}
+
+@media (max-width: 670px){
+    .container-nav{
+        flex-direction: column;
+    }
+}
+
+
+header{
+    padding: .2rem;
+    width: 100%;
+    border: 0px solid black;
+    margin: 0;
+    background: black;
+}
+
+@media (max-width:670px){
+
+    html{
+        overflow-x: hidden;
+    }
+    
+    
+    header{
+        text-align: center;
+        padding: 0;
+    }
+}
+
+
+header h1{
+    font-size: 2rem;
+    color: white;
+    font-weight: 900;
+    margin: 0;
+}
+
+.logo{
+    width: 13%;
+    margin-top: -1.5rem;
+}
+
+.all{
+    display: flex;
+}
+
+img{
+    width: 100%;
+}
+
+.subtitle{
+    font-weight: 700;
+    color: grey;
+    font-size: .75rem;
+    margin: 0;
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    color: black;
+}
+
+
+
+nav li{
+    margin-left:2em;
+    color: black;
+}
+
+nav a{
+    text-decoration: none;
+    font-weight: 700;
+    color: white;
+}
+
+
+nav a:hover,
+nav a:focus,
+nav a:active{
+    color: red;
+    text-decoration: underline;
+}
+
+@media (max-width:670px){
+    nav ul{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    nav li{
+        margin: .5em 0;
+    }
+
+    nav a{
+        font-size: small;
+    }
+
+    .logo{
+        width: 20%;
+        margin-top: -.9rem;
+    }
+    
+    .all{
+        display: flex;
+        margin-left: 3rem;
+    }
+    
+    img{
+        width: 100%;
+    }
+}
+
+/**********************MAIN CONTENT**************************************/
+main{
+    border: 0px solid black;
+    width: 100%;
+    background: linear-gradient(white,rgb(79, 15, 79));
+}
+
+main .container{
+    border: 0px solid black;
+    width: 90%;
+    margin: auto;
+    margin-top: 3rem;
+    padding-bottom: 1rem;
+
+}
+
+main .container h1{
+    width: fit-content;
+    border: 0px solid black;
+    margin: auto;
+}
+main .container p{
+    width: fit-content;
+    margin: auto;
+}
+
+.services{
+    border: 0px solid yellow;
+    padding: 0;
+    border-radius: 2rem;
+    color: beige;
+    width: 90%;
+    background: transparent;
+    margin: auto;
+    box-shadow: none;
+}
+
+
+.column{
+    border: 0px solid black;
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
+    width: 100%;
+    margin-top: 4rem;
+    color: white;
+}
+
+.column .col1{
+    background: linear-gradient(105deg, #043927, #000000);
+    margin-right: -1.3rem;
+    border-top-left-radius: 2.5rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    text-align: left;
+}   
+
+.column .col{
+    background: linear-gradient(266deg, #043927, #000000);
+    margin-left: -1.3rem;
+    border-bottom-right-radius: 2.5rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    text-align: right;
+}
+.p{
+    color: rgb(79, 15, 79);
+    font-weight: bold;
+}
+
+.col h1 i{
+    color: beige;
+    font-size: larger;
+}
+
+.col p{
+    color: beige;
+}
+
+@media (min-height: 800px){
+    main .container{
+        border: 0px solid black;
+        width: 100%;
+        margin: auto;
+        margin-top: 2rem;
+        padding-bottom: 0rem;
+        background: black;
+    }    
+}
+
+
+
+@media (max-width:670px){
+    main{
+        border: 0px solid black;
+        padding-bottom: 0;
+    }
+    
+    main .container{
+        border: 0px solid black;
+        width: 100%;
+        margin: auto;
+        margin-top: 2rem;
+        padding-bottom: 0rem;
+        background: black;
+    }
+
+    main .container h1{
+        width: fit-content;
+        border: 0px solid black;
+        margin: auto;
+        color: white;
+    }
+
+    main .container p{
+        width: fit-content;
+        margin: auto;
+    }
+
+    .services{
+        border: 0px solid yellow;
+        padding: 0;
+        border-radius: 2rem;
+        color: beige;
+        width: 90%;
+        background: transparent;
+        margin: auto;
+        box-shadow: none;
+    }
+    
+    .column{
+        border: 0px solid black;
+        flex-direction: column;
+        text-align: center;
+        margin: auto;
+        width: 100%;
+        margin-top: 4rem;
+        color: white;
+    }
+    
+    .column .col1{
+        background: linear-gradient(105deg, #043927, #000000);
+        margin-right: -1.3rem;
+        border-top-left-radius: 2.5rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        text-align: left;
+    }   
+
+    .column .col{
+        background: linear-gradient(266deg, #043927, #000000);
+        margin-left: -1.3rem;
+        border-bottom-right-radius: 2.5rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        text-align: right;
+    }
+    .p{
+        color: rgb(79, 15, 79);
+        font-weight: bold;
+    }
+    
+    .col h1 i{
+        color: beige;
+        font-size: larger;
+    }
+
+    .col p{
+        color: beige;
+    }
+}
+
+footer{
+    color: beige;
+    padding: .1rem;
+    text-align: center;
+    font-weight: bolder;
+    font-size: small;
+    background: black;
+}
+
+
+.allf p{
+    margin: auto;
+    border: 0px solid white;
+    width: fit-content;
+}
+
+.logof{
+    width: 12%;
+}
+
+i{
+    margin: auto;
+}
+
+
+@media(max-width:670px){
+    .allf p{
+        margin: auto;
+        border: 0px solid black;
+        width: 95%;
+        margin-top: .3rem;
+        font-weight: 500;
+        color: grey;
+    }
+    
+    .logof{
+        width: 15%;
+    }
+    
+    i{
+        margin: auto;
+        font-size: xx-small;
+    }
+}
+
+.stamp p{
+    border:1px solid white;
+    width: fit-content;
+    margin: auto;
+    margin-top: .6rem;
+}
+
+@media (max-width:670px){
+    .stamp{
+        margin-top: .5rem;
+    }
+
+    .stamp p{
+        border:0px solid white;
+        width: fit-content;
+        margin: auto;
+        font-weight: 100;
+        color: rgba(128, 128, 128, 0.552);
+    }
+}
+
+

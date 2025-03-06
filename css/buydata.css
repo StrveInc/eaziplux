@@ -1,0 +1,219 @@
+body {
+    font-family: "poppins";
+    font-size: 21.125px;
+    background: linear-gradient(137deg, #043927, #000000);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: white;
+}
+
+.back i{
+    font-size: 2rem;
+}
+
+
+.head{
+    font-size: large;
+    font-weight: 600;
+    border: 0px solid black;
+    width: fit-content;
+    margin: auto;
+}
+
+header{
+    padding-top: 1rem;
+    width: 90%;
+    margin: auto;
+    display: flex;
+}
+
+
+img{
+    width: 100%;
+}
+
+
+@media (max-width:670px){
+    nav ul{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    nav li{
+        margin: .5em 0;
+    }
+
+    nav a{
+        font-size: small;
+    }
+
+    .logo{
+        width: 20%;
+        margin-top: -.9rem;
+    }
+    
+    .all{
+        display: flex;
+        margin-left: 3rem;
+    }
+    
+    img{
+        width: 100%;
+    }
+}
+
+/***********main************/
+
+
+
+.mobilelogo{
+    width: 35%;
+    border: 0px solid red;
+    margin: auto;
+}
+
+.network{
+    border: 0px solid black;
+    margin-top: 4rem;
+}
+
+.net1{
+    border: 0px solid black;
+    width: 40%;
+    height: 80%;
+    padding: .4rem;
+    background: white;
+    margin: auto;
+    border-radius: 1rem;
+    align-items: center;
+    box-shadow: 1px 1px 17px grey;
+}
+
+.net2{
+    border: 0px solid black;
+    width: 40%;
+    padding: .4rem;
+    background: white;
+    margin: auto;
+    border-radius: 1rem;
+    align-items: center;
+    box-shadow: 1px 1px 17px grey;
+}
+
+.net3{
+    border: 0px solid black;
+    width: 40%;
+    padding: .4rem;
+    background: white;
+    margin: auto;
+    border-radius: 1rem;
+    align-items: center;
+    box-shadow: 1px 1px 17px grey;
+}
+
+.net4{
+    border: 0px solid black;
+    width: 40%;
+    padding: .4rem;
+    background: rgb(24, 120, 24);
+    margin: auto;
+    border-radius: 1rem;
+    align-items: center;
+    box-shadow: 1px 1px 17px grey;
+}
+
+
+.col1{
+    display: flex;
+    width: fit-content;
+    border: 0px solid red;
+    margin-bottom: 4rem;
+    height: 20vh;
+    
+}
+
+.col2{
+    display: flex;
+    width: fit-content;
+    border: 0px solid red;
+    margin-bottom: 4rem;
+}
+
+a i{
+    color: white;
+}
+
+@media (max-width:670px){
+    .mobilelogo{
+        width: 50%;
+        border: 0px solid red;
+        margin: auto;
+    }
+    
+    .network{
+        border: 0px solid black;
+        margin-top: 15rem;
+    }
+    
+    .net1{
+        border: 0px solid black;
+        width: 40%;
+        padding: .4rem;
+        background: rgb(221, 221, 22);
+        margin: auto;
+        border-radius: 1rem;
+        align-items: center;
+        box-shadow: 1px 1px 17px grey;
+    }
+
+    .net2{
+        border: 0px solid black;
+        width: 40%;
+        padding: .4rem;
+        background: white;
+        margin: auto;
+        border-radius: 1rem;
+        align-items: center;
+        box-shadow: 1px 1px 17px grey;
+    }
+    
+    .net3{
+        border: 0px solid black;
+        width: 40%;
+        padding: .4rem;
+        background: rgba(212, 8, 8, 0.935);
+        margin: auto;
+        border-radius: 1rem;
+        align-items: center;
+        box-shadow: 1px 1px 17px grey;
+    }
+
+    .net3{
+        border: 0px solid black;
+        width: 40%;
+        padding: .4rem;
+        background: rgba(212, 8, 8, 0.935);
+        margin: auto;
+        border-radius: 1rem;
+        align-items: center;
+        box-shadow: 1px 1px 17px grey;
+    }
+
+    .col1{
+        display: flex;
+        width: fit-content;
+        border: 0px solid red;
+        margin-bottom: 1rem;
+        
+    }
+    
+    .col2{
+        display: flex;
+    }
+}
+
+
+/************************MAIN BODY***************************/
+

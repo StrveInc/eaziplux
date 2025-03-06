@@ -1,0 +1,32 @@
+{
+  "background_color": "#000000",
+  "description": "Manage your mobile data and pay bills seamlessly with Eazi Plux. Enjoy a convienient and secure platform for handling all your mobile-related transactions.",
+  "dir": "auto",
+  "display": "standalone",
+  "name": "EaziPlux",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "EaziPlux",
+  "start_url": "/home/dashboard.php",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "./css/imgs/eazicon.png",
+      "type": "image/png",
+      "sizes": "550x550"
+    }
+  ],
+  "id": "2026",
+  "lang": "en",
+  "display_override": [
+    "fullscreen",
+    "window-controls-overlay"
+  ],
+  "categories": [
+    "business",
+    "finance",
+    "shopping",
+    "social",
+    "utilities"
+  ]
+}

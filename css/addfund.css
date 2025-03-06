@@ -1,0 +1,145 @@
+body{
+    font-family: "poppins";
+    background: black;
+    color: white;
+}
+
+header{
+    width: 90%;
+    margin: auto;
+    padding-top: 1rem;
+}
+
+main{
+    border: 0px solid black;
+    margin-top: 0rem;
+}
+
+
+a{
+    color: white;
+    text-decoration: none;
+    font-weight: 900;
+}
+
+.back a{
+    color: black;
+}
+h1{
+    font-weight: 600;
+    font-size: 5rem;
+    padding: 0%;
+    margin: 0%;
+}
+
+.column{
+    display: flex;
+    border: 0px solid black;
+    margin-top: 15rem;
+}
+
+
+p{
+    font-weight:400;
+}
+
+.col1{
+    border: 0px solid black;
+    width: 50%;
+    padding-left: 9rem;
+}
+.col2{
+    border: 0px solid black;
+    width: 50%;
+}
+
+label{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.lab{
+    border: 0px solid black;
+    margin: auto;
+    padding: 2rem;
+    width: 50%;
+    margin-top: 1.7rem;
+    text-align: center;
+    border-radius: 34rem;
+    font-weight: 500;
+    background:#043927;
+    color: white;
+}
+
+i{
+    font-size: 2rem;
+}
+
+@media (max-width:670px){
+
+
+    body {
+        font-family: "poppins";
+        background: linear-gradient(137deg, #043927, #000000);
+        color: white;
+        height: 100vh;
+    }
+
+    h1{
+        font-size: 2rem;
+        width: 80%;
+        border: 0px solid black;
+        margin-left: .5rem;
+    }
+    
+    .column{
+        flex-direction: column;
+        border: 0px solid black;
+        width: 100%;
+        margin: auto;
+        margin-top: 6rem;
+    }
+    
+    p{
+        font-weight:400;
+        width: 80%;
+        margin-left: .5rem;
+    }
+    
+    .col1{
+        border: 0px solid black;
+        width: 100%;
+        margin: auto;
+        margin-left: auto;
+        padding-left: 0%;
+        padding-bottom: 2rem;
+    }
+    .col2{
+        border: 0px solid black;
+        width: 100%;
+        margin-top: 4rem;
+        margin: auto;
+    }
+    
+    .lab{
+        border: 0px solid black;
+        margin: auto;
+        padding: 1.7rem;
+        width: 80%;
+        margin-top: 1rem;
+        text-align: left;
+        border-bottom-left-radius: .5rem;
+        font-weight: 500;
+        font-size:x-large;
+    background: linear-gradient(259deg, #043927, #000000);
+    }
+        
+}
+
+i{
+    color: white;
+}
+
+/*****************************menu*******************************/

@@ -1,0 +1,180 @@
+[2024-01-16 12:22:20] GET /callback.php
+Headers: {"Sec-Ch-Ua":"\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"","Sec-Ch-Ua-Mobile":"?0","Sec-Ch-Ua-Platform":"\"Windows\"","Upgrade-Insecure-Requests":"1","User-Agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","Accept":"text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,image\/apng,*\/*;q=0.8,application\/signed-exchange;v=b3;q=0.7","Sec-Fetch-Site":"none","Sec-Fetch-Mode":"navigate","Sec-Fetch-User":"?1","Sec-Fetch-Dest":"document","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9","Cookie":"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705290091134%7D; TawkConnectionTime=1705348877059; _ga_VVN0P5EYQP=GS1.1.1705398339.43.1.1705398533.0.0.0","Host":"www.globalbills.com.ng","Content-Length":"0"}
+Body: 
+[2024-01-16 12:23:54] GET /callback.php
+Headers: {"Accept":"application\/json, text\/plain, *\/*","User-Agent":"Paystack\/2.0","X-Paystack-Signature":"c76913e585865d98720ef575db572768610d7b7b0152665a531e0d50095dc1a9f0764e468139da6714ce329dbef14c04d66f8a309cb16b8282a859b0b5c83678","x-datadog-trace-id":"7963840016834305959","x-datadog-parent-id":"1937359784023957032","x-datadog-sampled":"1","x-datadog-sampling-priority":"0","Host":"www.globalbills.com.ng","Connection":"close","Content-Length":"0"}
+Body: 
+[2024-01-16 12:23:56] GET /callback.php
+Headers: {"Cache-Control":"max-age=0","Sec-Ch-Ua":"\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"","Sec-Ch-Ua-Mobile":"?0","Sec-Ch-Ua-Platform":"\"Windows\"","Upgrade-Insecure-Requests":"1","User-Agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","Accept":"text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,image\/apng,*\/*;q=0.8,application\/signed-exchange;v=b3;q=0.7","Sec-Fetch-Site":"none","Sec-Fetch-Mode":"navigate","Sec-Fetch-User":"?1","Sec-Fetch-Dest":"document","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9","Cookie":"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705290091134%7D; TawkConnectionTime=1705348877059; _ga_VVN0P5EYQP=GS1.1.1705398339.43.1.1705398533.0.0.0","Host":"www.globalbills.com.ng","Content-Length":"0"}
+Body: 
+[2024-01-16 12:27:59] GET /callback.php
+Headers: {"Accept":"application\/json, text\/plain, *\/*","User-Agent":"Paystack\/2.0","X-Paystack-Signature":"3a9f5ed334e63200f18f23fe1f6d2c5989be9f7fc8a66d2305210a60e7ff272013ede0d543eaf4637e6f5cf488d63a8cfc400823a87729d126624b7c23f7378e","x-datadog-trace-id":"3451446072116390350","x-datadog-parent-id":"2822282018033341123","x-datadog-sampled":"1","x-datadog-sampling-priority":"0","Host":"www.globalbills.com.ng","Connection":"close","Content-Length":"0"}
+Body: 
+[2024-01-16 12:28:01] GET /callback.php
+Headers: {"Cache-Control":"max-age=0","Sec-Ch-Ua":"\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"","Sec-Ch-Ua-Mobile":"?0","Sec-Ch-Ua-Platform":"\"Windows\"","Upgrade-Insecure-Requests":"1","User-Agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","Accept":"text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,image\/apng,*\/*;q=0.8,application\/signed-exchange;v=b3;q=0.7","Sec-Fetch-Site":"none","Sec-Fetch-Mode":"navigate","Sec-Fetch-User":"?1","Sec-Fetch-Dest":"document","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9","Cookie":"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705290091134%7D; TawkConnectionTime=1705348877059; _ga_VVN0P5EYQP=GS1.1.1705398339.43.1.1705398533.0.0.0","Host":"www.globalbills.com.ng","Content-Length":"0"}
+Body: 
+[2024-01-16 12:31:54] GET /callback.php
+Headers: {"Accept":"application\/json, text\/plain, *\/*","User-Agent":"Paystack\/2.0","X-Paystack-Signature":"3a9f5ed334e63200f18f23fe1f6d2c5989be9f7fc8a66d2305210a60e7ff272013ede0d543eaf4637e6f5cf488d63a8cfc400823a87729d126624b7c23f7378e","x-datadog-trace-id":"3249741996187520591","x-datadog-parent-id":"6314166501367959615","x-datadog-sampled":"1","x-datadog-sampling-priority":"0","Host":"www.globalbills.com.ng","Connection":"close","Content-Length":"0"}
+Body: 
+[2024-01-16 12:35:35] GET /callback.php
+Headers: {"Accept":"application\/json, text\/plain, *\/*","User-Agent":"Paystack\/2.0","X-Paystack-Signature":"3a9f5ed334e63200f18f23fe1f6d2c5989be9f7fc8a66d2305210a60e7ff272013ede0d543eaf4637e6f5cf488d63a8cfc400823a87729d126624b7c23f7378e","x-datadog-trace-id":"5062042382269853580","x-datadog-parent-id":"6286454033762289176","x-datadog-sampled":"1","x-datadog-sampling-priority":"0","Host":"www.globalbills.com.ng","Connection":"close","Content-Length":"0"}
+Body: 
+[2024-01-16 12:38:42] GET /callback.php
+Headers: {"Accept":"application\/json, text\/plain, *\/*","User-Agent":"Paystack\/2.0","X-Paystack-Signature":"3a9f5ed334e63200f18f23fe1f6d2c5989be9f7fc8a66d2305210a60e7ff272013ede0d543eaf4637e6f5cf488d63a8cfc400823a87729d126624b7c23f7378e","x-datadog-trace-id":"208453401467136904","x-datadog-parent-id":"4472948314133770370","x-datadog-sampled":"1","x-datadog-sampling-priority":"0","Host":"www.globalbills.com.ng","Connection":"close","Content-Length":"0"}
+Body: 
+[2024-01-16 12:41:50] GET /callback.php
+Headers: {"Accept":"application\/json, text\/plain, *\/*","User-Agent":"Paystack\/2.0","X-Paystack-Signature":"3a9f5ed334e63200f18f23fe1f6d2c5989be9f7fc8a66d2305210a60e7ff272013ede0d543eaf4637e6f5cf488d63a8cfc400823a87729d126624b7c23f7378e","x-datadog-trace-id":"3720497175658029907","x-datadog-parent-id":"8611383163414535530","x-datadog-sampled":"1","x-datadog-sampling-priority":"0","Host":"www.globalbills.com.ng","Connection":"close","Content-Length":"0"}
+Body: 
+[2024-01-16 12:43:36] GET /callback.php
+Headers: {"Sec-Ch-Ua":"\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"","Sec-Ch-Ua-Mobile":"?0","Sec-Ch-Ua-Platform":"\"Windows\"","Upgrade-Insecure-Requests":"1","User-Agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","Accept":"text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,image\/apng,*\/*;q=0.8,application\/signed-exchange;v=b3;q=0.7","Sec-Fetch-Site":"none","Sec-Fetch-Mode":"navigate","Sec-Fetch-User":"?1","Sec-Fetch-Dest":"document","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9","Cookie":"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705290091134%7D; TawkConnectionTime=1705348877059; _ga_VVN0P5EYQP=GS1.1.1705398339.43.1.1705398533.0.0.0","Host":"www.globalbills.com.ng","Content-Length":"0"}
+Body: 
+[2024-01-16 12:44:57] GET /callback.php
+Headers: {"Accept":"application\/json, text\/plain, *\/*","User-Agent":"Paystack\/2.0","X-Paystack-Signature":"3a9f5ed334e63200f18f23fe1f6d2c5989be9f7fc8a66d2305210a60e7ff272013ede0d543eaf4637e6f5cf488d63a8cfc400823a87729d126624b7c23f7378e","x-datadog-trace-id":"8707254564208592618","x-datadog-parent-id":"3347368481748851036","x-datadog-sampled":"1","x-datadog-sampling-priority":"0","Host":"www.globalbills.com.ng","Connection":"close","Content-Length":"0"}
+Body: 
+[2024-01-16 12:45:03] GET /callback.php
+Headers: {"Cache-Control":"max-age=0","Sec-Ch-Ua":"\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"","Sec-Ch-Ua-Mobile":"?0","Sec-Ch-Ua-Platform":"\"Windows\"","Upgrade-Insecure-Requests":"1","User-Agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","Accept":"text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,image\/apng,*\/*;q=0.8,application\/signed-exchange;v=b3;q=0.7","Sec-Fetch-Site":"none","Sec-Fetch-Mode":"navigate","Sec-Fetch-User":"?1","Sec-Fetch-Dest":"document","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9","Cookie":"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705290091134%7D; TawkConnectionTime=1705348877059; _ga_VVN0P5EYQP=GS1.1.1705398339.43.1.1705398533.0.0.0","Host":"www.globalbills.com.ng","Content-Length":"0"}
+Body: 
+[2024-01-16 13:22:44] GET /callback.php
+Headers: {"Accept":"application\/json, text\/plain, *\/*","User-Agent":"Paystack\/2.0","X-Paystack-Signature":"3a9f5ed334e63200f18f23fe1f6d2c5989be9f7fc8a66d2305210a60e7ff272013ede0d543eaf4637e6f5cf488d63a8cfc400823a87729d126624b7c23f7378e","x-datadog-trace-id":"8287766140654685150","x-datadog-parent-id":"402207461535913100","x-datadog-sampled":"1","x-datadog-sampling-priority":"0","Host":"www.globalbills.com.ng","Connection":"close","Content-Length":"0"}
+Body: 
+[2024-01-16 14:20:42] GET /callback.php
+Headers: {"Accept":"application\/json, text\/plain, *\/*","User-Agent":"Paystack\/2.0","X-Paystack-Signature":"3a9f5ed334e63200f18f23fe1f6d2c5989be9f7fc8a66d2305210a60e7ff272013ede0d543eaf4637e6f5cf488d63a8cfc400823a87729d126624b7c23f7378e","x-datadog-trace-id":"528433942800364344","x-datadog-parent-id":"3589973392611364707","x-datadog-sampled":"1","x-datadog-sampling-priority":"0","Host":"www.globalbills.com.ng","Connection":"close","Content-Length":"0"}
+Body: 
+[2024-01-16 15:17:10] GET /callback.php
+Headers: {"Sec-Ch-Ua":"\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"","Sec-Ch-Ua-Mobile":"?0","Sec-Ch-Ua-Platform":"\"Windows\"","Upgrade-Insecure-Requests":"1","User-Agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","Accept":"text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/avif,image\/webp,image\/apng,*\/*;q=0.8,application\/signed-exchange;v=b3;q=0.7","Sec-Fetch-Site":"none","Sec-Fetch-Mode":"navigate","Sec-Fetch-User":"?1","Sec-Fetch-Dest":"document","Accept-Encoding":"gzip, deflate, br","Accept-Language":"en-US,en;q=0.9","Cookie":"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705290091134%7D; TawkConnectionTime=1705348877059; _ga_VVN0P5EYQP=GS1.1.1705398339.43.1.1705398533.0.0.0","Host":"www.globalbills.com.ng","Content-Length":"0"}
+Body: 
+[2024-01-16 15:18:17] GET /callback.php
+Headers: {"Accept":"application\/json, text\/plain, *\/*","User-Agent":"Paystack\/2.0","X-Paystack-Signature":"3a9f5ed334e63200f18f23fe1f6d2c5989be9f7fc8a66d2305210a60e7ff272013ede0d543eaf4637e6f5cf488d63a8cfc400823a87729d126624b7c23f7378e","x-datadog-trace-id":"5704574069798465070","x-datadog-parent-id":"2167840794214151857","x-datadog-sampled":"1","x-datadog-sampling-priority":"0","Host":"www.globalbills.com.ng","Connection":"close","Content-Length":"0"}
+Body: 
+
+2024-01-16 20:28:41
+Payment Details:
+
+Headers:
+"{\"Accept\":\"application\\\/json, text\\\/plain, *\\\/*\",\"User-Agent\":\"Paystack\\\/2.0\",\"X-Paystack-Signature\":\"1153bd98831e1c8f07b026051bc90f36d30c6d2ecb5a0fb69aa10d1d40c429edba3ababa9a2d8a9b567a5307ce7f5acd897b9b23330ac978f2ec5abfb937e7da\",\"x-datadog-trace-id\":\"9155874590198085498\",\"x-datadog-parent-id\":\"269947283574066735\",\"x-datadog-sampled\":\"1\",\"x-datadog-sampling-priority\":\"0\",\"Host\":\"www.globalbills.com.ng\",\"Connection\":\"close\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:28:43
+Payment Details:
+
+Headers:
+"{\"Cache-Control\":\"max-age=0\",\"Sec-Ch-Ua\":\"\\\"Not_A Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"120\\\", \\\"Google Chrome\\\";v=\\\"120\\\"\",\"Sec-Ch-Ua-Mobile\":\"?0\",\"Sec-Ch-Ua-Platform\":\"\\\"Windows\\\"\",\"Upgrade-Insecure-Requests\":\"1\",\"User-Agent\":\"Mozilla\\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\\/537.36 (KHTML, like Gecko) Chrome\\\/120.0.0.0 Safari\\\/537.36\",\"Accept\":\"text\\\/html,application\\\/xhtml+xml,application\\\/xml;q=0.9,image\\\/avif,image\\\/webp,image\\\/apng,*\\\/*;q=0.8,application\\\/signed-exchange;v=b3;q=0.7\",\"Sec-Fetch-Site\":\"none\",\"Sec-Fetch-Mode\":\"navigate\",\"Sec-Fetch-User\":\"?1\",\"Sec-Fetch-Dest\":\"document\",\"Accept-Encoding\":\"gzip, deflate, br\",\"Accept-Language\":\"en-US,en;q=0.9\",\"Cookie\":\"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; TawkConnectionTime=0; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705418429754%7D; _ga_VVN0P5EYQP=GS1.1.1705417058.46.1.1705418516.0.0.0\",\"Host\":\"www.globalbills.com.ng\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:28:51
+Payment Details:
+
+Headers:
+"{\"Cache-Control\":\"max-age=0\",\"Sec-Ch-Ua\":\"\\\"Not_A Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"120\\\", \\\"Google Chrome\\\";v=\\\"120\\\"\",\"Sec-Ch-Ua-Mobile\":\"?0\",\"Sec-Ch-Ua-Platform\":\"\\\"Windows\\\"\",\"Upgrade-Insecure-Requests\":\"1\",\"User-Agent\":\"Mozilla\\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\\/537.36 (KHTML, like Gecko) Chrome\\\/120.0.0.0 Safari\\\/537.36\",\"Accept\":\"text\\\/html,application\\\/xhtml+xml,application\\\/xml;q=0.9,image\\\/avif,image\\\/webp,image\\\/apng,*\\\/*;q=0.8,application\\\/signed-exchange;v=b3;q=0.7\",\"Sec-Fetch-Site\":\"none\",\"Sec-Fetch-Mode\":\"navigate\",\"Sec-Fetch-User\":\"?1\",\"Sec-Fetch-Dest\":\"document\",\"Accept-Encoding\":\"gzip, deflate, br\",\"Accept-Language\":\"en-US,en;q=0.9\",\"Cookie\":\"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; TawkConnectionTime=0; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705418429754%7D; _ga_VVN0P5EYQP=GS1.1.1705417058.46.1.1705418516.0.0.0\",\"Host\":\"www.globalbills.com.ng\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:33:08
+Payment Details:
+
+Headers:
+"{\"Accept\":\"application\\\/json, text\\\/plain, *\\\/*\",\"User-Agent\":\"Paystack\\\/2.0\",\"X-Paystack-Signature\":\"023e647e2f4d3a3009a2d3bcb9a987ac4107317a525f607a524de342128776674e754ef78fb7f7d88b83fffea40519cfc3a77c629320943bd5777a65dd045b89\",\"x-datadog-trace-id\":\"5014687722442920487\",\"x-datadog-parent-id\":\"3480627133815594640\",\"x-datadog-sampled\":\"1\",\"x-datadog-sampling-priority\":\"0\",\"Host\":\"www.globalbills.com.ng\",\"Connection\":\"close\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:33:09
+Payment Details:
+
+Headers:
+"{\"Cache-Control\":\"max-age=0\",\"Sec-Ch-Ua\":\"\\\"Not_A Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"120\\\", \\\"Google Chrome\\\";v=\\\"120\\\"\",\"Sec-Ch-Ua-Mobile\":\"?0\",\"Sec-Ch-Ua-Platform\":\"\\\"Windows\\\"\",\"Upgrade-Insecure-Requests\":\"1\",\"User-Agent\":\"Mozilla\\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\\/537.36 (KHTML, like Gecko) Chrome\\\/120.0.0.0 Safari\\\/537.36\",\"Accept\":\"text\\\/html,application\\\/xhtml+xml,application\\\/xml;q=0.9,image\\\/avif,image\\\/webp,image\\\/apng,*\\\/*;q=0.8,application\\\/signed-exchange;v=b3;q=0.7\",\"Sec-Fetch-Site\":\"none\",\"Sec-Fetch-Mode\":\"navigate\",\"Sec-Fetch-User\":\"?1\",\"Sec-Fetch-Dest\":\"document\",\"Accept-Encoding\":\"gzip, deflate, br\",\"Accept-Language\":\"en-US,en;q=0.9\",\"Cookie\":\"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; TawkConnectionTime=0; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705418429754%7D; _ga_VVN0P5EYQP=GS1.1.1705417058.46.1.1705418516.0.0.0\",\"Host\":\"www.globalbills.com.ng\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:33:11
+Payment Details:
+
+Headers:
+"{\"Cache-Control\":\"max-age=0\",\"Sec-Ch-Ua\":\"\\\"Not_A Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"120\\\", \\\"Google Chrome\\\";v=\\\"120\\\"\",\"Sec-Ch-Ua-Mobile\":\"?0\",\"Sec-Ch-Ua-Platform\":\"\\\"Windows\\\"\",\"Upgrade-Insecure-Requests\":\"1\",\"User-Agent\":\"Mozilla\\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\\/537.36 (KHTML, like Gecko) Chrome\\\/120.0.0.0 Safari\\\/537.36\",\"Accept\":\"text\\\/html,application\\\/xhtml+xml,application\\\/xml;q=0.9,image\\\/avif,image\\\/webp,image\\\/apng,*\\\/*;q=0.8,application\\\/signed-exchange;v=b3;q=0.7\",\"Sec-Fetch-Site\":\"none\",\"Sec-Fetch-Mode\":\"navigate\",\"Sec-Fetch-User\":\"?1\",\"Sec-Fetch-Dest\":\"document\",\"Accept-Encoding\":\"gzip, deflate, br\",\"Accept-Language\":\"en-US,en;q=0.9\",\"Cookie\":\"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; TawkConnectionTime=0; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705418429754%7D; _ga_VVN0P5EYQP=GS1.1.1705417058.46.1.1705418516.0.0.0\",\"Host\":\"www.globalbills.com.ng\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:33:11
+Payment Details:
+
+Headers:
+"{\"Cache-Control\":\"max-age=0\",\"Sec-Ch-Ua\":\"\\\"Not_A Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"120\\\", \\\"Google Chrome\\\";v=\\\"120\\\"\",\"Sec-Ch-Ua-Mobile\":\"?0\",\"Sec-Ch-Ua-Platform\":\"\\\"Windows\\\"\",\"Upgrade-Insecure-Requests\":\"1\",\"User-Agent\":\"Mozilla\\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\\/537.36 (KHTML, like Gecko) Chrome\\\/120.0.0.0 Safari\\\/537.36\",\"Accept\":\"text\\\/html,application\\\/xhtml+xml,application\\\/xml;q=0.9,image\\\/avif,image\\\/webp,image\\\/apng,*\\\/*;q=0.8,application\\\/signed-exchange;v=b3;q=0.7\",\"Sec-Fetch-Site\":\"none\",\"Sec-Fetch-Mode\":\"navigate\",\"Sec-Fetch-User\":\"?1\",\"Sec-Fetch-Dest\":\"document\",\"Accept-Encoding\":\"gzip, deflate, br\",\"Accept-Language\":\"en-US,en;q=0.9\",\"Cookie\":\"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; TawkConnectionTime=0; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705418429754%7D; _ga_VVN0P5EYQP=GS1.1.1705417058.46.1.1705418516.0.0.0\",\"Host\":\"www.globalbills.com.ng\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:34:02
+Payment Details:
+
+Headers:
+"{\"Accept\":\"application\\\/json, text\\\/plain, *\\\/*\",\"User-Agent\":\"Paystack\\\/2.0\",\"X-Paystack-Signature\":\"bc01155c69bee0fc360fe9550ec577f608af03edc23cd0870866b62c2ad4f6aa60134fad16bd7cb4f11771fe1096bafb58c01b611f84f13c26dff1cf2952b6b6\",\"x-datadog-trace-id\":\"4182765755750227474\",\"x-datadog-parent-id\":\"793028043342277187\",\"x-datadog-sampled\":\"1\",\"x-datadog-sampling-priority\":\"0\",\"Host\":\"www.globalbills.com.ng\",\"Connection\":\"close\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:34:04
+Payment Details:
+
+Headers:
+"{\"Cache-Control\":\"max-age=0\",\"Sec-Ch-Ua\":\"\\\"Not_A Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"120\\\", \\\"Google Chrome\\\";v=\\\"120\\\"\",\"Sec-Ch-Ua-Mobile\":\"?0\",\"Sec-Ch-Ua-Platform\":\"\\\"Windows\\\"\",\"Upgrade-Insecure-Requests\":\"1\",\"User-Agent\":\"Mozilla\\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\\/537.36 (KHTML, like Gecko) Chrome\\\/120.0.0.0 Safari\\\/537.36\",\"Accept\":\"text\\\/html,application\\\/xhtml+xml,application\\\/xml;q=0.9,image\\\/avif,image\\\/webp,image\\\/apng,*\\\/*;q=0.8,application\\\/signed-exchange;v=b3;q=0.7\",\"Sec-Fetch-Site\":\"none\",\"Sec-Fetch-Mode\":\"navigate\",\"Sec-Fetch-User\":\"?1\",\"Sec-Fetch-Dest\":\"document\",\"Accept-Encoding\":\"gzip, deflate, br\",\"Accept-Language\":\"en-US,en;q=0.9\",\"Cookie\":\"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; TawkConnectionTime=0; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705418429754%7D; _ga_VVN0P5EYQP=GS1.1.1705417058.46.1.1705418516.0.0.0\",\"Host\":\"www.globalbills.com.ng\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:34:52
+Payment Details:
+
+Headers:
+"{\"Accept\":\"application\\\/json, text\\\/plain, *\\\/*\",\"User-Agent\":\"Paystack\\\/2.0\",\"X-Paystack-Signature\":\"1a709def1420ca7ad8db4ee98bca9f84f809fe755b2abd878e6780e077dc2a239c5a3bc0969d6a7fbbe420c3561a4e5ca0fc03c8666b4bca8123b754fa3cba03\",\"x-datadog-trace-id\":\"2516278537803381548\",\"x-datadog-parent-id\":\"8260447993636455278\",\"x-datadog-sampled\":\"1\",\"x-datadog-sampling-priority\":\"0\",\"Host\":\"www.globalbills.com.ng\",\"Connection\":\"close\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:34:53
+Payment Details:
+
+Headers:
+"{\"Cache-Control\":\"max-age=0\",\"Sec-Ch-Ua\":\"\\\"Not_A Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"120\\\", \\\"Google Chrome\\\";v=\\\"120\\\"\",\"Sec-Ch-Ua-Mobile\":\"?0\",\"Sec-Ch-Ua-Platform\":\"\\\"Windows\\\"\",\"Upgrade-Insecure-Requests\":\"1\",\"User-Agent\":\"Mozilla\\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\\/537.36 (KHTML, like Gecko) Chrome\\\/120.0.0.0 Safari\\\/537.36\",\"Accept\":\"text\\\/html,application\\\/xhtml+xml,application\\\/xml;q=0.9,image\\\/avif,image\\\/webp,image\\\/apng,*\\\/*;q=0.8,application\\\/signed-exchange;v=b3;q=0.7\",\"Sec-Fetch-Site\":\"none\",\"Sec-Fetch-Mode\":\"navigate\",\"Sec-Fetch-User\":\"?1\",\"Sec-Fetch-Dest\":\"document\",\"Accept-Encoding\":\"gzip, deflate, br\",\"Accept-Language\":\"en-US,en;q=0.9\",\"Cookie\":\"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; TawkConnectionTime=0; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705418429754%7D; _ga_VVN0P5EYQP=GS1.1.1705417058.46.1.1705418516.0.0.0\",\"Host\":\"www.globalbills.com.ng\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:43:31
+Payment Details:
+
+Headers:
+"{\"Cache-Control\":\"max-age=0\",\"Sec-Ch-Ua\":\"\\\"Not_A Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"120\\\", \\\"Google Chrome\\\";v=\\\"120\\\"\",\"Sec-Ch-Ua-Mobile\":\"?0\",\"Sec-Ch-Ua-Platform\":\"\\\"Windows\\\"\",\"Upgrade-Insecure-Requests\":\"1\",\"User-Agent\":\"Mozilla\\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\\/537.36 (KHTML, like Gecko) Chrome\\\/120.0.0.0 Safari\\\/537.36\",\"Accept\":\"text\\\/html,application\\\/xhtml+xml,application\\\/xml;q=0.9,image\\\/avif,image\\\/webp,image\\\/apng,*\\\/*;q=0.8,application\\\/signed-exchange;v=b3;q=0.7\",\"Sec-Fetch-Site\":\"none\",\"Sec-Fetch-Mode\":\"navigate\",\"Sec-Fetch-User\":\"?1\",\"Sec-Fetch-Dest\":\"document\",\"Accept-Encoding\":\"gzip, deflate, br\",\"Accept-Language\":\"en-US,en;q=0.9\",\"Cookie\":\"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; TawkConnectionTime=0; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705418429754%7D; _ga_VVN0P5EYQP=GS1.1.1705417058.46.1.1705418516.0.0.0\",\"Host\":\"www.globalbills.com.ng\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:44:09
+Payment Details:
+
+Headers:
+"{\"Accept\":\"application\\\/json, text\\\/plain, *\\\/*\",\"User-Agent\":\"Paystack\\\/2.0\",\"X-Paystack-Signature\":\"c3169917c964e42520e1610571e44cc11e091940258b7dea81655d2626fde849ade56d2d3c097fcff35a1709f3183dd6c3d6bab7365083d2ed0ee3dcc9d464b9\",\"x-datadog-trace-id\":\"1208204419122127733\",\"x-datadog-parent-id\":\"4499186082411483878\",\"x-datadog-sampled\":\"1\",\"x-datadog-sampling-priority\":\"0\",\"Host\":\"www.globalbills.com.ng\",\"Connection\":\"close\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:47:00
+Payment Details:
+
+Headers:
+"{\"Accept\":\"application\\\/json, text\\\/plain, *\\\/*\",\"User-Agent\":\"Paystack\\\/2.0\",\"X-Paystack-Signature\":\"23bb482cc2b1060f9b927799b7ddb32deb47df26977d60eb771a1d97c7fdc82704d5788392e8b48ee4496f6adb8e574c8e4aaa4cbdaa822f89fe262086c78403\",\"x-datadog-trace-id\":\"7008980572251083725\",\"x-datadog-parent-id\":\"1498635894901313634\",\"x-datadog-sampled\":\"1\",\"x-datadog-sampling-priority\":\"0\",\"Host\":\"www.globalbills.com.ng\",\"Connection\":\"close\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:47:29
+Payment Details:
+
+Headers:
+"{\"Accept\":\"application\\\/json, text\\\/plain, *\\\/*\",\"User-Agent\":\"Paystack\\\/2.0\",\"X-Paystack-Signature\":\"68ac534e68fb4547ee79503f8e6ff9204f5f09ec76066a799b02e588c997059d19c8bf1648ee11944bacd28e96c9813fb5b8e001c35326d2e1bfb366c8e7de0f\",\"x-datadog-trace-id\":\"2224853461149384829\",\"x-datadog-parent-id\":\"6636697505697366480\",\"x-datadog-sampled\":\"1\",\"x-datadog-sampling-priority\":\"0\",\"Host\":\"www.globalbills.com.ng\",\"Connection\":\"close\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:47:32
+Payment Details:
+
+Headers:
+"{\"Cache-Control\":\"max-age=0\",\"Sec-Ch-Ua\":\"\\\"Not_A Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"120\\\", \\\"Google Chrome\\\";v=\\\"120\\\"\",\"Sec-Ch-Ua-Mobile\":\"?0\",\"Sec-Ch-Ua-Platform\":\"\\\"Windows\\\"\",\"Upgrade-Insecure-Requests\":\"1\",\"User-Agent\":\"Mozilla\\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\\/537.36 (KHTML, like Gecko) Chrome\\\/120.0.0.0 Safari\\\/537.36\",\"Accept\":\"text\\\/html,application\\\/xhtml+xml,application\\\/xml;q=0.9,image\\\/avif,image\\\/webp,image\\\/apng,*\\\/*;q=0.8,application\\\/signed-exchange;v=b3;q=0.7\",\"Sec-Fetch-Site\":\"none\",\"Sec-Fetch-Mode\":\"navigate\",\"Sec-Fetch-User\":\"?1\",\"Sec-Fetch-Dest\":\"document\",\"Accept-Encoding\":\"gzip, deflate, br\",\"Accept-Language\":\"en-US,en;q=0.9\",\"Cookie\":\"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; TawkConnectionTime=0; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705418429754%7D; _ga_VVN0P5EYQP=GS1.1.1705417058.46.1.1705418516.0.0.0\",\"Host\":\"www.globalbills.com.ng\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:48:26
+Payment Details:
+
+Headers:
+"{\"Accept\":\"application\\\/json, text\\\/plain, *\\\/*\",\"User-Agent\":\"Paystack\\\/2.0\",\"X-Paystack-Signature\":\"d64752a448e4f9e819746b60c40716e7ba5a8eef9eea7336f30c85a3229833057a90b0b722cf2fc6ea122d2b66206129511c08288250ab40cc602621594bd661\",\"x-datadog-trace-id\":\"9043870931883922319\",\"x-datadog-parent-id\":\"8805650077322987992\",\"x-datadog-sampled\":\"1\",\"x-datadog-sampling-priority\":\"0\",\"Host\":\"www.globalbills.com.ng\",\"Connection\":\"close\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:48:32
+Payment Details:
+
+Headers:
+"{\"Cache-Control\":\"max-age=0\",\"Sec-Ch-Ua\":\"\\\"Not_A Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"120\\\", \\\"Google Chrome\\\";v=\\\"120\\\"\",\"Sec-Ch-Ua-Mobile\":\"?0\",\"Sec-Ch-Ua-Platform\":\"\\\"Windows\\\"\",\"Upgrade-Insecure-Requests\":\"1\",\"User-Agent\":\"Mozilla\\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\\/537.36 (KHTML, like Gecko) Chrome\\\/120.0.0.0 Safari\\\/537.36\",\"Accept\":\"text\\\/html,application\\\/xhtml+xml,application\\\/xml;q=0.9,image\\\/avif,image\\\/webp,image\\\/apng,*\\\/*;q=0.8,application\\\/signed-exchange;v=b3;q=0.7\",\"Sec-Fetch-Site\":\"none\",\"Sec-Fetch-Mode\":\"navigate\",\"Sec-Fetch-User\":\"?1\",\"Sec-Fetch-Dest\":\"document\",\"Accept-Encoding\":\"gzip, deflate, br\",\"Accept-Language\":\"en-US,en;q=0.9\",\"Cookie\":\"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; TawkConnectionTime=0; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705418429754%7D; _ga_VVN0P5EYQP=GS1.1.1705417058.46.1.1705418516.0.0.0\",\"Host\":\"www.globalbills.com.ng\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:54:05
+Payment Details:
+
+Headers:
+"{\"Accept\":\"application\\\/json, text\\\/plain, *\\\/*\",\"User-Agent\":\"Paystack\\\/2.0\",\"X-Paystack-Signature\":\"2dc40c74903e5457d83ec74fa91c48f81c0293322620ad5782e7f7a1a8a26772ccc5a2f6fd2c76aecde67d4eed59021e735c985f75d1732f86736e56181bce27\",\"x-datadog-trace-id\":\"7444754861808952088\",\"x-datadog-parent-id\":\"6364033153886493060\",\"x-datadog-sampled\":\"1\",\"x-datadog-sampling-priority\":\"0\",\"Host\":\"www.globalbills.com.ng\",\"Connection\":\"close\",\"Content-Length\":\"0\"}"
+
+2024-01-16 20:56:40
+Payment Details:
+
+Headers:
+"{\"Sec-Ch-Ua\":\"\\\"Not_A Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"120\\\", \\\"Google Chrome\\\";v=\\\"120\\\"\",\"Sec-Ch-Ua-Mobile\":\"?0\",\"Sec-Ch-Ua-Platform\":\"\\\"Windows\\\"\",\"Upgrade-Insecure-Requests\":\"1\",\"User-Agent\":\"Mozilla\\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\\/537.36 (KHTML, like Gecko) Chrome\\\/120.0.0.0 Safari\\\/537.36\",\"Accept\":\"text\\\/html,application\\\/xhtml+xml,application\\\/xml;q=0.9,image\\\/avif,image\\\/webp,image\\\/apng,*\\\/*;q=0.8,application\\\/signed-exchange;v=b3;q=0.7\",\"Sec-Fetch-Site\":\"none\",\"Sec-Fetch-Mode\":\"navigate\",\"Sec-Fetch-User\":\"?1\",\"Sec-Fetch-Dest\":\"document\",\"Accept-Encoding\":\"gzip, deflate, br\",\"Accept-Language\":\"en-US,en;q=0.9\",\"Cookie\":\"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; TawkConnectionTime=0; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705418429754%7D; _ga_VVN0P5EYQP=GS1.1.1705431169.47.1.1705431249.0.0.0\",\"Host\":\"www.globalbills.com.ng\",\"Content-Length\":\"0\"}"
+
+2024-01-16 21:10:00
+Payment Details:
+
+Headers:
+"{\"Cache-Control\":\"max-age=0\",\"Sec-Ch-Ua\":\"\\\"Not_A Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"120\\\", \\\"Google Chrome\\\";v=\\\"120\\\"\",\"Sec-Ch-Ua-Mobile\":\"?0\",\"Sec-Ch-Ua-Platform\":\"\\\"Windows\\\"\",\"Upgrade-Insecure-Requests\":\"1\",\"User-Agent\":\"Mozilla\\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\\/537.36 (KHTML, like Gecko) Chrome\\\/120.0.0.0 Safari\\\/537.36\",\"Accept\":\"text\\\/html,application\\\/xhtml+xml,application\\\/xml;q=0.9,image\\\/avif,image\\\/webp,image\\\/apng,*\\\/*;q=0.8,application\\\/signed-exchange;v=b3;q=0.7\",\"Sec-Fetch-Site\":\"none\",\"Sec-Fetch-Mode\":\"navigate\",\"Sec-Fetch-User\":\"?1\",\"Sec-Fetch-Dest\":\"document\",\"Accept-Encoding\":\"gzip, deflate, br\",\"Accept-Language\":\"en-US,en;q=0.9\",\"Cookie\":\"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; TawkConnectionTime=0; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705418429754%7D; _ga_VVN0P5EYQP=GS1.1.1705431169.47.1.1705431249.0.0.0\",\"Host\":\"www.globalbills.com.ng\",\"Content-Length\":\"0\"}"
+
+2024-01-16 21:20:38
+Payment Details:
+
+Headers:
+"{\"Cache-Control\":\"max-age=0\",\"Sec-Ch-Ua\":\"\\\"Not_A Brand\\\";v=\\\"8\\\", \\\"Chromium\\\";v=\\\"120\\\", \\\"Google Chrome\\\";v=\\\"120\\\"\",\"Sec-Ch-Ua-Mobile\":\"?0\",\"Sec-Ch-Ua-Platform\":\"\\\"Windows\\\"\",\"Upgrade-Insecure-Requests\":\"1\",\"User-Agent\":\"Mozilla\\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\\/537.36 (KHTML, like Gecko) Chrome\\\/120.0.0.0 Safari\\\/537.36\",\"Accept\":\"text\\\/html,application\\\/xhtml+xml,application\\\/xml;q=0.9,image\\\/avif,image\\\/webp,image\\\/apng,*\\\/*;q=0.8,application\\\/signed-exchange;v=b3;q=0.7\",\"Sec-Fetch-Site\":\"cross-site\",\"Sec-Fetch-Mode\":\"navigate\",\"Sec-Fetch-User\":\"?1\",\"Sec-Fetch-Dest\":\"document\",\"Accept-Encoding\":\"gzip, deflate, br\",\"Accept-Language\":\"en-US,en;q=0.9\",\"Cookie\":\"PHPSESSID=l7n3s284tdcf6dvi2rjm13lrls; twk_idm_key=Dy3iRt6UMpQE57Ld9cc0A; _ga=GA1.1.1574700859.1704319073; TawkConnectionTime=0; twk_uuid_658c01c070c9f2407f83aa82=%7B%22uuid%22%3A%221.bJrPV5SIOOHOMO3OzYQ5K8GRxpXkNVcGauo1eyR5J1y1DXfYgyb0AAI9REmQWMPjwBRMR4Awp7tW3GMGy3TF7FerbaadngDjrGZx1Pij8YglUI1l4io0ZymZEbdm6%22%2C%22version%22%3A3%2C%22domain%22%3A%22globalbills.com.ng%22%2C%22ts%22%3A1705418429754%7D; _ga_VVN0P5EYQP=GS1.1.1705431169.47.1.1705432432.0.0.0\",\"Host\":\"www.globalbills.com.ng\",\"Content-Length\":\"0\"}"

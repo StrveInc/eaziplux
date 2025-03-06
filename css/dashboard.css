@@ -1,0 +1,614 @@
+
+html{
+    overflow-x: hidden;
+}
+
+body{
+    font-size: 1.125;
+    margin: 0;
+    background: black;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: "poppins";
+    overflow: hidden;
+}
+
+h1{
+    font-family: "poppins";
+    font-size: xx-large;
+}
+
+p{
+    font-weight: 400;
+}
+
+i{
+    font-size: medium;
+}
+
+header{
+    width: 95%;
+    border: 0px solid black;
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.all{
+    display: flex;
+    border: 0px solid black;
+    margin-left: 2.5rem;
+}
+
+
+.tilte{
+    border: 0px solid white;
+    padding: 0%;
+    display: flex;
+    width: 10%;
+    align-items: center;
+}
+
+.tilte p{
+    border: 0px solid black;
+    margin: 0;
+    color:#d5dddf;
+    font-family: "nunito";
+}
+
+.tilte h3{
+    border:  0px solid black;
+    margin: 0;
+    color: white;
+    width: 100%;
+    word-break: break-all;
+    font-size: 14px;
+}
+
+.logo{
+    width: 25%;
+}
+
+img{
+    width: 100%;
+}
+
+@media (max-width:670px){
+    .logo{
+        width: 20%;
+        margin-top: .6rem;
+        margin-left: -1rem;
+    }
+
+    .all{
+        display: flex;
+        border: 0px solid black;
+        margin-top: .9rem;
+        margin-left: 0;
+        width: 90;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .tilte{
+        border: 0px solid black;
+        padding: 0%;
+        width: 100%;
+        align-items: center;
+        margin-top: rem;
+    }
+
+    header{
+        width: 95%;
+    }
+    
+}
+
+
+
+/**************************************************************************************MAIN BODY******************************************************************************/
+
+.container{
+    width: 100%;
+    margin: auto;
+}
+
+.log{
+    font-family: "poppins";
+    border: 0px solid black;
+    font-weight: 1rem;
+    width: 30px;
+    color: black;
+    border-radius: .5rem;
+}
+
+.log a{
+    color: white;
+    text-decoration: none;
+    font-size: 19px;
+}
+
+.teal{
+    padding-bottom: .5rem;
+    background: linear-gradient(137deg, #043927, #000000);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom-left-radius: 20rem;
+    border: 0px solid white;
+    border-bottom-right-radius: 0rem;
+}
+
+.baldash{
+    margin-top: -4rem;
+    width: 100%;
+    border: 0px solid black;
+    color:azure;
+    margin: auto;
+}
+
+
+.bal{
+    width: 90%;
+    text-align: left;
+    border: 0px solid black;
+    margin: auto;
+    margin-top: 2rem;
+    color: azure;
+    font-weight: bold;
+    font-family:'nunito';
+    font-size: 2rem;
+}
+
+.place{
+    border: 0px solid white;
+    color: rgb(220, 205, 205);
+    padding: 0;
+    font-size: 2rem;
+    margin-bottom: -2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.place p{
+    font-size: 1.3rem;
+    border: 0px solid black;
+    width: fit-content;
+}
+
+.place i{
+    font-size: 1rem;
+    width: fit-content;
+}
+
+.add{
+    width: 50%;
+    border: 0px solid yellow;
+    margin: auto;
+    display: flex;
+}
+
+.additems{
+    text-align: center;
+    width: 35px;
+    height: 35px;
+    /* border-bottom-left-radius: 2rem; */
+    border: 0px solid white;
+    border-radius: 50%;
+    margin: auto;
+    padding: 3px;
+}
+
+.addCont{
+    text-align: center;
+    width: 30%;
+    /* background: black; */ 
+    /* border-bottom-left-radius: 2rem; */
+    border: 0px solid white;
+    display: block;
+}
+
+.small{
+    font-size: 9px;
+    margin-top: 4px;
+}
+
+
+.additems p{
+    font-weight: 600;
+}
+
+.additems1 p{
+    font-weight: 600;
+}
+
+.additems1{
+    width: 35%;
+    padding: .5rem;
+    background: rgb(199, 194, 194);
+    text-align: center;
+    border-top-right-radius: 2rem;
+    border: 0px solid white;
+    color: black;
+}
+
+.additems1 p{
+    color: black;
+}
+
+.additems a{
+    color: white;
+    text-decoration: none;
+}
+
+.additems1 a{
+    font-weight: 600;
+    color: black;
+    text-decoration: none;
+}
+
+.services{
+    width: 95%;
+    border: 0px solid white;
+    border-style: inset;
+    background: black;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: auto;
+    color: white;
+    margin-bottom: auto;
+}
+
+.services a .icon{
+    border: 0px solid black;
+    border-radius: 30%;
+    color: white;
+    padding: 1rem;
+    /* background: linear-gradient(137deg, #043927, #000000); */
+    font-size: medium;
+    text-decoration: none;
+}
+
+.services a p{
+    color: white;
+    text-decoration: none;
+    font-size: .6rem;
+}
+
+.column{
+    border: 0px solid black;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+
+.col{
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 40%;
+    margin: auto;
+    justify-content: space-around;
+    text-align: center;
+}
+
+
+
+@media (max-width:670px){
+    .container{
+        border: 0px solid white;
+        width: 100%;
+    }
+
+    .topCont{
+        border: 0px solid white;
+        padding: 0;
+    }
+
+    .baldash{
+        padding-top: .2rem;
+        width: 100%;
+        border: 0px solid black;
+        border-style: outset;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        color:azure;
+        margin: auto;
+        padding: 0rem;
+    }
+
+    .bal{
+        padding-bottom: 2rem;
+    }
+
+    .bal h1{
+        font-size: 2.5rem;
+    }
+
+
+    .services{
+        margin: auto;
+        margin-top: 0;
+        width: 95%;
+        font-size: small;
+        height: fit-content;
+        justify-content: space-around;
+        align-items:flex-start;
+        padding:.1rem ;
+    }
+
+    .services i{
+        font-size: 2.5rem;
+    }
+
+
+    .column {
+        border: 0px solid yellow;
+        width: 100%;
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+        margin-top: 2rem;
+    }
+
+    .col {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 40%;
+        margin: auto;
+        text-align: center;
+        border: 0px solid white;
+    }
+
+    .col a{
+        margin: auto;
+        text-decoration: none;
+    }
+
+    .add {
+        width: 95%;
+        border: 0px solid black;
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    
+
+}
+
+
+/*****************hamburger**********************/
+
+/*body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+*/
+/*nav{
+    border: 0px solid black;
+    height: 50%;
+    margin-top: 2.4rem;  
+}
+
+
+.navbar {
+    color: purple;
+    padding: 10px 20px;
+}
+
+.hmcontainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.menu-toggle {
+    cursor: pointer;
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+
+.bar {
+    background-color: purple;
+    height: 3px;
+    margin: 6px 0;
+    transition: transform 0.4s;
+}
+
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+    display: none;
+}
+
+.menu.active {
+    display: block;
+}
+
+.menu li {
+    margin: 10px 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+}
+*/
+
+.navbar { /* Position the navbar absolutely */
+    position: relative;
+ /* Set a high z-index to ensure the menu appears on top of other content */
+    background-color: transparent;
+    padding: 10px 20px;
+    width: 10%;
+    text-align: center;
+    color: purple;
+    margin-right: -4rem;
+    margin-top: 2.5rem;
+    border: 0px solid black;
+}
+
+.hmcontainer {
+    justify-content: space-between;
+    align-items: center;
+    border: 0px solid black;
+}
+
+.menu-toggle {
+    cursor: pointer;
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+
+.bar {
+    background-color: white; /* Change bar color to white for better visibility */
+    height: 3px;
+    margin: 6px 0;
+    width: 2rem;
+    transition: transform 0.4s;
+}
+
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+    position: absolute; /* Position the menu absolutely */
+    right: 100%; /* Position the menu below the navbar */
+    top: 0;
+    background-color: black;
+    color: white;
+    width: 470%; /* Set full width */
+    display: none;
+    text-align: left;
+    margin-top: -2rem;
+    margin-right: -7rem;
+    height: 95vh;
+    padding-top: 3rem;
+}
+
+.menu.active {
+    display: block;
+    margin-left: 100px;
+    overflow-y: scroll;
+}
+
+
+.inner{
+    border: 0px solid white;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: 2.7rem;
+    margin-top: 1rem;
+}
+
+.inner .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.inner .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.inner .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+.inner .bar {
+    background-color: white; /* Change bar color to white for better visibility */
+    height: 3px;
+    margin: 6px 0;
+    width: 2rem;
+    transition: transform 0.4s;
+}
+
+.menu li {
+    margin: 10px 0;
+    border-bottom: 1px solid #043927;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 3rem;
+}
+
+.sym .lag{
+    width: 40%;
+}
+
+.sym p{
+    margin-top: -2rem;
+    margin-left: 4rem;
+    font-weight: 200;
+    color: grey;
+}
+
+.ver{
+    margin-top: 3rem;
+    margin-left: -2rem;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+@media (max-width: 670px){
+    .navbar { /* Position the navbar absolutely */
+        position: relative;
+     /* Set a high z-index to ensure the menu appears on top of other content */
+        background-color: transparent;
+        padding: 10px 20px;
+        width: 10%;
+        text-align: center;
+        color: white;
+        margin-right: -.2rem;
+        margin-top: 1rem;
+        border: 0px solid black;
+    }
+}
+
+.bal h1{
+    font-weight:400;
+}
+.bal h1 i{
+    font-size: 2rem;
+}
+
+i{
+    text-decoration: none;
+}

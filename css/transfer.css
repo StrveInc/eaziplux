@@ -1,0 +1,70 @@
+html{
+    overflow-x: hidden;
+}
+
+i{
+    font-size: 2rem;
+}
+
+header{
+    width: 90%;
+    margin: auto;
+    padding-top: 1rem;
+    border: 0px solid black;
+    display: flex;
+}
+
+
+body {
+    font-family: "poppins";
+    font-size: 21.125px;
+    background: linear-gradient(137deg, #043927, #000000);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+
+
+.head{
+    border: 0px solid black;
+    width: fit-content;
+    margin: auto;
+    font-size: large;
+    font-weight: 600;
+}
+
+label{
+    color: grey;
+}
+
+h3{
+    margin-left: 1rem;
+}
+
+.container{
+    border: 0px solid black;
+    width: 90%;
+    margin: auto;
+    margin-top: 4rem;
+    text-align: left;
+    background: transparent;
+    padding: 1rem;
+}
+
+.num{
+    display: flex;
+    justify-content: space-between;
+}
+
+.det{
+    background: linear-gradient(221deg, #043927, #383737);
+    padding: .5rem;
+    margin-bottom: 2rem;
+    border-radius: .5rem;
+}
+
+a i{
+    color: white;
+}

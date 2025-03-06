@@ -1,0 +1,265 @@
+html{
+    overflow-x: hidden;
+}
+
+body{
+    font-size: 1.125;
+    margin: 0;
+    background: linear-gradient(120deg,aqua,#deb1f0);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+header .container{
+    width: 90%;
+    border: 0px solid blue;
+    margin:0 auto;
+    opacity: 100%;
+    color: black;
+}
+
+
+header .container-nav{
+    display: flex;
+    justify-content: space-between;
+    border: 0px solid black;
+}
+
+@media (max-width: 670px){
+    .container-nav{
+        flex-direction: column;
+    }
+}
+
+
+header{
+    padding: .2rem;
+    width: 100%;
+    border: 0px solid black;
+    margin: 0;
+    background-color: white;
+}
+
+@media (max-width:670px){
+
+    html{
+        overflow-x: hidden;
+    }
+    
+    
+    header{
+        text-align: center;
+        padding: 0;
+    }
+}
+
+
+header h1{
+    font-size: 2rem;
+    color: #143774;
+    font-weight: 900;
+    margin: 0;
+}
+
+.logo{
+    width: 13%;
+    margin-top: -1.5rem;
+}
+
+.all{
+    display: flex;
+}
+
+img{
+    width: 100%;
+}
+
+.subtitle{
+    font-weight: 700;
+    color: #1792d2;
+    font-size: .75rem;
+    margin: 0;
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    color: black;
+}
+
+
+
+nav li{
+    margin-left:2em;
+    color: black;
+}
+
+nav a{
+    text-decoration: none;
+    font-weight: 700;
+    color: purple;
+}
+
+
+nav a:hover,
+nav a:focus,
+nav a:active{
+    color: red;
+    text-decoration: underline;
+}
+
+@media (max-width:670px){
+    nav ul{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    nav li{
+        margin: .5em 0;
+    }
+
+    nav a{
+        font-size: small;
+    }
+
+    .logo{
+        width: 20%;
+        margin-top: -.9rem;
+    }
+    
+    .all{
+        display: flex;
+        margin-left: 3rem;
+    }
+    
+    img{
+        width: 100%;
+    }
+}
+
+
+/************************MAIN BODY***************************/
+
+main .container {
+    border: 0px solid black;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    margin-top: 10%;
+}
+
+
+.column {
+    display: flex;
+    border: 0px solid black;
+    margin: auto;
+    width: 50%;
+    margin-top: 3rem;
+}
+
+.col1 {
+    width: 40%;
+    border: 0px solid black;
+    text-align: center;
+    font-family: 'Gill Sans', serif;
+}
+
+.col1 h4 {
+    margin: auto;
+}
+
+.col2 {
+    width: 40%;
+    border: 0px solid black;
+
+}
+
+
+.col2 .amount {
+    border: 0px solid yellow;
+    width: 99%;
+    margin-top: 1.5rem;
+    text-align: center;
+    height: 5vh;
+    font-size: larger;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.submit {
+    width: 100%;
+    background: green;
+    font-size: larger;
+    font-weight: bolder;
+    border-radius: 7px;
+    color: aqua;
+    margin-top: 1rem;
+}
+
+
+@media (max-width:670px) {
+    .column {
+        flex-direction: column;
+        border: 0px solid black;
+        width: 90%;
+        padding: .5rem;
+        padding-bottom: 1rem;
+        border-radius: 2rem;
+        background: linear-gradient(120deg, white, purple);
+    }
+
+    .col1 {
+        width: 100%;
+        border: 0px solid black;
+        text-align: center;
+        margin: auto;
+        font-family: 'Gill Sans', serif;
+    }
+
+    .col2 {
+        width: 100%;
+        border: 0px solid black;
+        margin: auto;
+        height: 5%;
+    }
+
+    .col2 .amount {
+        margin-top: 2%;
+        width: 80%;
+        height: 2.5rem;
+        text-align: center;
+        margin: auto;
+        font-size: larger;
+        font-weight: bold;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    .submit {
+        margin-top: 2rem;
+        width: 70%;
+        background: green;
+        font-size: larger;
+        font-weight: bolder;
+        border-radius: 7px;
+        color: aqua;
+    }
+}
+
+
+.transfer {
+    border: 0px solid black;
+    width: fit-content;
+    margin: auto;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 2rem;
+    background: linear-gradient(120deg, white, purple);
+}
+
+.transfer h2 {
+    border-bottom: 1px solid black;
+}
