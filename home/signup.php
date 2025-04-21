@@ -30,7 +30,7 @@ if (isset($_POST["submit"])) {
         $user_id = bin2hex(random_bytes(16)); // Generate unique user_id
         
         // SQL query to insert user data into the users table
-        $insert_user_sql = "INSERT INTO users (user_id, email, username, phone_number, pass_word) VALUES (?, ?, ?, ?, ?)";
+        $insert_user_sql = "INSERT INTO users (user_id, email, username, phone_number, password) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($insert_user_sql);
         $stmt->bind_param("sssss", $user_id, $email, $username, $phone, $password);
         
@@ -38,7 +38,7 @@ if (isset($_POST["submit"])) {
             // User registration successful
             
             // Create an entry in the virtual account table
-            $create_virtual_account_sql = "INSERT INTO virtual_accounts (acct_id, balance) VALUES (?, 0)";
+            $create_virtual_account_sql = "INSERT INTO virtual_accounts (user_id, balance) VALUES (?, 0)";
             $stmt = $conn->prepare($create_virtual_account_sql);
             $stmt->bind_param("s", $user_id); // Use generated user_id
             

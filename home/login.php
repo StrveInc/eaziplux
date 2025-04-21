@@ -146,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
 
             // Use prepared statements to prevent SQL injection
-            $stmt = $conn->prepare("UPDATE users SET acct_number=?, acct_name=?, bank_name=? WHERE email=?");
+            $stmt = $conn->prepare("UPDATE virtual_accounts SET acct_number=?, acct_name=?, bank_name=? WHERE email=?");
             $stmt->bind_param("ssss", $acctnumber, $acctname, $bankname, $_SESSION["email"]);
             $stmt->execute();
 

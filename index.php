@@ -109,16 +109,7 @@
             </section>-->
         </div>
     </main>
-    <footer>
-        <div class="footcontainer">
-            <div class="allf">
-                <p>&copy2023 EAZIPLUX. All Rights Reserved</p>
-            </div>
-            <div class="stamp">
-                <p>Powered By Strive</p>
-            </div>
-    </footer>
-
+    
     <script type="text/javascript">
         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
         (function () {
@@ -130,6 +121,15 @@
             s0.parentNode.insertBefore(s1, s0);
         })();
     </script>
+    <footer>
+        <div class="footcontainer">
+            <div class="allf">
+                <p>&copy2023 EAZIPLUX. All Rights Reserved</p>
+            </div>
+            <div class="stamp">
+                <p>Powered By Strive</p>
+            </div>
+    </footer>
 
 </body>
 <script>

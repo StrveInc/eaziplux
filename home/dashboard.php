@@ -87,6 +87,7 @@ if ($currentHour >= 1 && $currentHour < 12) {
         href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Truculenta:opsz,wght@12..72,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/variable.css">
     <link rel="icon" type="image/png" size="662x662" href="../css/imgs/eaziplux.png">
     <script src="https://kit.fontawesome.com/49c5823e25.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
@@ -140,88 +141,56 @@ if ($currentHour >= 1 && $currentHour < 12) {
         <header>
             <div class="container container-nav">
                 <div class="all">
-                    <div class="logo">
-                        <img src="../css/imgs/eazipluxpure.png" alt="eaziplux">
-                    </div>
                     <div class="tilte">
-                        <?php if (isset($_SESSION['username'])): ?>
-                                    <div class=name>
-                                        <p>
-                                            <?php echo $greeting . "," ?>
-                                        </p>
-                                        <h3>
-                                            <?php echo $_SESSION['username']; ?>
-                                        </h3>
+                        <?php if (!isset($_SESSION['username'])): ?>
+                                <div style="color: white;">
+                                    <div style="font-weight: 600; font-size: 11px; border: 0px solid">
+                                        <?php echo $greeting ?> ,
                                     </div>
+                                    <div style="font-size: 13px; font-weight:700 ; margin-top: -3px; border: 0px solid; width: 70%;  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                        Victory
+                                    </div>
+                                </div>
                         <?php else: ?>
-                                    <h3 class="log">
+                                    <div class="log">
                                         <?php ?><a href="login.php">Login</a>
-                                    </h3>
+                                    </div>
                         <?php endif; ?>
+                    </div>
+                    <div>
+                        <img style="width: 30px;" src="../css/imgs/userOutline.svg"/>
                     </div>
                 </div>
             </div>
-
-
-            <nav class="navbar">
-                <div class="hmcontainer">
-                    <img src="../css/imgs/userOutline.svg"/>
-                </div>
-            </nav>
         </header>
+
 
 
         <div class="topCont">
             <div class="baldash">
                 <div class="bal">
                     <div class="place">
-                        <p>total balance</p>
-
-                        <p><i class="fa fa-eye-slash" onclick="toggleBalanceVisibility()" aria-hidden="true"></i></p>
+                        <div style="font-size: 15px; font-weight: 400; border: 1px solid">
+                            total balance
+                            <i style="width: 10%0" class="fa fa-eye-slash" onclick="toggleBalanceVisibility()" aria-hidden="true"></i>
+                        </div>
                     </div>
-
-                    <?php if (isset($account_balance)): ?>
-                                <h1><i class="fa-solid fa-naira-sign"></i>
-                                    <span id="balanceDisplay">
-                                        <?php echo number_format($account_balance, 2); ?>
-                                    </span>
-                                </h1>
-                    <?php else: ?>
-                                <h1 id="balanceDisplay"><i class="fa-solid fa-naira-sign"></i>
-                                    <?php echo "****"; ?>
-                                </h1>
-                    <?php endif; ?>
-
+                    <div>
+                        <?php if (isset($account_balance)): ?>
+                                    <div class="balAmount" id="balanceDisplay">
+                                        &#8358;<?php echo number_format($account_balance, 2); ?>
+                                    </div>
+                        <?php else: ?>
+                                    <div class="balAmount" id="balanceDisplay">
+                                        &#8358;<?php echo "500,000,000.00"; ?>
+                                    </div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="add">
+                    <div class="addCont">
+                        <div class="small">Top-up Wallet</div>
+                    </div>
                 </div>
-                <div class="add">
-                    <div class="addCont">
-                        <div style="background: #043927;" class="additems">
-                            <a href="../dashboard/addfund.php">
-                                <img src="../css/svg/bankOutline.svg" />
-                            </a>
-                        </div>
-                        <div class="small">Add funds</div>
-                    </div>
-                    
-                    <div class="addCont">
-                        <div style="background: grey;" class="additems">
-                            <a href="../dashboard/addfund.php">
-                                <img src="../css/svg/clock.svg" />
-                            </a>
-                        </div>
-                        <div class="small">Schedule</div>
-                    </div>
-
-                    <div class="addCont">
-                        <div style="background: black;" class="additems">
-                            <a href="../dashboard/transaction.php">
-                                <img src="../css/svg/newspaper.svg" />
-                            </a>
-                        </div>
-                        <div class="small">
-                            Transacations
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -281,7 +250,19 @@ if ($currentHour >= 1 && $currentHour < 12) {
                     </a>
                 </div>
             </div>
-
+            <div class="advertBlock">
+                <div style="width: 65%; border: 0px solid white; height: 100%; padding: 5px;">
+                    <div style="border: 0px solid white;">Advertisement Block</div>
+                    <div>S</div>
+                    <div></div>
+                </div>
+                <div style="width: 35%; height: 100%; background: black;">
+                    <img 
+                        src="../css/imgs/eazipluxpure.png" 
+                        style="width: 100%; height: 100%; object-fit: contain;" 
+                    />
+                </div>
+            </div>
             <!-- <div class="column">
                 <div class="col">
                     <a href="#" onclick="lert()">
