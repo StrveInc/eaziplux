@@ -8,6 +8,7 @@ vendor/
 
 # Ignore Composer's lock file if you're not locking versions (optional)
 # composer.lock
+# composer.json
 
 # OS-specific files
 .DS_Store
