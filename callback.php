@@ -57,6 +57,8 @@ if (!$user_id && $userEmail) {
     $stmt->close();
 }
 
+file_put_contents($log_file, "DEBUG: reference=$reference, amount=$amount, userEmail=$userEmail, user_id=$user_id\n", FILE_APPEND);
+
 if ($user_id && $amount > 0) {
     // Credit user: use converted_amount for giftcard, else use amount
     $credit_amount = ($is_giftcard && $converted_amount) ? $converted_amount : $amount;
