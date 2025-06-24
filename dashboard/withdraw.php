@@ -14,20 +14,19 @@ if ($conn->connect_error) {
 }
 
 // Fetch user details and check for linked recipient code
-$user_query  = "SELECT balance, account_code FROM virtual_accounts WHERE acct_id='$user_id'";
-$user_result = $conn->query($user_query);
+$user_query  = "SELECT balance, account_code FROM virtual_accounts WHERE acct_id=?";
+$stmt = $conn->prepare($user_query);
+$stmt->bind_param("s", $user_id);
+$stmt->execute();
+$user_result = $stmt->get_result();
 if ($user_result->num_rows != 1) {
     die("User not found.");
 }
 $user            = $user_result->fetch_assoc();
 $account_balance = $user['balance'];
-$recipient_code  = $user['account_code'];
+$recipient_code  = !empty($user['account_code']) ? $user['account_code'] : null;
 
-$showLinkModal = false;
-
-if (empty($recipient_code)) {
-    $showLinkModal = true;
-}
+echo "<script>console.log('User ID: $user_id, Recipient Code: $recipient_code');</script>";
 
 // Fetch payout account details from Paystack if recipient code exists
 $payout_account = null;
@@ -68,7 +67,6 @@ function logTransaction($conn, $user_id, $transaction_id, $amount, $description,
     $stmt->close();
 }
 
-// ...existing withdrawal processing code...
 // Process withdrawal order only if the withdrawal form is submitted and there is a linked recipient
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['withdraw']) && !empty($recipient_code)) {
 
@@ -116,10 +114,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['withdraw']) && !empty(
 
     // Update user's account balance (deduct withdrawal amount + ₦50 charge)
     $new_balance = $account_balance - $total_deduction;
-    $update_query = "UPDATE virtual_accounts SET balance = '$new_balance' WHERE acct_id = '$user_id'";
-    if (!$conn->query($update_query)) {
+    $update_query = "UPDATE virtual_accounts SET balance = ? WHERE acct_id = ?";
+    $update_stmt = $conn->prepare($update_query);
+    $update_stmt->bind_param("ds", $new_balance, $user_id);
+    if (!$update_stmt->execute()) {
         die("Failed to update account balance: " . $conn->error);
     }
+    $update_stmt->close();
 
     $description = "Withdraw ₦" . number_format($amount, 2) . " with ₦50 charge";
     $status = "success";
@@ -131,12 +132,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['withdraw']) && !empty(
     $_SESSION['status_type'] = "success";
     $_SESSION['status_message'] = "Withdrawal of ₦" . number_format($amount, 2) . " was successful. ₦50 charge applied.";
 
-
     // Optionally, log the transaction here
     logTransaction($conn, $user_id, $transaction_id, $total_deduction, $description, $status, $item, $transaction_type, $receiver);
     header("Location: ../success.php");
+    exit;
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -182,18 +182,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['withdraw']) && !empty(
             box-shadow: 0 2px 12px rgba(0,0,0,0.2);
             color: #000;
         }
-
-
         .modal-content{
             background: #fff;
             color: #222;
             margin: 0 auto;
-            /* margin-top: 8vh; */
-            /* padding: 32px 24px; */
             border-radius: 10px;
             max-width: 400px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.2);
             position: relative;
+            width: 100vw;
+            height: 100vh;
+            padding: 0;
+            display: flex;
+            align-items: stretch;
         }
         .close {
             color: #aaa;
@@ -250,13 +251,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['withdraw']) && !empty(
         </div>
     </form>
 </div>
-        <footer style="color: #ccc; position: absolute; bottom: 10px; width: 90%; left: 25px; font-size: 12px; text-align: center; border: 0px solid #ccc;">
+<footer style="color: #ccc; position: absolute; bottom: 10px; width: 90%; left: 25px; font-size: 12px; text-align: center; border: 0px solid #ccc;">
     <div class="footer">
-            <p>&copy; 2023 Eazi Plux. All rights reserved.</p>
-        </div>
-            <!-- <div>&copy; 2024 Strive inc. All right reserved <a href="https://eaziplux.com" target="_blank">Strive inc</a></div>     -->
-
-    </footer>
+        <p>&copy; 2023 Eazi Plux. All rights reserved.</p>
+    </div>
+</footer>
 
 <!-- Overlay for payout account -->
 <div id="payoutOverlay" class="overlay">
@@ -277,21 +276,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['withdraw']) && !empty(
 </div>
 
 <!-- Modal to display the standalone linkAccount file in an iframe if recipient code is empty -->
-<?php if ($showLinkModal): ?> 
-<div id="linkModal" class="modal">
+<?php
+$recipient_code = isset($user['account_code']) ? trim($user['account_code']) : null;
+?>
+<!-- Debug: -->
+<?php echo "<!-- recipient_code: " . var_export($recipient_code, true) . " -->"; ?>
+
+<?php if (empty($recipient_code)): ?>
+<div id="linkModal" class="modal" style="display:flex;">
   <div class="modal-content">
     <iframe src="linkAccount.php" style="width:100vw; height:100vh; border:none;"></iframe>
   </div>
 </div>
 <?php endif; ?>
-<script>
-function closeModal() {
-    document.getElementById("linkModal").style.display = "none";
-}
-<?php if ($showLinkModal): ?>
-document.getElementById("linkModal").style.display = "flex";
-<?php endif; ?>
 
+<script>
 // JS for enabling/disabling the withdraw button
 const amountInput = document.getElementById('amount');
 const withdrawBtn = document.getElementById('withdrawBtn');
