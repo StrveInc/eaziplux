@@ -1,12 +1,15 @@
 body {
     font-family: "poppins";
     font-size: 21.125px;
-    background: linear-gradient(137deg, #043927, #000000);
+    background: black;
+    /* background: linear-gradient(137deg, #043927, #000000); */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    /* height: 100vh; */
     color: white;
+    margin: 0;
+    padding: 0;
 }
 .back i{
     font-size: 2rem;
@@ -16,12 +19,7 @@ a i{
     color: white;
 }
 
-header{
-    padding-top: 1rem;
-    display: flex;
-    width: 90%;
-    margin: auto;
-}
+
 
 .head{
     margin: auto;
@@ -32,26 +30,23 @@ header{
 }
 
 main{
-    width: 80%;
+    width: 95%;
     border: 0px solid black;
     margin: auto;
     text-align: center;
-    margin-top: 16rem;
+    margin-top: 6rem;
 }
 
 .top{
     display: flex;
-    border-bottom: 1px solid black;
+    border: 1px solid #ffbf00;
     width: 60%;
     margin: auto;
-    padding: 0;
+    padding-inline: 5px;
+    border-radius: 10px;
     align-items: baseline;
-}
-
-.top p{
-    border: 0px solid black;
-    font-size: 2rem;
-    margin-bottom: 0;
+    font-family: "poppins";
+    font-size: 16px;
 }
 
 input{
@@ -59,12 +54,15 @@ input{
     border: none;
     width: 40%;
     text-align: left;
-    font-size: 3rem;
-    margin-left: .5rem;
-    margin-bottom: 0;
-    padding-bottom: 0;
+    /* font-size: 15px; */
+     margin-left: .3rem;
+    /*margin-bottom: 0;
+    padding-bottom: 0; */
     outline: none;
     overflow: hidden;
+    font-size: 19px;
+    height: 40px;
+
 }
 
 
@@ -74,7 +72,10 @@ button{
     padding: .5rem;
     border-radius: .5rem;
     font-weight: 600;
-    background: linear-gradient(187deg, #043927, #000000);
+    border: 1px solid #ffbf00;
+    width: 60%;
+    background: transparent;
+    /* background: linear-gradient(187deg, #043927, #000000); */
     color: white;
 }
 
@@ -88,13 +89,9 @@ button{
         outline: none;
         margin-bottom: 0;
         padding: 0;
-        font-size: 1.8rem;
+        /* font-size: 16px; */
         color: white;
+
     }
 
-    button{
-        width: 70%;
-        border-radius: .9rem;
-        font-size: x-large;
-    }
 }

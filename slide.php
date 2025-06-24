@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slide to Submit Example</title>
+    <link rel="stylesheet" href="./slide/css/demo.css">
     <link rel="stylesheet" href="./slide/css/slide-to-submit.css">
+    <link rel="style" href="./slide/css/slide-to-submit.scss">
+
 </head>
 <body>
 
@@ -18,7 +21,7 @@
             <div class="slide-submit-thumb">»</div>
         </div>
 </form>
-
+<script src="./slide/js/slide-to-submit.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.js"></script>
 <script>

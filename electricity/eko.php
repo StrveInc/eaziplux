@@ -3,6 +3,11 @@
 
 <head>
     <link rel="stylesheet" href="../css/mtnairtime.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Truculenta:opsz,wght@12..72,100..900&display=swap"
+        rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" size="662x662" href="./css/imgs/eaziplux.png">
@@ -16,11 +21,6 @@
     <meta name="google-site-verification" content="2C-9r_1lFbvzBCAMqcq3p8EoPsKWrm_9aiWJWioJiVg" />
     <meta name="author" content="Vickman Tech">
     <title>EKO ELECTRICITY</title>
-    <style>
-        span {
-            color: green;
-        }
-    </style>
         <style>
         /* Styling for preloader overlay */
         .preloader-overlay {
@@ -42,55 +42,278 @@
             width: 100px; /* Adjust size as needed */
             height: 100px; /* Adjust size as needed */
         }
+
+                .network-select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            /* border: 1px solid #ccc; */
+        }
+
+        .num-network-row {
+            margin: auto;
+            display: flex;
+            /* gap: 10px; */
+            align-items: center;
+            margin-bottom: 15px;
+            height: 40px;
+            justify-content: left;
+            width: 90%;
+            border: 1px solid #ffbf00;
+            border-radius: 5px;
+        }
+
+        .custom-select-wrapper {
+            /* position: relative; */
+            width: 20%;
+            /* border: 1px solid #ccc;  */
+        }
+
+        .custom-select {
+            /* background: #fff; */
+            /* border: 1px solid #ccc; */
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            /* padding: 2px 4px; */
+            width: fit-content;
+            /* Just enough for the logo */
+            /* min-width: 38px;
+            max-width: 38px; */
+        }
+
+        .custom-select .selected {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* width: fit-; */
+            /* height: 32px;*/
+            width: 100%;
+            padding: 0;
+            /* border: 1px solid #ccc; */
+            /* gap: 0; */
+        }
+
+        .custom-select .options {
+            display: none;
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 260px;
+            background: #000;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            z-index: 10;
+            font-weight: 500;
+            /* height: 200px; */
+            overflow-y: auto; /* Allow scrolling if options exceed height */
+        }
+
+        .custom-select.open .options {
+            display: block;
+            height: 145px;
+
+        }
+
+        .custom-select .options div {
+            padding: 6px 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            /* justify-content: space-around; */
+            /* border: 1px solid #ccc; */
+            /* width: 300px; */
+            font-size: 18px;
+            gap: 6px;
+        }
+
+        .custom-select .options div:hover {
+            background: #f0f0f0;
+        }
+
+        .phone-input{
+            width: 80%;
+            /* margin-left: 10px; */
+            /* border: 1px solid #ccc; */
+            /* border-radius: 5px; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+        }
+
+        .phone-input input {
+            width: 100%;
+            /* padding: 8px; */
+            /* border-radius: 5px; */
+            text-align: left;
+            margin-right: auto;
+            height: 32px;
+            font-size: 16px;
+            font-family: "poppins";
+            font-weight: 400;
+            /* border: 1px solid #ccc; */
+        }
+
+        .selected svg {
+            /* margin-left: 2px; */
+            transition: transform 0.2s;
+        }
+
+        .custom-select.open .selected svg {
+            transform: rotate(180deg);
+        }
+
+        .gradient-text {
+background: linear-gradient(180deg, #043927, #6d945e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    font-family: "poppins";
+}
+
+.customer{
+    /* border: 1px solid #ccc; */
+    height: 39px;
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+}
+
+        .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    height: 20px; /* Reduced from 25px */
+    background: rgb(37, 37, 37);
+}
+
+.marquee {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 10px; /* Reduced from 14px */
+    padding: 0;
+    height: 14px;
+    line-height: 20px; /* Adjusted to match the height */
+    position: absolute; 
+    /* border: 1px solid white; */
+    animation: marquee 10s linear infinite;
+}
+
+.marquee p{
+    color: white;
+}
+
+@keyframes marquee {
+    
+    0% { transform: translateX(100%); } /* Start offscreen to the right */
+    100% { transform: translateX(-100%); } /* Move to the left */
+}
     </style>
+
 
 </head>
 
 <body>
-    <div class="preloader-overlay" id="preloader">
+
+        <div class="preloader-overlay" id="preloader">
         <img src="../css/imgs/eazi.gif" class="preloader-img" alt="Loading..."> <!-- Replace with your preloader image -->
     </div>
-
-
-    <header>
-        <div class="back">
-            <a href="../dashboard/electricity.php"><i class="fas fa-chevron-left" aria-hidden="true"></i></a>
+    <div class="marquee-container">
+        <div class="marquee">
+            Kindly note that convenience fee of &#8358;50 will be charged for this transaction ~ Eaziplux</p>    
         </div>
-    </header>
+    </div>
     <main>
+        <div style="font-weight: 400; color: #ffbf00; border:0px solid #ccc; width: 30%; border-right: none;  margin-left: auto; margin-top: 10px; padding: 1px; border-top-left-radius: 5px; font-size: 13px; display: flex; justify-content: center; align-items:center;"><img src="../css/svg/script.svg" style="width: 15px; padding: 3px;"/><a href="../dashboard/transaction.php?product=electricity" style="color: #ffbf00; text-decoration: none;">View orders</a></div>
         <div class="container">
             <div class="network">
-                <form method="post">
-                    <div class="MOBILEMTN">
-                        <a href="../electricity/eko.php">
-                            <div class="mtnlogo">
-                                <img src="../css/imgs/ekedc.png" alt="EKEDC">
+                <div class="network-header">
+                    <h1 class="gradient-text">Buy Electricity</h1>
+                    <p style="color: #ccc; ">Restore power seamlessly.</p>
+                </div>
+                <form method="post" action="../purchase/electricity.php" id="dataForm">
+                    <div class="num-network-row" id="networkRow" style="display:flex;align-items:center;gap:0px;">
+                        <!-- Custom Network Dropdown -->
+                        <div class="custom-select-wrapper">
+                            <div class="custom-select" id="networkSelect">
+                                <div class="selected" style="gap:1px;">
+                                    <img src="../css/imgs/aedc.png" alt="Select Network" id="selectedLogo"
+                                        style="width:35px;height:30px;vertical-align:middle;">
+                                    <svg id="dropdownArrow" width="18" height="18" viewBox="0 0 20 20" style="pointer-events:none;">
+                                        <polyline points="6 8 10 12 14 8" fill="none" stroke="#888" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <div class="options">
+                                    <div data-value="abuja-electric" data-label="Abuja Electric">
+                                        <img src="../css/imgs/aedc.png" style="width:24px;height:24px;vertical-align:middle;"> Abuja Electric
+                                    </div>
+                                    <div data-value="eko-electric" data-label="Eko Electric">
+                                        <img src="../css/imgs/ekedc.png" style="width:24px;height:24px;vertical-align:middle;"> Eko Electric
+                                    </div>
+                                    <div data-value="ibadan-electric" data-label="Ibadan Electric">
+                                        <img src="../css/imgs/ibadan.png" style="width:24px;height:24px;vertical-align:middle;"> Ibadan Electric
+                                    </div>
+                                    <div data-value="ikeja-electric" data-label="Ikeja Electric">
+                                        <img src="../css/imgs/ikeja.png" style="width:24px;height:24px;vertical-align:middle;"> Ikeja Electric
+                                    </div>
+                                    <div data-value="jos-electric" data-label="Jos Electric">
+                                        <img src="../css/imgs/jos.jpg" style="width:24px;height:24px;vertical-align:middle;"> Jos Electric
+                                    </div>
+                                    <div data-value="kaduna-electric" data-label="Kaduna Electric">
+                                        <img src="../css/imgs/kaduna.png" style="width:24px;height:24px;vertical-align:middle;"> Kaduna Electric
+                                    </div>
+                                    <div data-value="kano-electric" data-label="Kano Electric">
+                                        <img src="../css/imgs/kano.png" style="width:24px;height:24px;vertical-align:middle;"> Kano Electric
+                                    </div>
+                                    <div data-value="portharcourt-electric" data-label="Port Harcourt Electric">
+                                        <img src="../css/imgs/phd.png" style="width:24px;height:24px;vertical-align:middle;"> Port Harcourt Electric
+                                    </div>
+                                    <div data-value="aba-electric" data-label="Aba Electric">
+                                        <img src="../css/imgs/aba-electric.png" style="width:24px;height:24px;vertical-align:middle;"> Aba Electric
+                                    </div>
+                                    <div data-value="yola-electric" data-label="Yola Electric">
+                                        <img src="../css/imgs/yola-electric.png" style="width:24px;height:24px;vertical-align:middle;"> Yola Electric
+                                    </div>
+                                    <div data-value="benin-electric" data-label="Benin Electric">
+                                        <img src="../css/imgs/bedc.png" style="width:24px;height:24px;vertical-align:middle;"> Benin Electric
+                                    </div>
+                                    <div data-value="enugu-electric" data-label="Enugu Electric">
+                                        <img src="../css/imgs/enugu-electric.png" style="width:24px;height:24px;vertical-align:middle;"> Enugu Electric
+                                    </div>
+                                </div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="figa">
-                        <div>
-                            <p>Amount</p>
-                            <input type="text" class="amount" name="amount" placeholder="min - 100" </input>
+                            <input type="hidden" name="network" id="networkInput" value="abuja-electric">
+                        </div>
+                        <!-- Phone Input -->
+                        <div class="phone-input" style="flex:1;">
+                            <input type="number" class="meter" name="meter" placeholder="Meter number" required>
                         </div>
                     </div>
-                    <div class="figa">
-                        <div>
-                            <p>Phone Number</p>
-                            <input type="text" class="number" name="number" placeholder="08012345678">
+                    <div class="fig">
+                        <div class="icon">&#8358;</div>
+                        <div class="amount-input">
+                            <input type="number" class="amount" name="amount" placeholder="100 -10,000" required>
                         </div>
                     </div>
-
-                    <div class="figa">
-                        <div>
-                            <p>Customer ID</p>
-                            <input type="text" class="customer" name="customer" placeholder="E.g...939012345678">
-                        </div>
+                    <div class="fig" >
+                        <input type="number" class="customer" name="customer" placeholder="Customer phone number" required>
                     </div>
+                    <input type="hidden" class="hidden-input" name="item" value="Electricity">
+                    <input class="submit" name="submit" onclick="openPopup()" type="submit" value="Buy Power">
                 </form>
             </div>
-        </div>
     </main>
+        <footer style="color: #ccc; position: absolute; bottom: 10px; width: 90%; left: 25px; font-size: 12px; text-align: center; border: 0px solid #ccc;">
+    <div class="footer">
+            <p>&copy; 2023 Eazi Plux. All rights reserved.</p>
+        </div>
+            <!-- <div>&copy; 2024 Strive inc. All right reserved <a href="https://eaziplux.com" target="_blank">Strive inc</a></div>     -->
+
+    </footer>
 
         <script>
         // JavaScript to show preloader when form is submitted
@@ -100,217 +323,46 @@
             });
         });
     </script>
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const select = document.getElementById('networkSelect');
+    const selected = select.querySelector('.selected');
+    const options = select.querySelector('.options');
+    const networkInput = document.getElementById('networkInput');
+    const selectedLogo = document.getElementById('selectedLogo');
+    // Remove plansDropdown, planPriceInput, itemInput, and loadPlans if not needed for electricity
+
+    // Fix: Prevent click event from bubbling up and closing the dropdown immediately
+    selected.addEventListener('click', function (e) {
+        e.stopPropagation();
+        select.classList.toggle('open');
+    });
+
+    // Also stop propagation on the options container
+    options.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    options.querySelectorAll('div').forEach(option => {
+        option.addEventListener('click', function () {
+            const value = this.getAttribute('data-value');
+            const img = this.querySelector('img').src;
+            selectedLogo.src = img;
+            networkInput.value = value;
+            select.classList.remove('open');
+        });
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener('click', function (e) {
+        if (!select.contains(e.target)) {
+            select.classList.remove('open');
+        }
+    });
+});
+</script>
 
 </body>
-
 </html>
 
 
-<?php
-session_start();
-
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-
-    // Establish a database connection (use your database connection code here)
-    $servername = "localhost";
-    $dbusername = "root";
-    $dbpassword = "";
-    $database = "eaziplux";
-
-    $conn = new mysqli($servername, $dbusername, $dbpassword, $database);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Retrieve the user's virtual account balance
-    // Assuming you store the username in the $_SESSION
-    $username = $_SESSION['username'];
-
-    // SQL query to fetch the user's ID based on their username
-    $user_id_query = "SELECT user_id FROM users WHERE username = '$username'";
-    $result = $conn->query($user_id_query);
-
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        $user_id = $row["user_id"];
-        // Now that you have the user's ID, you can retrieve their balance
-        $balance_query = "SELECT balance FROM virtual_accounts WHERE acct_id = $user_id";
-        $balance_result = $conn->query($balance_query);
-
-        if ($balance_result->num_rows == 1) {
-            $balance_row = $balance_result->fetch_assoc();
-            $account_balance = $balance_row["balance"];
-        } else {
-            $account_balance = 0; // Default balance if not found
-        }
-    } else {
-        // Handle the case where the user's ID is not found
-    }
-} else {
-    header("Location: ../home/login.php"); // Redirect to the dashboard page
-    exit;
-}
-
-// Check if "number" and "amount" keys are set in the $_POST array
-$number = isset($_POST["number"]) ? $_POST["number"] : null;
-$amount = isset($_POST["amount"]) ? $_POST["amount"] : null;
-$customer = isset($_POST["customer"]) ? $_POST["customer"] : null;
-$responseMessage = null;
-
-// Check if the account balance is sufficient
-if (isset($_POST["submit"])) {
-    if (!is_numeric($amount) || $amount < 100) {
-        $responseMessage = "Amount must be numeric and at least 100 naira.";
-        $_SESSION['message'] = $responseMessage;
-        header("Location: ../failed.php");
-    } elseif ($account_balance < $amount) {
-
-        $transaction_description = "Insufficient Funds";
-        $transaction_status = "Failed";
-        $transaction_type = "Electricity";
-        $item = "Eko Electricity Distribution Company";
-        $receiver = $customer;
-        $transaction_time = date("F j, Y \a\\t g:i A");
-        $transaction_id = "EP" . $user_id . time(); // Combine user ID and timestamp
-
-        // Insert failed transaction details into the transaction_history table
-        $log_transaction_query = "INSERT INTO transaction_history (user_id, transaction_id, amount, description, status, item, transaction_type, receiver, transaction_time) 
-        VALUES ($user_id, '$transaction_id', $amount, '$transaction_description', '$transaction_status', '$item', '$transaction_type', '$receiver', '$transaction_time')";
-        if ($conn->query($log_transaction_query) !== TRUE) {
-            $_SESSION['message'] = "Error logging transaction: " . $conn->error;
-            header("Location: ../failed.php");
-            exit;
-        }
-
-
-
-        $responseMessage = 'Transaction failed: fund your balance.';
-        $_SESSION['message'] = $responseMessage;
-        header("Location: ../failed.php");
-    } else {
-        // Deduct the specified amount from the user's virtual account balance
-
-        // Proceed with the transaction
-        $curl = curl_init();
-
-        curl_setopt_array(
-            $curl,
-            array(
-                CURLOPT_URL => 'https://gsubz.com/api/pay/',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => array('serviceID' => 'eko_electric', 'api' => 'ap_68927868665e72753e020ed7fda40d49', 'amount' => $amount, 'phone' => $number, 'customerID' => $customer),
-                CURLOPT_HTTPHEADER => array(
-                    'api: Bearer ap_68927868665e72753e020ed7fda40d49'
-                ),
-            )
-        );
-
-        $response = curl_exec($curl);
-
-        curl_close($curl);
-
-        echo '<pre>';
-        print_r($response);
-        echo '</pre>';
-
-        // Your existing cURL request code
-
-        $response = json_decode($response, true);
-
-        if ($response['status'] === 'TRANSACTION_FAILED') {
-            // Check the description for specific failure reasons
-            if (strpos($response['description'], 'AMOUNT_ABOVE_MAX') !== false) {
-
-                $responseMessage = 'Transaction failed: Amount above maximum allowed.';
-                $_SESSION['message'] = $responseMessage;
-                header("Location: ../failed.php");
-
-            } elseif (strpos($response['description'], 'INSUFFICIENT_BALANCE') !== false) {
-
-                $transaction_description = "Error in Transaction";
-                $transaction_status = "Failed";
-                $transaction_type = "Electricity";
-                $item = "Eko Electricity Distribution Company";
-                $receiver = $customer;
-                $transaction_time = date("F j, Y \a\\t g:i A");
-                $transaction_id = "EP" . $user_id . time(); // Combine user ID and timestamp
-
-                // Insert failed transaction details into the transaction_history table
-                $log_transaction_query = "INSERT INTO transaction_history (user_id, transaction_id, amount, description, status, item, transaction_type, receiver, transaction_time) 
-                VALUES ($user_id, '$transaction_id', $amount, '$transaction_description', '$transaction_status', '$item', '$transaction_type', '$receiver', '$transaction_time')";
-                if ($conn->query($log_transaction_query) !== TRUE) {
-                    $_SESSION['message'] = "Error logging transaction: " . $conn->error;
-                    header("Location: ../failed.php");
-                    exit;
-                }
-
-
-                $responseMessage = 'Service Currently Down: Try again in 5 minutes or Contact Us.';
-                $_SESSION["message"] = $responseMessage;
-                header("Location: ../failed.php");
-            } else {
-
-                $transaction_description = "Transaction Reversed";
-                $transaction_status = "Reversed";
-                $transaction_type = "Electricity";
-                $item = "Eko Electricity Distribution Company";
-                $receiver = $customer;
-                $transaction_time = date("F j, Y \a\\t g:i A");
-                $transaction_id = "EP" . $user_id . time(); // Combine user ID and timestamp
-
-                // Insert failed transaction details into the transaction_history table
-                $log_transaction_query = "INSERT INTO transaction_history (user_id, transaction_id, amount, description, status, item, transaction_type, receiver, transaction_time) 
-                VALUES ($user_id, '$transaction_id', $amount, '$transaction_description', '$transaction_status', '$item', '$transaction_type', '$receiver', '$transaction_time')";
-                if ($conn->query($log_transaction_query) !== TRUE) {
-                    $_SESSION['message'] = "Error logging transaction: " . $conn->error;
-                    header("Location: ../failed.php");
-                    exit;
-                }
-
-
-                $responseMessage = 'Transaction Failed: Reversed';
-                $_SESSION['message'] = $responseMessage;
-                header("Location: ../failed.php");
-            }
-        } else {
-            $transaction_description = "Transaction Successful";
-            $transaction_status = "Successful";
-            $transaction_type = "Electricity";
-            $item = "Eko Electricity Distribution Company";
-            $receiver = $customer;
-            $transaction_time = date("F j, Y \a\\t g:i A");
-            $transaction_id = "EP" . $user_id . time(); // Combine user ID and timestamp
-
-            // Insert failed transaction details into the transaction_history table
-            $log_transaction_query = "INSERT INTO transaction_history (user_id, transaction_id, amount, description, status, item, transaction_type, receiver, transaction_time) 
-            VALUES ($user_id, '$transaction_id', $amount, '$transaction_description', '$transaction_status', '$item', '$transaction_type', '$receiver', '$transaction_time')";
-            if ($conn->query($log_transaction_query) !== TRUE) {
-                $_SESSION['message'] = "Error logging transaction: " . $conn->error;
-                header("Location: ../failed.php");
-                exit;
-            }
-
-
-            // Handle other cases if needed
-            $new_balance = intval($account_balance) - intval($amount);
-
-            // Update the balance in the database
-            $update_balance_query = "UPDATE virtual_accounts SET balance = $new_balance WHERE acct_id = $user_id";
-            $conn->query($update_balance_query);
-
-            $responseMessage = 'You have successfully paid the sum of ' . $amount . ' for EKO ELECTRICITY for ' . $customer;
-            $_SESSION["message"] = $responseMessage;
-            header("Location: ../success.php"); // Redirect to the dashboard page
-            exit;
-        }
-    }
-}
-?>

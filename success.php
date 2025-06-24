@@ -1,39 +1,55 @@
-<?php session_start(); ?>
+<?php
+session_start();
+$type = isset($_SESSION['status_type']) ? $_SESSION['status_type'] : 'success'; // 'success', 'failure', or 'processing'
+$message = isset($_SESSION['status_message']) ? $_SESSION['status_message'] : 'Transaction completed.';
+$processing = ($type === 'processing');
+unset($_SESSION['status_type'], $_SESSION['status_message']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7203048318705000"
-     crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/receipt.css">
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUCCESFUL</title>
+    <title><?php echo ucfirst($type); ?></title>
+    <style>
+        body { font-family: Poppins, Arial, sans-serif; background: black; text-align: center; }
+        .box { margin: 200px auto; padding: 40px 30px; background: #000; border-radius: 10px; box-shadow: 0 4px 24px rgba(0,0,0,0.07); max-width: 400px; }
+        .icon { font-size: 46px; margin-bottom: 50px; }
+        .icon.success { color: #2ecc40; }
+        .icon.failure { color: #e74c3c; }
+        .icon.processing { color: #ffbf00; animation: spin 1.2s linear infinite; }
+        .msg { font-size: 16px; color: #ccc; }
+        a { display: inline-block; margin-top: 30px; color: #2ecc40; text-decoration: none; font-weight: 500; }
+        .failure-link { color: #e74c3c; }
+        @keyframes spin {
+            100% { transform: rotate(360deg);}
+        }
+    </style>
 </head>
 <body>
-    <main>
-        <div class="container">
-            <div class="logo">
-                <img src="./css/imgs/successfulbig.png" >   
-            </div>
-            <h2>TRANSACTION SUCCESSFUL</h2>
-            <div class="gb">
-                <img src="./css/imgs/eazipluxpure.png">
-            </div>
-            <p><?php echo $_SESSION["message"]; ?></p>
-            <a href="./home/dashboard.php"><input type="submit" value="CLOSE"></a>
+    <div class="box">
+        <div class="icon <?php echo $type; ?>">
+            <?php
+            if ($type === 'success') {
+                echo '&#10004;';
+            } elseif ($type === 'failure') {
+                echo '&#10008;';
+            } elseif ($type === 'processing') {
+                // Spinner icon (Unicode or SVG)
+                echo '<svg width="48" height="48" viewBox="0 0 50 50" style="vertical-align:middle;"><circle cx="25" cy="25" r="20" fill="none" stroke="#ffbf00" stroke-width="5" stroke-linecap="round" stroke-dasharray="31.4 31.4" transform="rotate(-90 25 25)"><animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="1s" repeatCount="indefinite"/></circle></svg>';
+            }
+            ?>
         </div>
-    </main>
+        <div class="msg">
+            <?php
+            if ($processing) {
+                echo "Your giftcard transaction is processing. You will be notified once completed.";
+            } else {
+                echo htmlspecialchars($message);
+            }
+            ?>
+        </div>
+        <a href="home/dashboard.php" style="font-size: 18px;" class="<?php echo $type === 'failure' ? 'failure-link' : ''; ?>">Back to Dashboard</a>
+    </div>
 </body>
-
-    <script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/658c01c070c9f2407f83aa82/1hilednbb';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
 </html>

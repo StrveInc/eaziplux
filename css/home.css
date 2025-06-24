@@ -4,9 +4,10 @@ html{
 
 body{
     font-family: "poppins";
-    font-size: 1.125;
+    /* font-size: 1.125; */
     margin: 0;
-    background: linear-gradient(105deg, #043927, #000000);
+    background: black;
+    /* background: linear-gradient(105deg, #043927, #000000); */
     background-attachment: fixed;
     background-position: center;
     color: white;

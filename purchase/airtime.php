@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include '../config.php'; // Include your database connection details
+
 // Initialize variables
 $account_balance = 0;
 $user_id = null;
@@ -8,13 +10,6 @@ $responseMessage = null;
 
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
-
-    $servername = "localhost";
-    $dbusername = "root";
-    $dbpassword = "";
-    $database = "eaziplux";
-
-    $conn = new mysqli($servername, $dbusername, $dbpassword, $database);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -50,14 +45,33 @@ if (isset($_SESSION['username'])) {
     exit;
 }
 
-// Check if "number", "amount", and "item" keys are set in the $_POST array
-$number = isset($_POST["number"]) ? filter_var($_POST["number"], FILTER_SANITIZE_STRING) : null;
-$amount = isset($_POST["amount"]) ? filter_var($_POST["amount"], FILTER_SANITIZE_NUMBER_INT) : null;
-$item = isset($_POST["item"]) ? filter_var($_POST["item"], FILTER_SANITIZE_STRING) : null;
+// Transaction logging helper (no transaction_time)
+function logTransaction($conn, $user_id, $transaction_id, $amount, $description, $status, $item, $transaction_type, $receiver) {
+    $query = "INSERT INTO transaction_history (user_id, transaction_id, amount, description, status, item, transaction_type, receiver)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ssdsssss", $user_id, $transaction_id, $amount, $description, $status, $item, $transaction_type, $receiver);
+    $stmt->execute();
+    $stmt->close();
+}
 
-// Determine the serviceID based on the item
+// Handle transaction failure
+function handleTransactionFailure($conn, $user_id, $amount, $item, $number, $description = "Error in Transaction", $status = "Failed") {
+    $transaction_id = "EP".time();
+    logTransaction($conn, $user_id, $transaction_id, $amount, $description, $status, $item, "Airtime", $number);
+    header("Location: ../success.php");
+    exit;
+}
+
+// Check if "number", "amount", and "item" keys are set in the $_POST array
+$number = isset($_POST["number"]) ? filter_var($_POST["number"], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : null;
+$amount = isset($_POST["amount"]) ? filter_var($_POST["amount"], FILTER_SANITIZE_NUMBER_INT) : null;
+$item = isset($_POST["item"]) ? filter_var($_POST["item"], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : null;
+$network = isset($_POST["network"]) ? filter_var($_POST["network"], FILTER_SANITIZE_FULL_SPECIAL_CHARS) : null;
+
+// Determine the serviceID based on the network
 $serviceID = null;
-switch (strtolower($item)) {
+switch (strtolower($network)) {
     case '9mobile':
         $serviceID = 'etisalat';
         break;
@@ -71,40 +85,22 @@ switch (strtolower($item)) {
         $serviceID = 'glo';
         break;
     default:
-        $responseMessage = "Invalid item specified.";
-        $_SESSION['message'] = $responseMessage;
-        header("Location: ../failed.php");
+        $_SESSION['status_message'] = "Invalid network specified.";
+        $_SESSION['status_type'] = 'failure';
+        header("Location: ../success.php");
         exit;
 }
 
-// Check if the account balance is sufficient
+// Check if the account balance is sufficient and process the transaction
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     if (!is_numeric($amount) || $amount < 100 || !preg_match('/^\d{11}$/', $number)) {
-        $responseMessage = "Invalid input. Please enter a numeric amount above 100 and a valid 11-digit phone number.";
-        $_SESSION['message'] = $responseMessage;
-        header("Location: ../failed.php");
+    $_SESSION['status_type'] = 'failure';
+    $_SESSION['status_message'] = 'Airtime purchase failed. Please try again.';
+    header("Location: ../success.php");
         exit;
     } elseif ($account_balance < $amount) {
-        $responseMessage = 'Transaction failed: Fund your eaziplux wallet.';
-        $transaction_description = "Insufficient Funds";
-        $transaction_status = "failed";
-        $transaction_type = "Airtime";
-        $receiver = $number;
-        $transaction_time = date("F j, Y \a\\t g:i A");
-        $transaction_id = "EP".time(); // Combine user ID and timestamp
-
-        // Insert failed transaction details into the transaction_history table
-        $log_transaction_query = "INSERT INTO transaction_history (user_id, transaction_id, amount, description, status, item, transaction_type, receiver, transaction_time) 
-        VALUES ('$user_id', '$transaction_id', $amount, '$transaction_description', '$transaction_status', '$item', '$transaction_type', '$receiver', '$transaction_time')";
-        if ($conn->query($log_transaction_query) !== TRUE) {
-            $_SESSION['message'] = "Error logging transaction: " . $conn->error;
-            header("Location: ../failed.php");
-            exit;
-        }
-
-        $_SESSION['message'] = $responseMessage;
-        header("Location: ../failed.php");
-        exit;
+            $_SESSION['status_message'] = 'Insufficient funds for this transaction.';
+        handleTransactionFailure($conn, $user_id, $amount, $network, $number, "Insufficient Funds", "Failed");
     } else {
         // Proceed with the transaction via the API
         $curl = curl_init();
@@ -120,7 +116,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => array('serviceID' => $serviceID, 'api' => 'ap_3f856a5b46bb740150d03c990ce2f5d7', 'amount' => $amount, 'phone' => $number),
+                CURLOPT_POSTFIELDS => array(
+                    'serviceID' => $serviceID,
+                    'api' => 'ap_3f856a5b46bb740150d03c990ce2f5d7',
+                    'amount' => $amount,
+                    'phone' => $number
+                ),
                 CURLOPT_HTTPHEADER => array(
                     'api: Bearer ap_3f856a5b46bb740150d03c990ce2f5d7'
                 ),
@@ -132,27 +133,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 
         $response = json_decode($responses, true);
 
-        if ($response['status'] === 'TRANSACTION_FAILED') {
-            $transaction_description = "Error in Transaction";
-            $transaction_status = "Failed";
-            $transaction_type = "Airtime";
-            $receiver = $number;
-            $transaction_time = date("F j, Y \a\\t g:i A");
-            $transaction_id = "EP".time(); // Combine user ID and timestamp
-
-            // Insert failed transaction details into the transaction_history table
-            $log_transaction_query = "INSERT INTO transaction_history (user_id, transaction_id, amount, description, status, item, transaction_type, receiver, transaction_time) 
-            VALUES ('$user_id', '$transaction_id', $amount, '$transaction_description', '$transaction_status', '$item', '$transaction_type', '$receiver', '$transaction_time')";
-            if ($conn->query($log_transaction_query) !== TRUE) {
-                $_SESSION['message'] = "Error logging transaction: " . $conn->error;
-                header("Location: ../failed.php");
-                exit;
-            }
-
-            $responseMessage = 'Transaction failed: ' . $response['description'];
-            $_SESSION['message'] = $responseMessage;
-            header("Location: ../failed.php");
-            exit;
+        if (isset($response['status']) && $response['status'] === 'TRANSACTION_FAILED') {
+                logTransaction($conn, $user_id, "EP".time(), $amount, "Transaction Failed", "Failed", $network, "Airtime", $number);
+                $_SESSION['status_type'] = 'failure';
+                $_SESSION['status_message'] = 'Server not responding. Try again!'; 
+                header("Location: ../success.php");
         } else {
             // Deduct the amount from the user's balance
             $new_balance = intval($account_balance) - intval($amount);
@@ -162,27 +147,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
             $stmt = $conn->prepare($update_balance_query);
             $stmt->bind_param("ds", $new_balance, $user_id);
             $stmt->execute();
+            $stmt->close();
 
-            $responseMessage = 'Successfully purchased ' . strtoupper($item) . ' airtime worth of ₦' . $amount;
+            $transaction_id = "EP".time();
+            logTransaction($conn, $user_id, $transaction_id, $amount, "Transaction Successful", "Successful", $network, "Airtime", $number);
 
-            $transaction_description = "Transaction Successful";
-            $transaction_status = "Successful";
-            $transaction_type = "Airtime";
-            $receiver = $number;
-            $transaction_time = date("F j, Y \a\\t g:i A");
-            $transaction_id = "EP".time(); // Combine user ID and timestamp
-
-            // Insert successful transaction details into the transaction_history table
-            $log_transaction_query = "INSERT INTO transaction_history (user_id, transaction_id, amount, description, status, item, transaction_type, receiver, transaction_time) 
-            VALUES ('$user_id', '$transaction_id', $amount, '$transaction_description', '$transaction_status', '$item', '$transaction_type', '$receiver', '$transaction_time')";
-            if ($conn->query($log_transaction_query) !== TRUE) {
-                $_SESSION['message'] = "Error logging transaction: " . $conn->error;
-                header("Location: ../failed.php");
-                exit;
-            }
-
-            $_SESSION["message"] = $responseMessage;
-            header("Location: ../success.php");
+                $_SESSION['status_type'] = 'success';
+                $_SESSION['status_message'] = 'Airtime purchase successful!';
+                header("Location: ../success.php");    
             exit;
         }
     }

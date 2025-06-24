@@ -1,8 +1,10 @@
 <?php
 
+include_once '../config.php';
+
 session_start();
 // Replace with your actual Paystack secret key
-$paystackSecretKey = 'sk_live_2886d2746575c3f54e3c7b7e02eab1cd7da06313';
+$paystackSecretKey = $_ENV['PK_SECRET'];
 $amount = null;
 
 
@@ -100,6 +102,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             width: 100px; /* Adjust size as needed */
             height: 100px; /* Adjust size as needed */
         }
+        
+         header {
+            color: #fff;
+            font-size: 16px;
+            padding-block: 10px;
+            text-align: center;
+            /* position: fixed; */
+            /* top: -5px; */
+            /* border-bottom: .4px solid #ccc; */
+            width: 100%;
+            /* left: -1px; */
+            background: rgb(0, 0, 0);
+        }
     </style>
 </head>
 
@@ -111,17 +126,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     <header>
-        <div class="back">
-            <a href="addfund.php">
-                <i class="fa-solid fa-chevron-left"></i>
-            </a>
-        </div>
-        <div class="head">Credit Card<i class="fa fa-credit-card" aria-hidden="true"></i></div>
+        Card funding
     </header>
     <main>
         <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <div style="font-size: 14px;">Enter top-up amount</div>  
             <div class="top">
-                <p><i class="fa-solid fa-naira-sign"></i>:</p>
+            &#8358;
                 <input type="number" id="amount" placeholder="100.00" name="amount" min="100" required>
             </div>
             <div>

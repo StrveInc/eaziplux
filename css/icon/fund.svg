@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+  <style type="text/css">
+    .st0{fill:none;stroke:white;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+  </style>
+  <path class="st0" d="M18.7,9.6L18.4,9H16h-2.4l-0.2,0.7c-0.6,1.7-1.8,3.2-3.4,4.3l0,0C3.9,18.1,5,26.5,12,29.2l0,0c2.6,1,5.5,1,8,0
+    l0,0c7-2.7,8.1-11.2,2.1-15.3l0,0C20.5,12.8,19.3,11.4,18.7,9.6z"/>
+  <line class="st0" x1="10.4" y1="3.5" x2="13.8" y2="9"/>
+  <path class="st0" d="M11.6,4.6l1.1-1.1c0.6-0.6,1.6-0.6,2.2,0l0,0c0.6,0.6,1.6,0.6,2.2,0l0,0c0.6-0.6,1.6-0.6,2.2,0l1.1,1.1"/>
+  <polyline class="st0" points="21.6,9 18.2,9 21.6,3.5 "/>
+
+  <!-- Naira Symbol using strokes -->
+  <!-- Vertical lines -->
+  <line class="st0" x1="14" y1="16" x2="14" y2="24" />
+  <line class="st0" x1="18" y1="16" x2="18" y2="24" />
+
+  <!-- Diagonal connector -->
+  <line class="st0" x1="14" y1="16" x2="18" y2="24" />
+
+  <!-- Horizontal bars of ₦ -->
+  <line class="st0" x1="13" y1="18" x2="19" y2="18" />
+  <line class="st0" x1="13" y1="22" x2="19" y2="22" />
+</svg>

@@ -54,8 +54,8 @@
         <div class="container">
             <section class="sec1">
                 <div class="greeting">
-                <div class="symbol">
-                    <img src="./css/imgs/eaziplux.png" alt="eaziplux" >
+                <div class="symbol" style="border: 1px solid white; width: 50%; margin: auto;">
+                    <img src="./css/imgs/eazipluxpure.png" alt="eaziplux">
                 </div>
                     <p>The Best Online Platform For Cheap and Fast Subscription And Bills Payments</p>
                     <div class="sign">
@@ -110,27 +110,6 @@
         </div>
     </main>
     
-    <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        (function () {
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/658c01c070c9f2407f83aa82/1hilednbb';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
-    </script>
-    <footer>
-        <div class="footcontainer">
-            <div class="allf">
-                <p>&copy2023 EAZIPLUX. All Rights Reserved</p>
-            </div>
-            <div class="stamp">
-                <p>Powered By Strive</p>
-            </div>
-    </footer>
-
 </body>
 <script>
     if("serviceWorker" in navigator){

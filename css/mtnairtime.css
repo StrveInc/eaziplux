@@ -1,16 +1,20 @@
 html{
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 body {
     font-family: "poppins";
     font-size: 21.125px;
-    background: linear-gradient(137deg, #043927, #000000);
+    background: black;
+    /* background: linear-gradient(137deg, #043927, #000000); */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    /* height: 100vh; */
     color: white;
+    overflow-y: hidden;
+    width: 100%;
+    margin: 0;
 }
 
 .back i{
@@ -69,15 +73,28 @@ img{
 }
 
 /*****main**********/
-
+main{
+    font-family: "poppins";
+    /* border: 2px solid white; */
+    /* width: 100%; */
+}
 
 form{
     border: 0px solid black;
     text-align: center;
     font-family: "poppins";
-    margin-top: rem;
+    /* margin-top: rem; */
 }
 
+
+.network{
+    border: 0px solid black;
+    width: 90%; 
+    margin: auto;
+    font-family: "poppins";
+    margin-top: 4rem;
+    /* display: flex; */
+}
 
 .MOBILEMTN{
     width: 20%;
@@ -128,9 +145,10 @@ select option{
     color: black;
 }
 
-.fig{
-    border: 1px solid black;
+/* .fig{
+    border: 1px solid white;
     display: flex;
+    justify-content: left;
     border-bottom: 1px solid grey;
     width: 70%;
     margin: auto;
@@ -154,7 +172,7 @@ select option{
 .figa input{
     font-size: 20px;
     width: 80%;
-}
+} */
 
 .num{
     border: 0px solid black;
@@ -203,13 +221,35 @@ select option{
     margin-left: 2rem;
 }
 
-.fig p {
-    padding-bottom: 0;
-    margin-bottom: 0;
-    margin-left: 2rem;
-    font-size: x-large;
+
+.fig{
+    border: 1px solid #ffbf00;
+    display: flex;
+    align-items: center;
+    width: 90%;
+    border-radius: 5px;
+    height: 40px;
+    margin: 15px auto;
+    font-family: "poppins";
+    justify-content: left;
 }
 
+
+.fig .icon {
+    /* padding-bottom: 0; */
+    margin-bottom: 0;
+    /* margin-left: 2rem; */
+    font-size: 22px;
+    font-family: "poppins";
+    font-weight: 600;
+    padding-left: 10px;
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid white; */
+    align-items: center;
+    height: 32px;
+}
+/* 
 .fig input{
     width: 90%;
     text-align: center;
@@ -218,17 +258,50 @@ select option{
     border-bottom: 0px solid black;
     font-size: 20px;
 
+} */
+/* 
+.icon{
+    font-size: 2rem;
+    margin-left: 2rem;
+    font-family: "poppins";
+    border: 1px solid white;
+} */
+
+.amount-input{
+    /* border: 1px solid white; */
+    font-family: "poppins";
+    height: 32px;
+    /* font-size: 18p; */
+    text-align: left;
 }
 
 
+
+.amount{
+    /* border: 1px solid white; */
+    font-family: "poppins";
+    width: 80%;
+    text-align: left;
+    height: 100%;
+    font-size: 19px;
+    font-weight: 400;
+    margin-left: 4px;
+    /* height: 40px; */
+}
+
 .submit{
-    border-radius: .4rem;
+    border-radius: 2rem;
     margin-top: 3rem;
-    background: linear-gradient(17deg, #043927, #212020);
+    border: 1px solid #ffbf00;
+    /* background: linear-gradient(17deg, #043927, #212020); */
     color: white;
-    width: fit-content;
-    padding: .5rem;
+    width: 80%;
+    /* padding: .5rem; */
+    height: 40px;
+    font-size: 20px;
+    font-weight: 600;
     text-align: center;
+    font-family: "poppins";
 }
 
 a i{

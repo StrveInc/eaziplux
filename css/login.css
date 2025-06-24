@@ -7,8 +7,9 @@ body{
     font-size: 1.125;
     margin: 0;
     overflow-y: hidden;
-    background: linear-gradient(137deg, #043927, #000000);
-    height: 100vh;
+    background-color: black;
+    /* background: linear-gradient(137deg, #043927, #000000); */
+    /* height: 100vh; */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -144,22 +145,24 @@ nav a:active{
 
 
 main{
-    height: 100vh;
+    /* height: 100vh; */
+    overflow-y: hidden;
 }
 
 main .cont{
     width: 95%;
     margin: auto;
+    overflow-y: hidden;
 }
 
 .logo{
-    border: 0px solid black;
-    width: 70%;
+    width: 20%;
     margin: auto;
-    visibility: hidden;
+    margin-top: 4rem;
+    /* border: 1px solid white; */
+    /* margin-top: -.9rem; */
 }
-
-.cont form {
+/* .cont form {
     margin: auto;
     padding: 20px 40px;
     border: 1px solid #7e7e7e;
@@ -168,7 +171,7 @@ main .cont{
     background: #ffffff1c;
     backdrop-filter: blur(-16px) saturate(110.5);
     box-shadow: -3px 20px 20px 13px #00000080;
-}
+} */
 .column1{
     width: 40%;
     border-radius: 1rem;
@@ -179,76 +182,56 @@ img{
     width: 100%;
 }
 
-.column2{
-    width: 60%;
-    margin-top: -45rem;
-    margin-left: 15rem;
-}
-
-.column2 .container{
-    width: 60%;
-    border: 0px solid black;
-    margin: auto;
-}
 
 @media (max-width:670px){
     main{
-        height: 100vh;
-        margin-top: -5rem;
+        /* height: 100vh; */
+        /* margin-top: -5rem; */
+        overflow-y: hidden;
     }
     
     main .cont{
-        width: 95%;
+        width: 100%;
         margin: auto;
-        margin-top: 5rem;
+        overflow-y: hidden;
     }
 
-    
     .logo{
-        border: 0px solid black;
-        width: 70%;
+        width: 20%;
         margin: auto;
-        visibility: visible;
+        margin-top: 4rem;
+        /* margin-top: -.9rem; */
     }
     
 
     .cont form {
-        padding: 20px 40px;
-        margin-top: 10rem;
-        border: 1px solid #7e7e7e;
-        width: 70%;
+        border: 0px solid yellow;
+        width: 100%;
         margin: auto;
-        margin-top: 12rem;
-        border-radius: 1rem;
-        background: #ffffff1c;
+        /* margin-top: 5rem; */
+        /* border-radius: 1rem; */
+        /* background: #ffffff1c;
         backdrop-filter: blur(-16px) saturate(110.5);
-        box-shadow: -3px 20px 20px 13px #00000080;
+        box-shadow: -3px 20px 20px 13px #00000080; */
     }
-    .column1{
-        width: 40%;
-        border-radius: 1rem;
-        display: flex;
-    }
+    
+
     
     img{
         width: 100%;
     }
     
     .column2 .container{
-        width: 60%;
-        border: 0px solid black;
+        width: 100%;
+        border: 0px solid white;
         margin: auto;
     }
     .column2{
-        margin-top: -12rem;
         width: 100%;
-        margin-left: 0;
+        border: 0px solid white;
+        margin-top: 4rem;
     }
 
-    .column2 .container{
-        width: 100%;
-        margin: 0;
-    }
     
     img{
         width: 100%;
@@ -262,24 +245,34 @@ img{
     }
 }
 
-form .txt-field{
+
+
+.txt-field{
+    width: 90%;
+    margin: auto;
+    /* padding: .2rem; */
+    padding-left: .5rem;
+    height: 40px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: white;
+    border: 1px solid #ffbf00;
+    border-radius: .5rem;
     background: transparent;
-    position: relative;
-    border-bottom: 0px solid gold;
-    margin: 50px 0;
+    outline: none;
+
 }
 
 .txt-field input{
     width: 100%;
-    padding: .2rem;
-    padding-left: .5rem;
-    height: 40px;
-    font-size: .9rem;
-    color: white;
-    border: 0px solid black;
-    border-radius: 5rem;
-    background: #ffffff1c;
+    height: 39px;
+    padding-left: 1px;
+    font-size: 16px;
     outline: none;
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: .5rem;
 }
 
 .txt-field input::after{
@@ -322,29 +315,61 @@ form .txt-field{
 
 
 .forgotpass{
-    margin:-5px 0 20px 5px;
+    margin:-20px 0 40px 5px;
     color: red;
+    border: 0px solid white;
+    text-align: right;
     cursor: pointer;
+    font-size: 15px;
 }
 
 .forgotpass a{
     color: beige;
+    text-decoration: none;
 }
 
 .forgotpass:hover{
     text-decoration: underline;
 }
 
+.loginCont{
+    border: 0px solid white;
+    text-align: center;
+    /* margin-top: 1rem;
+    padding: 20px 40px;
+    border-radius: 1rem;
+    background: #ffffff1c;
+    backdrop-filter: blur(-16px) saturate(110.5);
+    box-shadow: -3px 20px 20px 13px #00000080; */
+}   
+
+.login{
+    width: 90%;
+    height: 49px;
+    background: transparent;
+    border: 1px solid #ffbf00;
+    margin: auto;
+    color: white;
+    font-size: 1.125rem;
+    border-radius: 2rem;
+    text-align: center;
+    font-family: "poppins";
+    font-weight: 700;
+}
+
 input[type="submit"] {
     width: 100%;
-    height: 50px;
-    border: 0px solid;
-    background: #ffffff6e;
+    /* padding-block: 10px; */
+    height: 49px;
+    margin: auto;
+    border: 1px solid #ffbf00;
+    background: transparent;
     border-radius: 25px;
     font-size: 18px;
-    color: black;
-    font-weight: 700;
+    color: white;
+    font-weight: 600;
     cursor: pointer;
+    font-family: "poppins";
     outline: none;
 }
 

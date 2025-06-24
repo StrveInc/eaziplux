@@ -4,6 +4,9 @@
         "yabacon/paystack-php": "^2.2",
         "rmccue/requests": "*",
         "flutterwavedev/flutterwave-v3": "*",
-        "wildbit/postmark-php": "^6.0"
+        "wildbit/postmark-php": "^6.0",
+        "phpmailer/phpmailer": "^6.10",
+        "symfony/mailer": "^7.3",
+        "vlucas/phpdotenv": "^5.5"
     }
 }

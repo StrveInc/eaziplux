@@ -7,19 +7,14 @@ a i{
     color: white;
 }
 
-header{
-    width: 90%;
-    margin: auto;
-    padding-top: 1rem;
-    border: 0px solid black;
-    display: flex;
-}
+
 
 
 body{
     font-family: "poppins";
-    font-size: 21.125px;
-    background: linear-gradient(137deg, #043927, #000000);
+    font-size: 16px;
+    background: black;
+    /* background: linear-gradient(137deg, #043927, #000000); */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -49,29 +44,32 @@ body{
 
 .tab{
     border-radius: .5rem;
-    width: 90%;
+    /* width: 90%; */
     align-items: center;
-    padding: .2rem;
+    /* padding: .2rem; */
     display: flex;
     justify-content: space-between;
-    padding-right: 1rem;
+    /* padding-right: 1rem; */
     margin: auto;
     color: white;
-    background: #ffffff1c;
+    /* background: #ffffff1c; */
     backdrop-filter: blur(-16px) saturate(110.5);
     box-shadow: -3px 20px 20px 13px #00000080;
     margin-top: 1.4rem;
 }
 
-.tab p{
-    margin-left: .8rem;
+.tab i{
+    font-size: 15px;
+    color: #cccccc;
+    margin-left: 13px;
 }
 
 
+   
 .logout{
     width: 82%;
     margin: auto;
-    font-size: 1.7rem;
+    font-size: 1rem;
     border:0px solid black;
     border-radius: 4rem;
     background: none;
@@ -90,7 +88,8 @@ body{
 
 .tag1{
     color: grey;
-    font-size: small;
+    font-size: 12px;
+    font-family: "poppins";
     font-weight: 100;
     border: 0px solid white;
     padding: 0;
@@ -108,5 +107,6 @@ body{
 }
 
 .tag p{
-    font-size: medium;
+    font-size: 10px;
+    font-weight: 300;
 }

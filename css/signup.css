@@ -6,7 +6,8 @@ body{
     font-family: "poppins";
     font-size: 1.125;
     margin: 0;
-    background:linear-gradient(137deg, #043927, #000000);
+    background-color: black;
+    /* background:linear-gradient(137deg, #043927, #000000); */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -69,7 +70,7 @@ header h1{
 
 .logo{
     width: 13%;
-    margin-top: -1.5rem;
+    /* margin-top: -1.5rem; */
 }
 
 .all{
@@ -136,7 +137,9 @@ nav a:active{
 
     .logo{
         width: 20%;
-        margin-top: -.9rem;
+        margin: auto;
+        margin-top: 4rem;
+        /* margin-top: -.9rem; */
     }
     
     .all{
@@ -176,14 +179,13 @@ img{
 }
 
 .column2{
-    width: 60%;
+    width: 90%;
     border: 0px solid white;
-    margin-top: 2rem;
-    margin-left: 18rem;
+    margin-top: 5rem;
 }
 
 .column2 .container{
-    width: 50%;
+    width: 100%;
     border: 0px solid black;
     margin: auto;
 }
@@ -191,20 +193,18 @@ img{
 @media (max-width:670px){
     main .cont{
         width: 100%;
-        flex-direction: column;
+        /* flex-direction: column;
         top: 5rem;
         left: 0;
-        position: relative;
+        position: relative; */
     }
 
     .column2{
         width: 100%;
-        margin-top: 0rem;
-        margin-left: 0rem;
     }
 
     .column2 .container{
-        width: 90%;
+        width: 100%;
         margin: auto;
     }
     
@@ -215,22 +215,37 @@ img{
 }
 
 form .txt-field{
-    position: relative;
-    border-bottom: 2px solid gold;
-    margin: 50px 0;
+    /* position: relative; */
+    /* border-bottom: 2px solid gold; */
+    margin-bottom: 30px;
+    /* text-align: center; */
 }
 
-.txt-field input{
-    width: 100%;
-    padding:0 5px;
+.txt-field{
+    width: 90%;
+    margin: auto;
+    /* padding:0 5px; */
     height: 40px;
     font-size: 16px;
-    border: none;
+    border: 1px solid #ffbf00;
+    border-radius: .5rem;
+    /* padding-left: .5rem; */
     color: white;
     background: none;
     outline: none;
 }
 
+.txt-field input{
+    width: 100%;
+    height: 39px;
+    padding-left: 5px;
+    font-size: 16px;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: .5rem;
+}
 
 .txt-field label{
     position: absolute;
@@ -280,22 +295,32 @@ form .txt-field{
     text-decoration: underline;
 }
 
-input[type="submit"]{
-    width: 100%;
-    height: 50px;
-    border: 1px solid;
-    background: beige;
-    border-radius: 25px;
-    font-size: 18px;
-    color: #021810;
+
+.loginCont{
+    border: 0px solid white;
+    text-align: center;
+    /* margin-top: .5rem; */
+}
+
+.login{
+    width: 90%;
+    height: 49px;
+    background: transparent;
+    border: 1px solid #ffbf00;
+    margin: auto;
+    color: white;
+    font-size: 1.125rem;
+    border-radius: 2rem;
+    text-align: center;
+    font-family: "poppins";
     font-weight: 700;
-    cursor: pointer;
-    outline: none;
 }
 
 h2{
     color: beige;
 }
+
+
 
 input[type="submit"]:hover{
     border-color:#2691d9;
@@ -318,6 +343,7 @@ input[type="submit"]:hover{
 .signup a:hover{
     text-decoration: underline;
 }
+
 
 
 

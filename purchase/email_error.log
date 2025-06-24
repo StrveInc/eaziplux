@@ -1,0 +1,28 @@
+[2025-06-01 12:00:58] Symfony Mailer Error: Expected response code "220" but got code "421", with message "421 Service not available".
+[2025-06-01 12:02:38] Symfony Mailer Error: Expected response code "220" but got code "421", with message "421 Service not available".
+[2025-06-04 03:23:42] Symfony Mailer Error: Connection could not be established with host "ssl://smtp.gmail.com:465": stream_socket_client(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A00010B:SSL routines::wrong version number
+[2025-06-04 03:24:32] Symfony Mailer Error: Connection could not be established with host "ssl://smtp.gmail.com:465": stream_socket_client(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A00010B:SSL routines::wrong version number
+[2025-06-04 04:10:35] Symfony Mailer Error: Connection could not be established with host "ssl://smtp.gmail.com:465": stream_socket_client(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A00010B:SSL routines::wrong version number
+[2025-06-04 04:12:30] Symfony Mailer Error: Connection could not be established with host "ssl://smtp.gmail.com:465": stream_socket_client(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A00010B:SSL routines::wrong version number
+[2025-06-04 04:13:27] Symfony Mailer Error: Connection could not be established with host "ssl://smtp.gmail.com:465": stream_socket_client(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A00010B:SSL routines::wrong version number
+[2025-06-04 04:17:15] Symfony Mailer Error: Connection could not be established with host "ssl://smtp.gmail.com:465": stream_socket_client(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A00010B:SSL routines::wrong version number
+[2025-06-04 04:19:03] Symfony Mailer Error: Expected response code "220" but got code "421", with message "421 Service not available".
+[2025-06-04 04:25:53] Symfony Mailer Error: Connection could not be established with host "ssl://smtp.gmail.com:465": stream_socket_client(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A00010B:SSL routines::wrong version number
+[2025-06-04 04:27:31] Symfony Mailer Error: Connection could not be established with host "ssl://smtp.gmail.com:465": stream_socket_client(): SSL operation failed with code 1. OpenSSL Error messages:
+error:0A00010B:SSL routines::wrong version number
+[2025-06-04 21:25:48] Symfony Mailer Error: Connection could not be established with host "smtp.gmail.com:587": stream_socket_client(): php_network_getaddresses: getaddrinfo for smtp.gmail.com failed: No such host is known. 
+[2025-06-05 02:41:33] Symfony Mailer Error: Connection could not be established with host "smtp.gmail.com:587": stream_socket_client(): Unable to connect to smtp.gmail.com:587 (A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond)
+[2025-06-05 06:28:54] Symfony Mailer Error: Connection could not be established with host "smtp.gmail.com:587": stream_socket_client(): Unable to connect to smtp.gmail.com:587 (A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond)
+[2025-06-05 06:32:06] Symfony Mailer Error: Connection could not be established with host "smtp.gmail.com:587": stream_socket_client(): Unable to connect to smtp.gmail.com:587 (A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond)
+[2025-06-05 06:33:18] Symfony Mailer Error: Connection could not be established with host "smtp.gmail.com:587": stream_socket_client(): Unable to connect to smtp.gmail.com:587 (A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond)
+[2025-06-21 19:59:42] Symfony Mailer Error: Failed to authenticate on SMTP server with username "eaziplux@gmail.com" using the following authenticators: "LOGIN", "PLAIN", "XOAUTH2". Authenticator "LOGIN" returned "Expected response code "235" but got code "535", with message "535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 4fb4d7f45d1cf-60a1857e8f9sm3518629a12.32 - gsmtp".". Authenticator "PLAIN" returned "Expected response code "235" but got code "535", with message "535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 4fb4d7f45d1cf-60a1857e8f9sm3518629a12.32 - gsmtp".". Authenticator "XOAUTH2" returned "Expected response code "235" but got code "334", with message "334 eyJzdGF0dXMiOiI0MDAiLCJzY2hlbWVzIjoiQmVhcmVyIiwic2NvcGUiOiJodHRwczovL21haWwuZ29vZ2xlLmNvbS8ifQ==".".
+[2025-06-21 23:39:40] Symfony Mailer Error: Connection could not be established with host "smtp.gmail.com:587": stream_socket_client(): php_network_getaddresses: getaddrinfo for smtp.gmail.com failed: No such host is known. 

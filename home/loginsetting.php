@@ -54,9 +54,9 @@ session_start();
 <?php
 
 $servername = "localhost";  // Replace with your database server name
-$dbusername = "root";        // Replace with your database username
-$dbpassword = "";  // Replace with your database password
-$database = "eaziplux"; // Replace with your database name
+$dbusername = "bfgaqnyl_eaziplux";        // Replace with your database username
+$dbpassword = "QrJQA2m437WfYuU9Fw3n";  // Replace with your database password
+$database = "bfgaqnyl_eaziplux"; // Replace with your database name
 
 $conn = mysqli_connect($servername, $dbusername, $dbpassword, $database);
 

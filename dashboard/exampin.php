@@ -81,15 +81,11 @@
 <?php
 session_start();
 
-if (isset($_SESSION['username'])) {
+include '../config.php';
+
+
+if (!isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
-
-    $servername = "localhost";
-    $dbusername = "root";
-    $dbpassword = "";
-    $database = "eaziplux";
-
-    $conn = new mysqli($servername, $dbusername, $dbpassword, $database);
 
     $_SESSION['conn'] = $conn;
 

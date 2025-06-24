@@ -12,7 +12,7 @@ body{
     background-repeat: no-repeat;
     font-family: "poppins";
     overflow: hidden;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 h1{
@@ -144,53 +144,90 @@ img{
 }
 
 .baldash{
-    /* margin-top: -4rem; */
+    padding-top: 2rem;
     width: 100%;
-    border: 0px solid black;
+    border: 0px solid white;
     color:azure;
     margin: auto;
 }
 
 
 .bal{
-    width: 90%;
+    width: 100%;
     text-align: left;
-    border: 1px solid white;
+    border: 0px solid white;
     margin: auto;
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
     color: azure;
     font-weight: bold;
     font-family:'nunito';
     font-size: 2rem;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-left: 10px;
+    padding-top: 4px;
 }
 
 
 .balAmount{
-    font-size: 25px;
+    font-size: 32px;
+    font-weight: 700;
+    border: 0px solid white;
+    padding-left: 5px;
+}
+
+.eye{
+    /* margin-right: 1rem; */
+    color: #ccc;
+    border: 0px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-bottom: auto; */
 }
 
 .place{
-    border: 1px solid white;
+    border: 0px solid white;
     color: rgb(220, 205, 205);
     padding: 0;
+    width: 90%;
     /* font-size: 2rem; */
      display: flex;
-     align-items: center; 
-    /*justify-content: space-between; */
+     align-items: top; 
+    justify-content: space-between;
 }
 
+.icon{
+    width: 32px;
+    height: 32px;
+    border: 1px solid white;
+    color: #ccc;
+    margin: auto;
+}
 
 .add{
-    width: 40%;
+    width: 30%;
     border: 1px solid #ffbf00;
     border-right: none;
     margin-left: auto;
     margin-top: 20px;
-    padding-block: 8px;
+    height: 40px;
+    /* padding-block: 10px; */
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     color: #ccc;
     background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.add a{
+    text-decoration: none;
+    color: #ccc;
+    font-size: 12px;
 }
 
 .additems{
@@ -205,19 +242,18 @@ img{
 }
 
 .addCont{
-    /* text-align: center; */
+    text-align: center;
     width: 100%;
-    /* background: black;  */
+    background: black; 
     /* border-bottom-left-radius: 2rem; */
-    border: 0px solid white;
+    border: opx solid white;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .small{
-    font-size: 12px;
-    margin-top: 4px;
+    font-size: 16px;
 }
 
 
@@ -264,6 +300,8 @@ img{
     background-repeat: no-repeat;
     margin: auto;
     color: white;
+    overflow: hidden;
+    position: relative;
     /* margin-bottom: auto; */
 }
 
@@ -271,7 +309,6 @@ img{
     border: 0px solid black;
     border-radius: 30%;
     color: white;
-    padding: 1rem;
     /* background: linear-gradient(137deg, #043927, #000000); */
     font-size: medium;
     text-decoration: none;
@@ -280,7 +317,9 @@ img{
 .services a p{
     color: white;
     text-decoration: none;
-    font-size: .6rem;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 6px;
 }
 
 .column{
@@ -299,7 +338,15 @@ img{
     width: 40%;
     margin: auto;
     justify-content: space-around;
+    align-items: center;
     text-align: center;
+    padding: 12px;
+}
+
+
+.col a{
+    margin: auto;
+    text-decoration: none;
 }
 
 
@@ -320,6 +367,14 @@ img{
     overflow: hidden;
 }
 
+
+.foot{
+    width: 99%;
+    position: absolute;
+    bottom: 20px;
+    color: white;
+    border: 0px solid white;
+}
 
 /* .advertBlock > div {
     height: 100%;

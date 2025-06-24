@@ -4,21 +4,21 @@ html{
 
 body {
     font-family: "poppins";
-    font-size: 21.125px;
+    /* font-size: 21.125px; */
     background: linear-gradient(137deg, #043927, #000000);
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     color: white;
-    height: 100vh;
+    /* height: 100vh; */
 }
 .back i{
     font-size: 2rem;
 }
 
 header{
-    padding-top: 1rem;
-    width: 90%;
+    /* /* padding-top: 1rem; */
+    width: 90%; 
     margin: auto;
     display: flex;
 }

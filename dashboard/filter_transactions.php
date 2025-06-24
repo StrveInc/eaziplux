@@ -1,12 +1,8 @@
 <?php
 session_start();
 
-// Establish a database connection (use your database connection code here)
-$servername = "localhost";  // Replace with your database server name
-$db_username = "root";   // Replace with your database username
-$dbpassword = "";      // Replace with your database password
-$database = "eaziplux";   // Replace with your database name
-$conn = new mysqli($servername, $db_username, $dbpassword, $database);
+include '../config.php'; // Include your database connection details
+
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

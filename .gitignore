@@ -1,0 +1,29 @@
+# Ignore vendor directory (Composer packages)
+vendor/
+
+# Ignore environment configuration
+.env
+.env.local
+.env.production
+
+# Ignore Composer's lock file if you're not locking versions (optional)
+# composer.lock
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Log files
+*.log
+
+# Backup files
+*.bak
+*.tmp
+
+# Node (if ever used)

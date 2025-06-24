@@ -1,72 +1,63 @@
 <?php
-
 session_start();
 
+include '../config.php'; // Include your database connection details
+
+// Ensure both user_id and username are set
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit;
+}
+
+$username = $_SESSION['username'];
+
+// (Optional) Remove or adjust reloading logic if unnecessary
 if (!isset($_SESSION['page_reloaded'])) {
-    $_SESSION['page_reloaded'] = true; // Set the session variable to indicate page reload
+    $_SESSION['page_reloaded'] = true;
     echo '<script>
             window.onload = function() {
                 setTimeout(function() {
                     location.reload();
-                }, 1000); // Reload the page after 1 second (1000 milliseconds)
+                }, 1000);
             }
           </script>';
 }
 
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-    $servername = "localhost";
-    $dbusername = "root";
-    $dbpassword = "";
-    $database = "eaziplux";
+// // Retrieve the user's ID using the username
+// $user_id_query = "SELECT user_id FROM users WHERE username = ?";
+// $stmt = $conn->prepare($user_id_query);
+// $stmt->bind_param("s", $username);
+// $stmt->execute();
+// $result = $stmt->get_result();
 
-    $conn = new mysqli($servername, $dbusername, $dbpassword, $database);
+if ($_SESSION['user_id']) {
+    $user_id = $_SESSION['user_id'];
+    // $row = $result->fetch_assoc();
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Retrieve the user's virtual account balance
-    $user_id_query = "SELECT user_id FROM users WHERE username = ?";
-    $stmt = $conn->prepare($user_id_query);
-    $stmt->bind_param("s", $username);
+    // Retrieve the user's balance
+    $balance_query = "SELECT balance FROM virtual_accounts WHERE acct_id = ?";
+    $stmt = $conn->prepare($balance_query);
+    $stmt->bind_param("s", $user_id);
     $stmt->execute();
-    $result = $stmt->get_result();
+    $balance_result = $stmt->get_result();
 
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        $user_id = $row["user_id"];
-
-        $_SESSION['USER_ID'] = $user_id;
-
-        // Retrieve the user's balance
-        $balance_query = "SELECT balance FROM virtual_accounts WHERE acct_id = ?";
-        $stmt = $conn->prepare($balance_query);
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $balance_result = $stmt->get_result();
-
-        if ($balance_result->num_rows == 1) {
-            $balance_row = $balance_result->fetch_assoc();
-            $account_balance = $balance_row["balance"];
-
-            $_SESSION['acct'] = $account_balance;
-        } else {
-            $account_balance = 0; // Default balance if not found
-        }
+    if ($balance_result->num_rows == 1) {
+        $balance_row = $balance_result->fetch_assoc();
+        $account_balance = $balance_row["balance"];
+        $_SESSION['acct'] = $account_balance;
     } else {
-        // Handle the case where the user's ID is not found
-        header("Location: ../home/getintouch.php"); // Redirect to the dashboard page
-        exit;
+        $account_balance = 0; // Default balance if not found
     }
-
+} else {
+    // If the user's ID is not found, redirect to a useful page such as getintouch.php
+    header("Location: login.php");
+    exit;
 }
-
 
 // Get the current hour
 $currentHour = date('H');
 
-// Customize the greeting based on the time of the day
+// Customize greeting based on time of day
 if ($currentHour >= 1 && $currentHour < 12) {
     $greeting = "Good morning";
 } elseif ($currentHour >= 12 && $currentHour < 18) {
@@ -74,8 +65,6 @@ if ($currentHour >= 1 && $currentHour < 12) {
 } else {
     $greeting = "Good evening";
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -93,6 +82,12 @@ if ($currentHour >= 1 && $currentHour < 12) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <style>
+  .my-icon path {
+    fill: white;
+  }
+</style>
+
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVN0P5EYQP">
@@ -132,23 +127,19 @@ if ($currentHour >= 1 && $currentHour < 12) {
 </head>
 
 <body>
-    <!-- <div class="marquee-container">
-        <div class="marquee">
-            <p>If patience dog see meat e for prefer am pass fatest bone! -Eaziplux</p>
-        </div>
-    </div> -->
+   
     <div class="teal">
         <header>
             <div class="container container-nav">
                 <div class="all">
                     <div class="tilte">
-                        <?php if (!isset($_SESSION['username'])): ?>
-                                <div style="color: white;">
-                                    <div style="font-weight: 600; font-size: 11px; border: 0px solid">
+                        <?php if (isset($_SESSION['username'])): ?>
+                                <div style="color: #ddd;">
+                                    <div style="font-weight: 500; font-size: 14px; border: 0px solid">
                                         <?php echo $greeting ?> ,
                                     </div>
-                                    <div style="font-size: 13px; font-weight:700 ; margin-top: -3px; border: 0px solid; width: 70%;  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                        Victory
+                                    <div style="font-size: 14px; font-weight:700 ; margin-top: -3px; border: 0px solid; width: 70%;  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                        <?php echo isset($username) ? $username : "Guest"; ?>
                                     </div>
                                 </div>
                         <?php else: ?>
@@ -158,7 +149,9 @@ if ($currentHour >= 1 && $currentHour < 12) {
                         <?php endif; ?>
                     </div>
                     <div>
-                        <img style="width: 30px;" src="../css/imgs/userOutline.svg"/>
+                        <a href="../dashboard/setting.php">
+                            <img style="width: 36px; height: 36px; padding: 6px;" src="../css/imgs/userOutline.svg"/>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -168,30 +161,32 @@ if ($currentHour >= 1 && $currentHour < 12) {
 
         <div class="topCont">
             <div class="baldash">
+                <div style="margin: auto; font-size: 12px; border:0px solid black; text-align: left; width: 95%; margin-top: -3px; font-weight: 400; color: #ffbf00;">
+                    <a style="text-decoration: none; color: #ffbf00;" href="../dashboard/transaction.php"><img src="../css/svg/script.svg" style="width: 9px; padding-right: 3px;">Transaction History </a>
+                </div>
                 <div class="bal">
-                    <div class="place">
-                        <div style="font-size: 15px; font-weight: 400; border: 1px solid">
-                            total balance
-                            <i style="width: 10%0" class="fa fa-eye-slash" onclick="toggleBalanceVisibility()" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    <div>
+                <div>
+                    &#8358;
+                </div>
+                <div class="place" style="display: flex; align-items: center; justify-content: space-between;">    
+                    <div class="balAmount" id="balanceDisplay">
                         <?php if (isset($account_balance)): ?>
-                                    <div class="balAmount" id="balanceDisplay">
-                                        &#8358;<?php echo number_format($account_balance, 2); ?>
-                                    </div>
+                            <?php echo number_format($account_balance, 2); ?>
                         <?php else: ?>
-                                    <div class="balAmount" id="balanceDisplay">
-                                        &#8358;<?php echo "500,000,000.00"; ?>
-                                    </div>
+                             <?php echo "0.00"; ?>
                         <?php endif; ?>
                     </div>
-                    <div class="add">
-                    <div class="addCont">
-                        <div class="small">Top-up Wallet</div>
+                    <div class="eye">
+                        <i class="fa fa-eye-slash" id="balanceEye" onclick="toggleBalanceVisibility()" aria-hidden="true"></i>
                     </div>
                 </div>
                 </div>
+                
+                <div class="add">
+                        <a href="../dashboard/transfer.php">
+                           Manage funds
+                        </a>
+                    </div>
             </div>
         </div>
     </div>
@@ -199,25 +194,25 @@ if ($currentHour >= 1 && $currentHour < 12) {
         <div class="services">
             <div class="column">
                 <div class="col">
-                    <a href="../dashboard/buyairtime.php">
+                    <a href="../airtime/mtnairtime.php">
                         <div class="icon">
-                            <img src="../css/svg/phone.svg" />
+                            <img src="../css/icon/signal.svg" />
                         </div>
                         <p>Airtime</p>
                     </a>
                 </div>
                 <div class="col">
-                    <a href="../dashboard/buydata.php">
+                    <a href="../data/mtndata.php">
                         <div class="icon">
-                        <img src="../css/svg/data.svg" />
+                        <img src="../css/icon/data.svg" />
                         </div>
                         <p>Data</p>
                     </a>
                 </div>
                 <div class="col">
-                    <a href="#" onclick="lert()">
+                    <a href="../dashboard/giftcard.php">
                         <div class="icon">
-                        <img src="../css/svg/bankCardOne.svg" />
+                        <img src="../css/icon/giftcard.svg" />
                         </div>
                         <p>Gift Card</p>
                     </a>
@@ -226,41 +221,28 @@ if ($currentHour >= 1 && $currentHour < 12) {
 
             <div class="column">
                 <div class="col">
-                    <a href="../dashboard/exampin.php">
+                    <a href="#" onclick="lert()">
                         <div class="icon">
-                            <img src="" />
+                            <img src="../css/icon/degree-credential.svg" />
                         </div>
                         <p>Exam pin</p>
                     </a>
                 </div>
                 <div class="col">
-                    <a href="../dashboard/electricity.php">
+                    <a href="../electricity/eko.php">
                         <div class="icon">
-                            <img src="" />
+                            <img src="../css/icon/electric.svg" />
                         </div>
                         <p>Electricity</p>
                     </a>
                 </div>
                 <div class="col">
-                    <a href="../dashboard/tvsub.php">
+                    <a href="../tvsub/dstvsub.php">
                         <div class="icon">
-                            <img src="" />
+                            <img src="../css/icon/satellite.svg" />
                         </div>
                         <p>Tv sub</p>
                     </a>
-                </div>
-            </div>
-            <div class="advertBlock">
-                <div style="width: 65%; border: 0px solid white; height: 100%; padding: 5px;">
-                    <div style="border: 0px solid white;">Advertisement Block</div>
-                    <div>S</div>
-                    <div></div>
-                </div>
-                <div style="width: 35%; height: 100%; background: black;">
-                    <img 
-                        src="../css/imgs/eazipluxpure.png" 
-                        style="width: 100%; height: 100%; object-fit: contain;" 
-                    />
                 </div>
             </div>
             <!-- <div class="column">
@@ -285,9 +267,25 @@ if ($currentHour >= 1 && $currentHour < 12) {
                     </a>
                 </div>
             </div> -->
-        </div>
+            </div>
+            <div class="foot">
+             <div class="advertBlock">
+                <div style="width: 65%; border: 0px solid white; height: 100%; padding: 5px;">
+                    <div style="border: 0px solid white; padding: 3px; font-weight: 500; font-size: 21px; margin-top: 4px;">Advertise with Us!</div>
+                    <div style="font-size: 15px; padding: 3px;">Get noticed. contact us today</div>
+                </div>
+                <div style="width: 35%; height: 100%; background: black;">
+                    <img 
+                        src="../css/imgs/eazipluxpure.png" 
+                        style="width: 100%; height: 100%; object-fit: contain;" 
+                    />
+                </div>
+            </div>
+            <div style="color: #ccc; border: 0px solid white; text-align: center; font-size: 12px; font-weight: 400; margin-top: 5px">Powered by Strive inc.</div>
+            </div>
         </div>
     </main>
+    
 </body>
 
 <script>
@@ -303,12 +301,19 @@ if ($currentHour >= 1 && $currentHour < 12) {
 <script>
     function toggleBalanceVisibility() {
         var balanceDisplay = document.getElementById('balanceDisplay');
+        var eyeIcon = document.getElementById('balanceEye');
+        var actualBalance = <?php echo json_encode(number_format($account_balance, 2)); ?>;
+
         if (balanceDisplay.innerText === '****') {
             // Show actual balance
-            balanceDisplay.innerText = '<?php echo number_format($account_balance, 2); ?>';
+            balanceDisplay.innerText = actualBalance;
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
         } else {
             // Hide balance
-            balanceDisplay.innerText = '****';
+            balanceDisplay.innerText = "****";
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
         }
     }
 

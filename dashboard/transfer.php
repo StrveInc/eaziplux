@@ -7,24 +7,15 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
     exit;
 }
 
-
-
-// End the session
-$servername = "localhost";
-$db_username = "root";
-$db_password = "";
-$db_name = "eaziplux";
-
-
-$conn = new mysqli($servername, $db_username, $db_password, $db_name);
+include '../config.php'; // Include your database connection details
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 // Use prepared statements to prevent SQL injection
-$stmt = $conn->prepare("SELECT acct_number, acct_name, bank_name FROM users WHERE email=?");
-$stmt->bind_param("s", $_SESSION["email"]);
+$stmt = $conn->prepare("SELECT acct_number, acct_name, bank_name FROM virtual_accounts WHERE acct_id=?");
+$stmt->bind_param("s", $_SESSION["user_id"]);
 $stmt->execute();
 $stmt->bind_result($dbAcctNumber, $dbAcctName, $dbBankName);
 $stmt->fetch();
@@ -44,7 +35,7 @@ $conn->close();
         rel="stylesheet">
     <link rel="stylesheet" href="../css/transfer.css">
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" size="662x662" href="./css/imgs/eaziplux.png">
+    <link rel="icon" type="image/png" size="662x662" href="../css/imgs/eazipluxpure.png">
     <script src="https://kit.fontawesome.com/49c5823e25.js" crossorigin="anonymous"></script>
     <meta name="description"
         content="Manage your mobile data and pay bills seamlessly with Eazi Plux. Enjoy a convienient and secure platform for handling all your mobile-related transactions.">
@@ -66,49 +57,114 @@ $conn->close();
             color: beige;
             border-radius: .5rem;
         }
+        
+        header {
+            color: #fff;
+            font-size: 16px;
+            padding-block: 10px;
+            text-align: center;
+            /* position: fixed; */
+            /* top: -5px; */
+            /* border-bottom: .4px solid #ccc; */
+            width: 100%;
+            /* left: -1px; */
+            background: rgb(0, 0, 0);
+        }
+
+        .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    height: 20px; /* Reduced from 25px */
+    background: rgb(37, 37, 37);
+}
+
+.marquee {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 10px; /* Reduced from 14px */
+    padding: 0;
+    height: 14px;
+    line-height: 20px; /* Adjusted to match the height */
+    position: absolute; 
+    /* border: 1px solid white; */
+    animation: marquee 10s linear infinite;
+}
+
+.view-payout-btn {
+    background: #ffbf00;
+    color: #222;
+    border: none;
+    border-radius: 30px;
+    margin: auto;
+    padding: 10px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 18px;
+    margin-top: 30px;
+    display: block;
+    width: 90%;
+}
+
+.marquee p{
+    color: white;
+}
+
+@keyframes marquee {
+    
+    0% { transform: translateX(100%); } /* Start offscreen to the right */
+    100% { transform: translateX(-100%); } /* Move to the left */
+}
+    
     </style>
 </head>
 
 <body>
     <header>
-        <div class="back">
-            <a href="addfund.php"><i class="fa-solid fa-chevron-left"></i></a>
-        </div>
-        <div class="head">
-            Account Details
-        </div>
+       Manage Funds 
     </header>
+     <div class="marquee-container">
+        <div class="marquee">
+            Kindly note that service fee of &#8358;20 will be charged for every successful funding ~ Eaziplux</p>    
+        </div>
+    </div>
     <main>
-        <form id="payment-form" method="post">
-            <div class="container">
-                <div class="transfer">
-                    <div class="det">
-                        <p>Account Number: </p>
-                        <div class="num">
-                            <p id="copyText">
-                                <?php echo $dbAcctNumber; ?>
-                            </p>
-                            <label onclick="copyText()"><i class="fas fa-copy"></i></label>
-                        </div>
-                    </div>
-
-                    <div class="det">
-                        <p>Account Name: </p>
-                        <p>
-                            <?php echo $dbAcctName; ?>
-                        </p>
-                    </div>
-
-                    <div class="det">
-                        <p>Bank Name: </p>
-                        <p>
-                            <?php echo $dbBankName; ?>
-                        </p>
-                    </div>
+        <div style="font-size: 14px; margin-top: 10px; text-align: center;">Transfer to the below account to fund wallet</div>
+            <div class="acctInfo">
+            <!-- <h1>Fund Your Wallet</h1> -->
+                <div class="det">
+                    <div class="col1">Account Name</div> 
+                    <div class="col"><?php echo htmlspecialchars($dbAcctName); ?></div>
+                <div>
+                <div class="det">
+                    <div class="col1">Account Number</div>
+                    <div class="col"><?php echo htmlspecialchars($dbAcctNumber); ?><span onclick="copyText()" style="margin: auto; border: 1px dotted #ffbf00; margin-left: 8px; padding: 2px 3px; font-size: 10px; border-radius: 5px; color: #ffbf00">Copy</span></div>               
+                </div>
+                <div class="det">
+                    <div class="col1">Bank Name</div>
+                    <div class="col"><?php echo htmlspecialchars($dbBankName); ?></div>
+                </div>
+                <div style="font-size: 14px; margin-top: 5px; text-align: center; color: #ccc; font-weight: bold;">
+                    Other payment methods:
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center; font-size: 13px; margin-top: 10px; color:#ffbf00;">
+                    <img src="../css/svg/card.svg" style="width: 20px; padding-right: 5px;"/><a style="text-decoration: none; color: #ffbf00;" href="./cardpayment.php">Pay with your card or USSD</a>
                 </div>
             </div>
-        </form>
+        </div>    
     </main>
+    <div>
+        <button class="view-payout-btn" onclick="window.location.href='withdraw.php'">Withdraw Funds</button>
+    </div>
+        <footer style="color: #ccc; position: absolute; bottom: 10px; width: 90%; left: 25px; font-size: 12px; text-align: center; border: 0px solid #ccc;">
+    <div class="footer">
+            <p>&copy; 2023 Eazi Plux. All rights reserved.</p>
+        </div>
+            <!-- <div>&copy; 2024 Strive inc. All right reserved <a href="https://eaziplux.com" target="_blank">Strive inc</a></div>     -->
+
+    </footer>
 
     <script type="text/javascript">
         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();

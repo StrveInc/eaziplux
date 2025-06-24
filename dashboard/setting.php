@@ -1,3 +1,10 @@
+<?php 
+ session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: ../home/login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,18 +20,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" size="662x662" href="../css/imgs/eaziplux.png">
     <title>Settings</title>
-</head>
+    <style>
+        
+        header {
+            color: #fff;
+            font-size: 16px;
+            padding-block: 10px;
+            text-align: center;
+            position: fixed;
+            top: -5px;
+            border-bottom: .4px solid #ccc;
+            width: 100%;
+            left: -1px;
+            background: rgb(0, 0, 0);
+        }
+    </style>
+</head
 
 <body>
     <header>
-        <div class="back">
-            <a href="../home/dashboard.php">
-                <i class="fa-solid fa-chevron-left"></i>
-            </a>
-        </div>
-        <div class="head">
             Settings
-        </div>
     </header>
 
     <main>
@@ -68,7 +83,9 @@
     </main>
     <div>
         <div class="tag1">
-            <p>Version 7.3.1(7340816)</p>
+            <p>Version 1.1.0
+
+            </p>
         </div>
     </div>
     <div class="tag">
