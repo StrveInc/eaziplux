@@ -3,10 +3,28 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+include 'config.php';
 $log_file = 'webhook_error.log';
 
+// Paystack Secret Key for Signature Verification
+$secretKey = $_ENV['PK_SECRET']; // Replace with your real secret key
+
+// Read raw input
+$input = file_get_contents("php://input");
+file_put_contents($log_file, "RAW INPUT: " . $input . PHP_EOL, FILE_APPEND);
+
+// Verify signature
+$signature = $_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] ?? '';
+$computedSignature = hash_hmac('sha512', $input, $secretKey);
+
+if ($signature !== $computedSignature) {
+    file_put_contents($log_file, "Invalid signature. Rejecting request.\n", FILE_APPEND);
+    http_response_code(401);
+    exit("Invalid signature");
+}
+
 // Database connection
-include 'config.php';
+
 
 if ($conn->connect_error) {
     file_put_contents($log_file, "DB connection failed: " . $conn->connect_error . PHP_EOL, FILE_APPEND);
@@ -15,21 +33,21 @@ if ($conn->connect_error) {
 }
 $conn->autocommit(true);
 
-// Get webhook data
-$data = json_decode(file_get_contents("php://input"), true);
+// Decode JSON
+$data = json_decode($input, true);
 
-// Extract from Paystack structure
-$reference = isset($data['data']['reference']) ? $data['data']['reference'] : null;
-$amount = isset($data['data']['amount']) ? floatval($data['data']['amount']) / 100 : 0; // Paystack sends amount in kobo
-$userEmail = isset($data['data']['customer']['email']) ? $data['data']['customer']['email'] : null;
-$status = isset($data['data']['status']) ? $data['data']['status'] : 'success';
+// Extract data
+$reference = $data['data']['reference'] ?? null;
+$amount = isset($data['data']['amount']) ? floatval($data['data']['amount']) / 100 : 0;
+$userEmail = $data['data']['customer']['email'] ?? null;
+$status = $data['data']['status'] ?? 'success';
 
-// Find user_id and check if it's a giftcard funding
+// Variables
 $user_id = null;
 $is_giftcard = false;
 $converted_amount = null;
 
-// Check if reference matches a giftcard order
+// Check for giftcard reference
 if ($reference) {
     $stmt = $conn->prepare("SELECT user_id, converted_amount FROM giftcard_requests WHERE reference = ? LIMIT 1");
     $stmt->bind_param("s", $reference);
@@ -44,7 +62,7 @@ if ($reference) {
     $stmt->close();
 }
 
-// If not a giftcard, try to get user_id by email
+// Fallback: get user_id by email
 if (!$user_id && $userEmail) {
     $stmt = $conn->prepare("SELECT user_id FROM users WHERE email = ? LIMIT 1");
     $stmt->bind_param("s", $userEmail);
@@ -60,8 +78,8 @@ if (!$user_id && $userEmail) {
 file_put_contents($log_file, "DEBUG: reference=$reference, amount=$amount, userEmail=$userEmail, user_id=$user_id\n", FILE_APPEND);
 
 if ($user_id && $amount > 0) {
-    // Credit user: use converted_amount for giftcard, else use amount
     $credit_amount = ($is_giftcard && $converted_amount) ? $converted_amount : $amount;
+
     $stmt = $conn->prepare("UPDATE virtual_accounts SET balance = balance + ? WHERE acct_id = ?");
     if (!$stmt) {
         file_put_contents($log_file, "Prepare failed: " . $conn->error . PHP_EOL, FILE_APPEND);
@@ -77,13 +95,13 @@ if ($user_id && $amount > 0) {
     $affected = $stmt->affected_rows;
     $stmt->close();
 
-    // Log transaction to transaction_history
+    // Log transaction
     $description = $is_giftcard ? "Giftcard funding" : "Wallet funding";
     $item = "funding";
     $transaction_type = "credit";
     $receiver = $userEmail;
     $transaction_time = date('Y-m-d H:i:s');
-    $transaction_id = $reference; // Use Paystack reference as transaction_id
+    $transaction_id = $reference;
 
     $log_stmt = $conn->prepare("INSERT INTO transaction_history (transaction_id, user_id, amount, description, status, item, transaction_type, receiver, transaction_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     if ($log_stmt) {
@@ -107,7 +125,7 @@ if ($user_id && $amount > 0) {
         file_put_contents($log_file, "Transaction log prepare failed: " . $conn->error . PHP_EOL, FILE_APPEND);
     }
 
-    // If giftcard, update status to completed
+    // Mark giftcard request as completed
     if ($is_giftcard) {
         $update = $conn->prepare("UPDATE giftcard_requests SET status = 'completed' WHERE reference = ?");
         if ($update) {
@@ -126,12 +144,12 @@ if ($user_id && $amount > 0) {
         echo json_encode(['status' => 'success', 'message' => 'Balance updated']);
     } else {
         file_put_contents($log_file, "No update: user_id=$user_id, amount=$credit_amount\n", FILE_APPEND);
-        http_response_code(400);
-        echo json_encode(['status' => 'fail', 'message' => 'User not found or no update']);
+        http_response_code(200); // Always return 200 to avoid retries
+        echo json_encode(['status' => 'fail', 'message' => 'No update made']);
     }
 } else {
     file_put_contents($log_file, "Invalid data: " . json_encode($data) . PHP_EOL, FILE_APPEND);
-    http_response_code(400);
+    http_response_code(200); // Always return 200 to stop retries
     echo json_encode(['status' => 'fail', 'message' => 'Invalid data']);
 }
 
