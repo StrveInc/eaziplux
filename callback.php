@@ -6,8 +6,15 @@ error_reporting(E_ALL);
 include 'config.php';
 $log_file = 'webhook_error.log';
 
-// Paystack Secret Key for Signature Verification
-$secretKey = $_ENV['PK_SECRET']; // Replace with your real secret key
+// Immediately respond to Paystack to avoid timeout
+http_response_code(200);
+ignore_user_abort(true);
+if (function_exists('fastcgi_finish_request')) {
+    fastcgi_finish_request();
+}
+
+// Load secret key from environment or fallback
+$secretKey = $_ENV['PK_SECRET'] ?? 'sk_live_XXXXXX'; // Replace fallback with actual live secret key if needed
 
 // Read raw input
 $input = file_get_contents("php://input");
@@ -19,35 +26,31 @@ $computedSignature = hash_hmac('sha512', $input, $secretKey);
 
 if ($signature !== $computedSignature) {
     file_put_contents($log_file, "Invalid signature. Rejecting request.\n", FILE_APPEND);
-    http_response_code(401);
     exit("Invalid signature");
 }
 
-// Database connection
-
-
+// Connect DB
 if ($conn->connect_error) {
     file_put_contents($log_file, "DB connection failed: " . $conn->connect_error . PHP_EOL, FILE_APPEND);
-    http_response_code(500);
     exit("DB connection failed");
 }
 $conn->autocommit(true);
 
-// Decode JSON
+// Decode JSON payload
 $data = json_decode($input, true);
 
-// Extract data
+// Extract needed data
 $reference = $data['data']['reference'] ?? null;
 $amount = isset($data['data']['amount']) ? floatval($data['data']['amount']) / 100 : 0;
 $userEmail = $data['data']['customer']['email'] ?? null;
 $status = $data['data']['status'] ?? 'success';
 
-// Variables
+// Initialization
 $user_id = null;
 $is_giftcard = false;
 $converted_amount = null;
 
-// Check for giftcard reference
+// Check if reference is from giftcard
 if ($reference) {
     $stmt = $conn->prepare("SELECT user_id, converted_amount FROM giftcard_requests WHERE reference = ? LIMIT 1");
     $stmt->bind_param("s", $reference);
@@ -62,7 +65,7 @@ if ($reference) {
     $stmt->close();
 }
 
-// Fallback: get user_id by email
+// If not giftcard, fallback by email
 if (!$user_id && $userEmail) {
     $stmt = $conn->prepare("SELECT user_id FROM users WHERE email = ? LIMIT 1");
     $stmt->bind_param("s", $userEmail);
@@ -75,23 +78,23 @@ if (!$user_id && $userEmail) {
     $stmt->close();
 }
 
-file_put_contents($log_file, "DEBUG: reference=$reference, amount=$amount, userEmail=$userEmail, user_id=$user_id\n", FILE_APPEND);
+file_put_contents($log_file, "DEBUG: reference=$reference, amount=$amount, email=$userEmail, user_id=$user_id\n", FILE_APPEND);
 
 if ($user_id && $amount > 0) {
-    $credit_amount = ($is_giftcard && $converted_amount) ? $converted_amount : $amount;
+    $credit_amount = ($is_giftcard && $converted_amount) ? $converted_amount : $amount - 20;
 
     $stmt = $conn->prepare("UPDATE virtual_accounts SET balance = balance + ? WHERE acct_id = ?");
     if (!$stmt) {
-        file_put_contents($log_file, "Prepare failed: " . $conn->error . PHP_EOL, FILE_APPEND);
-        http_response_code(500);
+        file_put_contents($log_file, "Balance update prepare failed: " . $conn->error . PHP_EOL, FILE_APPEND);
         exit("Prepare failed");
     }
+
     $stmt->bind_param("ds", $credit_amount, $user_id);
     if (!$stmt->execute()) {
-        file_put_contents($log_file, "Execute failed: " . $stmt->error . PHP_EOL, FILE_APPEND);
-        http_response_code(500);
+        file_put_contents($log_file, "Balance update execute failed: " . $stmt->error . PHP_EOL, FILE_APPEND);
         exit("Execute failed");
     }
+
     $affected = $stmt->affected_rows;
     $stmt->close();
 
@@ -125,7 +128,7 @@ if ($user_id && $amount > 0) {
         file_put_contents($log_file, "Transaction log prepare failed: " . $conn->error . PHP_EOL, FILE_APPEND);
     }
 
-    // Mark giftcard request as completed
+    // Update giftcard request status
     if ($is_giftcard) {
         $update = $conn->prepare("UPDATE giftcard_requests SET status = 'completed' WHERE reference = ?");
         if ($update) {
@@ -139,19 +142,12 @@ if ($user_id && $amount > 0) {
         }
     }
 
-    if ($affected > 0) {
-        http_response_code(200);
-        echo json_encode(['status' => 'success', 'message' => 'Balance updated']);
-    } else {
-        file_put_contents($log_file, "No update: user_id=$user_id, amount=$credit_amount\n", FILE_APPEND);
-        http_response_code(200); // Always return 200 to avoid retries
-        echo json_encode(['status' => 'fail', 'message' => 'No update made']);
-    }
+    file_put_contents($log_file, "SUCCESS: Credited $credit_amount to user_id $user_id\n", FILE_APPEND);
 } else {
-    file_put_contents($log_file, "Invalid data: " . json_encode($data) . PHP_EOL, FILE_APPEND);
-    http_response_code(200); // Always return 200 to stop retries
-    echo json_encode(['status' => 'fail', 'message' => 'Invalid data']);
+    file_put_contents($log_file, "FAIL: Invalid user or amount. Data: " . json_encode($data) . PHP_EOL, FILE_APPEND);
 }
 
 $conn->close();
+exit("Webhook processed");
+
 ?>
