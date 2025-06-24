@@ -112,6 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['withdraw']) && !empty(
         $_SESSION['status_type'] = "failure";
         $_SESSION['status_message'] = "Withdrawal failed: Payment server error";
         header('Location: ../success.php');
+        exit;
     }
 
     // Update user's account balance (deduct withdrawal amount + ₦50 charge)
