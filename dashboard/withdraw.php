@@ -100,12 +100,27 @@ function logTransaction($conn, $user_id, $transaction_id, $amount, $description,
             overflow: hidden;
             background-color: rgba(0,0,0,0.85);
         }
-        .modal-content, .overlay-content {
+        .overlay-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+            color: #000;
+        }
+
+
+        .modal-content{
             background: #fff;
             color: #222;
             margin: 0 auto;
-            margin-top: 8vh;
-            padding: 32px 24px;
+            /* margin-top: 8vh; */
+            /* padding: 32px 24px; */
             border-radius: 10px;
             max-width: 400px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.2);
