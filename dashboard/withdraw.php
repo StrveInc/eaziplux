@@ -24,6 +24,7 @@ $account_balance = $user['balance'];
 $recipient_code  = $user['account_code'];
 
 $showLinkModal = false;
+
 if (empty($recipient_code)) {
     $showLinkModal = true;
 }
@@ -68,6 +69,74 @@ function logTransaction($conn, $user_id, $transaction_id, $amount, $description,
 }
 
 // ...existing withdrawal processing code...
+// Process withdrawal order only if the withdrawal form is submitted and there is a linked recipient
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['withdraw']) && !empty($recipient_code)) {
+
+    $amount = floatval($_POST['amount']); // Withdrawal amount in NGN
+    $charge = 50; // ₦50 charge
+    $total_deduction = $amount + $charge;
+
+    if ($total_deduction > $account_balance) {
+        die("Insufficient balance for this withdrawal including a ₦50 charge.");
+    }
+
+    $paystack_secret_key = $_ENV['PK_SECRET']; // Or your actual secret key
+
+    // Prepare transfer data. Amount must be in kobo.
+    $transfer_data = [
+        "source"    => "balance",
+        "amount"    => $amount * 100,
+        "recipient" => $recipient_code,
+        "reason"    => "Withdrawal for user ID: $user_id"
+    ];
+
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+        CURLOPT_URL => "https://api.paystack.co/transfer",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => json_encode($transfer_data),
+        CURLOPT_HTTPHEADER => [
+            "Authorization: Bearer " . $paystack_secret_key,
+            "Content-Type: application/json"
+        ],
+    ]);
+    $transfer_response = curl_exec($curl);
+    $transfer_error = curl_error($curl);
+    curl_close($curl);
+
+    if ($transfer_error) {
+        die("Curl Error: " . $transfer_error);
+    }
+    $transfer_result = json_decode($transfer_response, true);
+    if (!isset($transfer_result['status']) || $transfer_result['status'] !== true) {
+        $error_msg = $transfer_result['message'] ?? 'Error initiating transfer';
+        die("Transfer Error: " . $error_msg);
+    }
+
+    // Update user's account balance (deduct withdrawal amount + ₦50 charge)
+    $new_balance = $account_balance - $total_deduction;
+    $update_query = "UPDATE virtual_accounts SET balance = '$new_balance' WHERE acct_id = '$user_id'";
+    if (!$conn->query($update_query)) {
+        die("Failed to update account balance: " . $conn->error);
+    }
+
+    $description = "Withdraw ₦" . number_format($amount, 2) . " with ₦50 charge";
+    $status = "success";
+    $item = "Funds";
+    $transaction_type = "withdrawal";
+    $receiver = $recipient_code; // The recipient code for the transfer
+    $transaction_id = 'WD'.time(); // Use the Paystack transaction ID
+    
+    $_SESSION['status_type'] = "success";
+    $_SESSION['status_message'] = "Withdrawal of ₦" . number_format($amount, 2) . " was successful. ₦50 charge applied.";
+
+
+    // Optionally, log the transaction here
+    logTransaction($conn, $user_id, $transaction_id, $total_deduction, $description, $status, $item, $transaction_type, $receiver);
+    header("Location: ../success.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -208,12 +277,13 @@ function logTransaction($conn, $user_id, $transaction_id, $amount, $description,
 </div>
 
 <!-- Modal to display the standalone linkAccount file in an iframe if recipient code is empty -->
+<?php if ($showLinkModal): ?> 
 <div id="linkModal" class="modal">
   <div class="modal-content">
     <iframe src="linkAccount.php" style="width:100vw; height:100vh; border:none;"></iframe>
   </div>
 </div>
-
+<?php endif; ?>
 <script>
 function closeModal() {
     document.getElementById("linkModal").style.display = "none";

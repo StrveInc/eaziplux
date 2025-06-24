@@ -87,6 +87,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $update_query = "UPDATE virtual_accounts SET account_code = '$recipient_code' WHERE acct_id = '$user_id'";
             if ($conn->query($update_query) === TRUE) {
                 $success_message = "Account linked successfully.";
+                header("Location: ../dashboard/withdraw.php?success=1");
+                exit;   
             } else {
                 $error_message = "Database update error: " . $conn->error;
             }
@@ -163,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <div class="form-group">
             <label for="account_number">Account Number</label>
-            <input type="text" id="account_number" name="account_number" maxlength="10" style="width: 90%;" required>
+            <input type="text" id="account_number" name="account_number" maxlength="10" required>
         </div>
         <div class="form-group">
             <label for="account_name">Account Name</label>

@@ -144,12 +144,12 @@ if (isset($_POST["check_email"])) {
 
             // Firebase configuration
             const firebaseConfig = {
-                apiKey: "AIzaSyBDkWogCS0mYlgaafZS8q6D19QaqG0tSPA",
-                authDomain: "eaziplux-push-notification.firebaseapp.com",
-                projectId: "eaziplux-push-notification",
-                storageBucket: "eaziplux-push-notification.firebasestorage.app",
-                messagingSenderId: "593825998839",
-                appId: "1:593825998839:web:431593af7581f4ebbe30f2"
+                apiKey: "<?php echo $_ENV['FIREBASE_API']; ?>",
+                authDomain: "<?php echo $_ENV['AUTHDOMAIN']; ?>",
+                projectId: "<?php echo $_ENV['PROJID']; ?>",
+                storageBucket: "<?php echo $_ENV['STORAGEBUCK']; ?>",
+                messagingSenderId: "<?php echo $_ENV['SENDERID']; ?>",
+                appId: "<?php echo $_ENV['APPID']; ?>"
             };
 
             // Initialize Firebase
