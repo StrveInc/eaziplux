@@ -109,7 +109,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['withdraw']) && !empty(
     $transfer_result = json_decode($transfer_response, true);
     if (!isset($transfer_result['status']) || $transfer_result['status'] !== true) {
         $error_msg = $transfer_result['message'] ?? 'Error initiating transfer';
-        die("Transfer Error: " . $error_msg);
+        $_SESSION['status_type'] = "failure";
+        $_SESSION['status_message'] = "Withdrawal failed: Payment server error";
+        header('Location: ../success.php');
     }
 
     // Update user's account balance (deduct withdrawal amount + ₦50 charge)
