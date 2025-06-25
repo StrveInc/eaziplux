@@ -46,7 +46,7 @@ function send_password_reset($get_name, $get_email, $token) {
     $os = getOS();
     $browser = getBrowser();
 
-    $reset_link = "https://eaziplux.com.ng/eaziplux/home/password_change.php?token=$token&email=$get_email";
+    $reset_link = "https://eaziplux.com.ng/home/password_change.php?token=$token&email=$get_email";
     $logo_url = "https://eaziplux.com.ng/css/imgs/eazipluxpure.png"; // Update to your logo URL
 
     $html = <<<EOT
