@@ -172,9 +172,13 @@ if (isset($_POST["check_email"])) {
                         fetch("../api/firebaseGoogleAuth.php", {
                             method: "POST",
                             headers: {
-                                "Content-Type": "application/x-www-form-urlencoded",
+                                "Content-Type": "application/json",
                             },
-                            body: `email=${encodeURIComponent(user.email)}&username=${encodeURIComponent(user.displayName)}&firebase_uid=${encodeURIComponent(user.uid)}`
+                            body:  JSON.stringify({
+                                email: user.email,
+                                username: user.displayName,
+                                firebase_uid: user.uid      
+                            })
                         })
                             .then((response) => {
                                 if (!response.ok) {
