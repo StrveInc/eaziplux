@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $reference = 'GC-' . strtoupper(bin2hex(random_bytes(5))) . time();
+    $userEmail = $_SESSION['email'] ?? null;
     $card_type = $_POST['network'] ?? '';
     $card_code = trim($_POST['card_code'] ?? '');
     $card_amount = $_POST['number'] ?? null;
@@ -131,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Initialize Paystack transaction
         $fields = [
-            'email' => $vendor_email, // or the payer's email
+            'email' => $userEmail, // or the payer's email
             'amount' => intval(floatval($original_amount) * 100), // amount in kobo
             'reference' => $reference, // your order reference
         ];

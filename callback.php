@@ -3,18 +3,28 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-include 'config.php';
-$log_file = 'webhook_error.log';
+header("Access-Control-Allow-Origin: *"); // CORS header added
 
-// Immediately respond to Paystack to avoid timeout
+include 'config.php';
+$log_file = 'webhook_logger.log';
+
+// Log webhook hit
+file_put_contents($log_file, "Webhook hit at " . date("Y-m-d H:i:s") . PHP_EOL, FILE_APPEND);
+
+// Log headers
+$headers = getallheaders();
+file_put_contents($log_file, "HEADERS: " . print_r($headers, true) . PHP_EOL, FILE_APPEND);
+
+// Respond to Paystack immediately
 http_response_code(200);
 ignore_user_abort(true);
 if (function_exists('fastcgi_finish_request')) {
     fastcgi_finish_request();
 }
 
-// Load secret key from environment or fallback
-$secretKey = $_ENV['PK_SECRET'] ?? 'sk_live_XXXXXX'; // Replace fallback with actual live secret key if needed
+// Load secret key
+$secretKey = $_ENV['PK_SECRET'] ?? getenv('PK_SECRET') ?? 'sk_live_XXXXXX';
+file_put_contents($log_file, "Secret Key Used: " . $secretKey . PHP_EOL, FILE_APPEND);
 
 // Read raw input
 $input = file_get_contents("php://input");
@@ -24,33 +34,36 @@ file_put_contents($log_file, "RAW INPUT: " . $input . PHP_EOL, FILE_APPEND);
 $signature = $_SERVER['HTTP_X_PAYSTACK_SIGNATURE'] ?? '';
 $computedSignature = hash_hmac('sha512', $input, $secretKey);
 
+file_put_contents($log_file, "Signature Received: $signature" . PHP_EOL, FILE_APPEND);
+file_put_contents($log_file, "Computed Signature: $computedSignature" . PHP_EOL, FILE_APPEND);
+
 if ($signature !== $computedSignature) {
     file_put_contents($log_file, "Invalid signature. Rejecting request.\n", FILE_APPEND);
     exit("Invalid signature");
 }
 
-// Connect DB
+// Check DB connection
 if ($conn->connect_error) {
     file_put_contents($log_file, "DB connection failed: " . $conn->connect_error . PHP_EOL, FILE_APPEND);
     exit("DB connection failed");
 }
 $conn->autocommit(true);
 
-// Decode JSON payload
+// Parse payload
 $data = json_decode($input, true);
 
-// Extract needed data
+// Extract transaction info
 $reference = $data['data']['reference'] ?? null;
 $amount = isset($data['data']['amount']) ? floatval($data['data']['amount']) / 100 : 0;
 $userEmail = $data['data']['customer']['email'] ?? null;
 $status = $data['data']['status'] ?? 'success';
 
-// Initialization
+// Initialize
 $user_id = null;
 $is_giftcard = false;
 $converted_amount = null;
 
-// Check if reference is from giftcard
+// Giftcard check
 if ($reference) {
     $stmt = $conn->prepare("SELECT user_id, converted_amount FROM giftcard_requests WHERE reference = ? LIMIT 1");
     $stmt->bind_param("s", $reference);
@@ -65,7 +78,7 @@ if ($reference) {
     $stmt->close();
 }
 
-// If not giftcard, fallback by email
+// Fallback: Get user by email
 if (!$user_id && $userEmail) {
     $stmt = $conn->prepare("SELECT user_id FROM users WHERE email = ? LIMIT 1");
     $stmt->bind_param("s", $userEmail);
@@ -80,6 +93,7 @@ if (!$user_id && $userEmail) {
 
 file_put_contents($log_file, "DEBUG: reference=$reference, amount=$amount, email=$userEmail, user_id=$user_id\n", FILE_APPEND);
 
+// Proceed with wallet update
 if ($user_id && $amount > 0) {
     $credit_amount = ($is_giftcard && $converted_amount) ? $converted_amount : $amount - 20;
 
@@ -94,11 +108,9 @@ if ($user_id && $amount > 0) {
         file_put_contents($log_file, "Balance update execute failed: " . $stmt->error . PHP_EOL, FILE_APPEND);
         exit("Execute failed");
     }
-
-    $affected = $stmt->affected_rows;
     $stmt->close();
 
-    // Log transaction
+    // Transaction history logging
     $description = $is_giftcard ? "Giftcard funding" : "Wallet funding";
     $item = "funding";
     $transaction_type = "credit";
@@ -128,7 +140,7 @@ if ($user_id && $amount > 0) {
         file_put_contents($log_file, "Transaction log prepare failed: " . $conn->error . PHP_EOL, FILE_APPEND);
     }
 
-    // Update giftcard request status
+    // Update giftcard status
     if ($is_giftcard) {
         $update = $conn->prepare("UPDATE giftcard_requests SET status = 'completed' WHERE reference = ?");
         if ($update) {
