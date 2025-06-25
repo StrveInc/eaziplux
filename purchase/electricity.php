@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => array(
                     'serviceID' => $network,
-                    'api' => 'ap_3f856a5b46bb740150d03c990ce2f5d7',
+                    'api' => $_ENV['GSUBZ'],
                     'amount' => $amount, // Send original amount to API
                     'phone' => $number,
                     'customerID' => $meter,

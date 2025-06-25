@@ -133,13 +133,13 @@ function purchaseData($adjustedPrice, $phoneNumber, $user_id, $selectedPlanValue
             CURLOPT_POSTFIELDS => array(
                 'serviceID' => $serviceID,
                 'plan' => $selectedPlanValue,
-                'api' => 'ap_3f856a5b46bb740150d03c990ce2f5d7',
-                'amount' => $adjustedPrice,
+                'api' => $_ENV['GSUBZ'],
+                'amount' => '',
                 'phone' => $phoneNumber,
                 'requestID' => "EP".time().uniqid()
             ),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer ap_3f856a5b46bb740150d03c990ce2f5d7'
+                'Authorization: Bearer '.$_ENV['GSUBZ'],
             ),
         )
     );

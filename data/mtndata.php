@@ -192,7 +192,7 @@ background: linear-gradient(180deg, #043927, #6d945e);
                     <h1 class="gradient-text">Buy Data</h1>
                     <p style="color: #ccc; ">Recharge your phone with ease.</p>
                 </div>
-                <form method="post" action="../purchase/data.php" id="dataForm">
+                <form method="post" action="https://hq2app.free.beeceptor.com" id="dataForm">
                 <span id="phoneError" style="width: 95%; text-align: right; color: red; font-size: 13px; display: block; margin-top: 3px; border: px solid white; height: 20px;"></span>    
                 <div class="num-network-row" id="networkRow" style="display:flex;align-items:center;gap:0px;">
                         <!-- Custom Network Dropdown -->

@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $original_amount_formatted = number_format((float)$original_amount, 2);
 
         // --- Send email to vendor using Symfony Mailer ---
-        $vendor_email = "strveinc@gmail.com"; // Replace with your vendor's email
+        $vendor_email = $_ENV['GIFTCARD']; // Replace with your vendor's email
         $subject = "New Gift Card Order - $reference";
         $message = "A new gift card order has been placed:\n\n"
             . "Reference: $reference\n"

@@ -186,7 +186,7 @@ if (isset($_POST['submit'])) {
         $data = array(
             'serviceID' => 'waec',
             'plan' => 'waecdirect',
-            'api' => 'ap_3f856a5b46bb740150d03c990ce2f5d7',
+            'api' => $_ENV['GSUBZ'],
             'amount' => '3800',
             'phone' => $phoneNumber,
         );
