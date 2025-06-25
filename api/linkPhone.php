@@ -47,7 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['link_phone'])) {
         $customer_data = [
             "email" => $user_email,
             "phone" => $phone,
-            "first_name" => $_SESSION['username']
+            "first_name" => $_SESSION['username'],
+            "last_name" => "Eazi" // You can modify this as needed
         ];
         $ch = curl_init("https://api.paystack.co/customer");
         curl_setopt($ch, CURLOPT_POST, true);
