@@ -39,6 +39,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['link_phone'])) {
         $user_email = $_SESSION['email'];
         $user_id = $_SESSION['user_id'];
 
+        // Check if acct_id exists in virtual_accounts
+        $check_stmt = $conn->prepare("SELECT acct_id FROM virtual_accounts WHERE acct_id=?");
+        $check_stmt->bind_param("s", $user_id);
+        $check_stmt->execute();
+        $check_stmt->store_result();
+
+        if ($check_stmt->num_rows == 0) {
+            // acct_id does not exist, create it
+            $insert_stmt = $conn->prepare("INSERT INTO virtual_accounts (acct_id, email) VALUES (?, ?)");
+            $insert_stmt->bind_param("ss", $user_id, $user_email);
+            $insert_stmt->execute();
+            $insert_stmt->close();
+        }
+        $check_stmt->close();
+
         // 1. Get or create Paystack customer
         $paystack_secret_key = $_ENV['PK_SECRET'] ?? 'sk_test_xxx';
         $customer_code = null;
@@ -96,20 +111,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['link_phone'])) {
                 $stmt2->execute();
                 $stmt2->close();
 
-                include '../config.php';
                 $stmt = $conn->prepare("UPDATE virtual_accounts SET acct_number=?, acct_name=?, bank_name=? WHERE acct_id=?");
                 $stmt->bind_param("ssss", $acct_number, $acct_name, $bank_name, $_SESSION["user_id"]);
                 if ($stmt->execute()) {
                     $link_success = "Account linked and virtual account created!";
                     $_SESSION['just_linked_phone'] = true;
-                    // echo json_encode([
-                    //     'status' => 'success',
-                    //     'message' => $link_success,
-                    //     'account_number' => $acct_number,
-                    //     'bank_name' => $bank_name,
-                    //     'account_name' => $acct_name
-                    // ]);
-
                     header("Location: ../dashboard/transfer.php");
                     exit;
                 } else {

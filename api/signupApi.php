@@ -80,6 +80,7 @@ if ($stmt->execute()) {
     $customer_data = [
         "email" => $email,
         "first_name" => $username,
+        "last_name" => "Eazi", // You can modify this as needed
         "phone" => $phone
     ];
 
@@ -135,13 +136,17 @@ if ($stmt->execute()) {
                     $stmt = $conn->prepare($insert_virtual_account_sql);
                     $stmt->bind_param("sssss", $_SESSION['user_id'], $account_number, $bank_name, $accountName, $email);
                     $stmt->execute();
+                    header("Location: ../home/dashboard.php");
+                    exit;
+                } else {
+                    http_response_code(500);
+                    echo json_encode(["status" => "error", "message" => "Failed to create virtual account"]);       
                 }
             }
         }
     }
 
     // Redirect to the dashboard
-    header("Location: ../home/dashboard.php");
     exit;
 } else {
     http_response_code(500);
