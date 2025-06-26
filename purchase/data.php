@@ -83,7 +83,7 @@ if (isset($_POST['submit'])) {
     // Map network to serviceID
     switch ($selectedNetwork) {
         case 'mtn':
-            $serviceID = 'mtn_sme';
+            $serviceID = 'mtn_gifting';
             break;
         case 'airtel':
             $serviceID = 'airtel_cg';
