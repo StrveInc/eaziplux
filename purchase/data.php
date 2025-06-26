@@ -135,8 +135,7 @@ function purchaseData($adjustedPrice, $phoneNumber, $user_id, $selectedPlanValue
                 'plan' => $selectedPlanValue,
                 'api' => $_ENV['GSUBZ'],
                 'amount' => '',
-                'phone' => $phoneNumber,
-                'requestID' => "EP".time().uniqid()
+                'phone' => $phoneNumber
             ),
             CURLOPT_HTTPHEADER => array(
                 'Authorization: Bearer '.$_ENV['GSUBZ'],
