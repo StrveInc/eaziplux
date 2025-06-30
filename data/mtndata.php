@@ -305,12 +305,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 fig.style.borderColor = '#ffbf00';
                 break;
             case 'airtel':
-                service = 'airtel_sme';
+                service = 'airtel_gifting';
                 networkRow.style.borderColor = '#e60000';
                 fig.style.borderColor = '#e60000';
                 break;
             case 'glo':
-                service = 'glo_sme';
+                service = 'glo_data';
                 networkRow.style.borderColor = '#008000';
                 fig.style.borderColor = '#008000';
                 break;

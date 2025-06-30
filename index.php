@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="./css/home.css">
     <link rel="manifest" href="manifest.json">
     <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+
+    <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="icon" type="image/png" size="662x662" href="./css/imgs/eazicon.png">
@@ -36,80 +41,51 @@
 </head>
 
 <body>
-<?php include 'preloader.php'; ?>
+<?php include 'preloader.php'; 
+?>
     <header>
-        <div class="container container-nav">
-            <nav>
-                <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="./home/ourservices.php">Our Service</a></li>
-                    <li><a href="./home/getintouch.php">Get in Touch</a></li>
-                    <li><a href="./home/signup.php">Join Us</a></li>
-                </ul>
-            </nav>
-        </div>
+        <div class="head">
+            <div class="logoDiv">
+                <div class="logoImg">
+                    <img src="./css/imgs/eazipluxpure.png" alt="Eazi Plux Logo" />
+                </div>
+                <div class="logoText">
+                    EAZIPLUX
+                </div>
+            </div>
+            <div class="menu">
+                <div class="li"><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">Home</a></div>
+                <div class="li"><a href="priceList.php">Data Prices</a></div>
+                <div class="li"><a href="rateCalculator.php">Rate Calculator</a></div>
+                <!-- <div class="li"><a href="./home/signup.php">Join Us</a></div> -->
+            </div>
+        </div>  
     </header>
 
     <main>
-        <div class="container">
-            <section class="sec1">
-                <div class="greeting">
-                <div class="symbol" style="border: 1px solid white; width: 50%; margin: auto;">
-                    <img src="./css/imgs/eazipluxpure.png" alt="eaziplux">
-                </div>
-                    <p>The Best Online Platform For Cheap and Fast Subscription And Bills Payments</p>
-                    <div class="sign">
-                        <div class="joinlog" id="we">
-                            <a href="./home/signup.php"><label>Register</label></a>
-                        </div>
-                        <div class="joinlog" id="me">
-                            <a href="./home/login.php"><label>Login </label></a>
-                        </div>
-                    </div>
-            </section>
-            <!--<section>
-                <div class="section2">
-                    <div class="section2head">
-                        <h2>GET TO KNOW US!</h2>
-                    </div>
-                    <div class="section2body">
-                        <div class="columns">
-                            <div class="col">
-                                <h2>FAST DELIVERY<i class="fas fa-rocket"></i></h2>
-                                <b> Enjoy instant, secure virtual top-ups for seamless connection, reliable transactions, and real-time updates – your key to staying
-                                    connected effortlessly.</b>
-                            </div>
-                            <div class="col">
-                                <h2>LOW-COST DISCOUNTS<i class="fas fa-coins"></i></h2>
-                                <p> Stay connected without breaking the bank – affordable convenience at your
-                                    fingertips.</p>
-                            </div>
-                        </div>
-                        <div class="columns">
-                            <div class="col">
-                                <h2>FAST BILLS PAYMENT <i class="fas fa-money-bills"></i></h2>
-                                <b>
-                                    Swift and Seamless Bill Payments Await You! Experience the speed of Eazi Plux.
-                                    Instantly settle bills with our efficient platform, ensuring a hassle-free
-                                    experience.
-                                    Fast, secure, and at your fingertips – managing bills has never been this quick!
-                                </b>
-                            </div>
-                            <div class="col">
-                                <h2>24/7 CUSTOMER SUPPORT<i class="fas fa-phone"></i></h2>
-                                <b>Customer First, Always! At Eazi Plux, we take pride in our active customer service.
-                                    Our dedicated support team is ready to assist you around the clock. Experience
-                                    personalized care,
-                                    quick resolutions, and a commitment to your satisfaction. Your connectivity journey
-                                    is our priority!</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>-->
+        <div class="heroSection" style="color: white;">
+        <div class="dynamic-text-box">
+  <h2 id="dynamic-heading">Fast, Reliable & Secure Payments</h2>
+  <p id="dynamic-subtext">
+    Eaziplux ensures your bills and recharges are processed instantly with bank-grade security and uptime.
+  </p>
+</div>
+<button class="getStartedButton" onclick="window.location.href='./home/signup.php';">
+    Get Started
+</button>
+
         </div>
+        <div class="phonelay">
+            <img src="./css/imgs/phonelay.png" alt="Phone Image" class="phoneImage">
+        </div>
+        <!-- Add more sections as needed -->        
+
     </main>
-    
+    <footer style="color: #ccc; position: absolute; bottom: 10px; width: 90%; left: 25px; font-size: 12px; text-align: center; border: 0px solid #ccc;">
+    <div class="footer">
+        <p>&copy; Powered by Strive inc.</p>
+    </div>
+</footer>
 </body>
 <script>
     if("serviceWorker" in navigator){
@@ -131,5 +107,47 @@
     })
 
 </script>
+<script>
+  const messages = [
+    {
+      title: "Fast, Reliable & Secure Payments",
+      desc: "Eaziplux ensures your bills and recharges are processed instantly with bank-grade security and uptime."
+    },
+    {
+      title: "Buy Data & Airtime Instantly",
+      desc: "Top up your device or gift airtime to others in seconds, anytime, anywhere."
+    },
+    {
+      title: "Redeem Gift Cards with Ease",
+      desc: "Turn gift cards into real value instantly — fast verification, smooth payouts."
+    },
+    {
+      title: "Track Transactions in Real Time",
+      desc: "Monitor every payment and recharge with a detailed breakdown in your dashboard."
+    },
+    {
+      title: "Experience Seamless Utility Payments",
+      desc: "Eaziplux supports NEPA, TV, and other utilities — no more late payments."
+    }
+  ];
+
+  let index = 0;
+  const heading = document.getElementById("dynamic-heading");
+  const subtext = document.getElementById("dynamic-subtext");
+
+  setInterval(() => {
+    heading.style.opacity = 0;
+    subtext.style.opacity = 0;
+
+    setTimeout(() => {
+      index = (index + 1) % messages.length;
+      heading.textContent = messages[index].title;
+      subtext.textContent = messages[index].desc;
+      heading.style.opacity = 1;
+      subtext.style.opacity = 1;
+    }, 300);
+  }, 4000);
+</script>
+
 
 </html>

@@ -337,14 +337,15 @@ if (isset($_SESSION['username'])) {
                 <div id="receiptDetails" style="text-align:left; font-size:15px; color: whire; margin-bottom:18px;">
                     <!-- Filled by JS -->
                 </div>
-                <div style="border-top:1px dashed #ffbf00; margin:18px 0 12px 0;"></div>
-                <div style="display:flex; justify-content:center; gap:10px;">
-                    <button id="downloadPDF" style="background:#0aa83f; color:#fff; border:none; border-radius:6px; padding:8px 18px; font-size:15px; cursor:pointer;">Download PDF</button>
-                    <button id="downloadIMG" style="background:#ffbf00; color:#222; border:none; border-radius:6px; padding:8px 18px; font-size:15px; cursor:pointer;">Download Image</button>
-                    <button id="closeReceipt" style="background:#eee; color:#222; border:none; border-radius:6px; padding:8px 18px; font-size:15px; cursor:pointer;">Close</button>
-                </div>
+                <div style="border-top:1px dashed #ffbf00; margin:18px 0 5px 0;"></div>
+                <div style="font-size: 11px; color: grey; text-align: center; padding-block: 10px">For any complaint reach us at support@eaziplux.com.ng</div>
             </div>
         </div>
+            <div style="display:flex; justify-content:center; gap:10px;">
+                    <button id="downloadPDF" style="background:#0aa83f; color:#fff; border:none; border-radius:6px; padding:8px 18px; font-size:15px; cursor:pointer;">Share PDF</button>
+                    <button id="downloadIMG" style="background:#ffbf00; color:#222; border:none; border-radius:6px; padding:8px 18px; font-size:15px; cursor:pointer;">Share Image</button>
+                    <button id="closeReceipt" style="background:#eee; color:#222; border:none; border-radius:6px; padding:8px 18px; font-size:15px; cursor:pointer;">Close</button>
+            </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>

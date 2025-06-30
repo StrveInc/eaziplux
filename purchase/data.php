@@ -86,13 +86,13 @@ if (isset($_POST['submit'])) {
             $serviceID = 'mtn_gifting';
             break;
         case 'airtel':
-            $serviceID = 'airtel_cg';
+            $serviceID = 'airtel_gifting';
             break;
         case 'glo':
-            $serviceID = 'glo_cg';
+            $serviceID = 'glo_data';
             break;
         case '9mobile':
-            $serviceID = 'etisalat_cg';
+            $serviceID = 'etisalat_data';
             break;
         default:
             $serviceID = 'mtn_gifting'; // Default to MTN if no match
