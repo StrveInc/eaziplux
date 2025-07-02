@@ -75,6 +75,7 @@ if ($currentHour >= 1 && $currentHour < 12) {
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Truculenta:opsz,wght@12..72,100..900&display=swap"
         rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/variable.css">
     <link rel="icon" type="image/png" size="662x662" href="../css/imgs/eaziplux.png">
@@ -271,8 +272,8 @@ if ($currentHour >= 1 && $currentHour < 12) {
             <div class="foot">
              <div class="advertBlock">
                 <div style="width: 65%; border: 0px solid white; height: 100%; padding: 5px;">
-                    <div style="border: 0px solid white; padding: 3px; font-weight: 500; font-size: 21px; margin-top: 4px;">Advertise with Us!</div>
-                    <div style="font-size: 15px; padding: 3px;">Get noticed. contact us today</div>
+                    <div style="border: 0px solid white; padding: 3px; font-weight: 500; font-size: 18px; margin-top: 4px;"><span style="font-family: audiowide; color: #ffbf00; font-weight: 600;">EaziFlow</span> is Live!</div>
+                    <div style="font-size: 12px; padding: 3px;">Share referral code or link from your <a href="../dashboard/setting.php" style="color: #ffbf00; ">profile</a> and earning while your referrals purchase</div>
                 </div>
                 <div style="width: 35%; height: 100%; background: black;">
                     <img 
