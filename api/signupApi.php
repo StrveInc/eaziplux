@@ -7,10 +7,8 @@ header("Content-Type: application/json");
 // Database connection details
 include '../config.php';
 
-
 // Paystack API Key
 $paystack_secret_key = $_ENV['PK_SECRET']; // Replace with your Paystack secret key
-
 
 // Check for database connection errors
 if ($conn->connect_error) {
@@ -31,6 +29,10 @@ $username = $_POST['username'];
 $phone = $_POST['phone'];
 $firebase_uid = isset($_POST['firebase_uid']) ? $_POST['firebase_uid'] : null;
 $password = isset($_POST['password']) ? $_POST['password'] : null;
+$referred_by = isset($_POST['referral_code']) ? $_POST['referral_code'] : null;
+
+// Generate a unique referral code
+$referral_code = strtoupper(substr(md5(uniqid($email, true)), 0, 8));
 
 // Check if the email already exists
 $check_email_sql = "SELECT * FROM users WHERE email = ?";
@@ -47,40 +49,32 @@ if ($result->num_rows > 0) {
     exit;
 }
 
-// Handle Firebase Authentication
+// Insert the user into the database
 if ($firebase_uid) {
-    // Insert the user into the database with Firebase UID
-    $insert_user_sql = "INSERT INTO users (email, username, phone, firebase_uid) VALUES (?, ?, ?, ?)";
+    $insert_user_sql = "INSERT INTO users (email, username, phone, firebase_uid, referral_code, referred_by) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($insert_user_sql);
-    $stmt->bind_param("ssss", $email, $username, $phone, $firebase_uid);
+    $stmt->bind_param("ssssss", $email, $username, $phone, $firebase_uid, $referral_code, $referred_by);
 } else {
-    // Handle Normal App Authentication
-    // Generate a unique and random user ID
-    $user_id = uniqid('user_', true); // Prefix with 'user_' and ensure uniqueness
-
-    // Hash the password
+    $user_id = uniqid('user_', true);
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-    // Insert the user into the database with hashed password and unique user ID
-    $insert_user_sql = "INSERT INTO users (email, username, phone, pass_word, user_id) VALUES (?, ?, ?, ?, ?)";
+    $insert_user_sql = "INSERT INTO users (email, username, phone, pass_word, user_id, referral_code, referred_by) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($insert_user_sql);
-    $stmt->bind_param("sssss", $email, $username, $phone, $hashed_password, $user_id);
+    $stmt->bind_param("sssssss", $email, $username, $phone, $hashed_password, $user_id, $referral_code, $referred_by);
 }
 
-// Execute the query
 if ($stmt->execute()) {
-    // Automatically log the user in by setting session variables
-    $_SESSION['user_id'] = isset($user_id) ? $user_id : $conn->insert_id; // Use the generated user_id or the last inserted ID
+    $_SESSION['user_id'] = isset($user_id) ? $user_id : $conn->insert_id;
     $_SESSION['username'] = $username;
     $_SESSION['email'] = $email;
     $_SESSION['phone'] = $phone;
+    $_SESSION['referral_code'] = $referral_code;
 
     // Step 1: Create a customer on Paystack
     $paystack_customer_url = "https://api.paystack.co/customer";
     $customer_data = [
         "email" => $email,
         "first_name" => $username,
-        "last_name" => "Eazi", // You can modify this as needed
+        "last_name" => "Eazi",
         "phone" => $phone
     ];
 
@@ -96,6 +90,14 @@ if ($stmt->execute()) {
 
     $response = curl_exec($ch);
     $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if (curl_errno($ch)) {
+        $error_msg = curl_error($ch);
+        echo json_encode(["status" => "error", "message" => "Paystack customer creation failed: " . $error_msg]);
+        curl_close($ch);
+        exit;
+    }
+
     curl_close($ch);
 
     if ($http_code === 200) {
@@ -107,7 +109,7 @@ if ($stmt->execute()) {
             $paystack_virtual_account_url = "https://api.paystack.co/dedicated_account";
             $virtual_account_data = [
                 "customer" => $customer_code,
-                "preferred_bank" => "wema-bank"
+                "preferred_bank" => "test-bank"
             ];
 
             $ch = curl_init();
@@ -122,6 +124,14 @@ if ($stmt->execute()) {
 
             $response = curl_exec($ch);
             $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+            if (curl_errno($ch)) {
+                $error_msg = curl_error($ch);
+                echo json_encode(["status" => "error", "message" => "Paystack virtual account creation failed: " . $error_msg]);
+                curl_close($ch);
+                exit;
+            }
+
             curl_close($ch);
 
             if ($http_code === 200) {
@@ -136,18 +146,27 @@ if ($stmt->execute()) {
                     $stmt = $conn->prepare($insert_virtual_account_sql);
                     $stmt->bind_param("sssss", $_SESSION['user_id'], $account_number, $bank_name, $accountName, $email);
                     $stmt->execute();
+
+                    // Redirect to the dashboard
                     header("Location: ../home/dashboard.php");
                     exit;
                 } else {
                     http_response_code(500);
-                    echo json_encode(["status" => "error", "message" => "Failed to create virtual account"]);       
+                    echo json_encode(["status" => "error", "message" => "Failed to create virtual account"]);
+                    exit;
                 }
+            } else {
+                echo json_encode(["status" => "error", "message" => "Paystack virtual account creation failed", "response" => $response]);
+                exit;
             }
+        } else {
+            echo json_encode(["status" => "error", "message" => "Paystack customer creation failed", "response" => $response]);
+            exit;
         }
+    } else {
+        echo json_encode(["status" => "error", "message" => "Paystack customer creation failed", "response" => $response]);
+        exit;
     }
-
-    // Redirect to the dashboard
-    exit;
 } else {
     http_response_code(500);
     echo json_encode(["status" => "error", "message" => "Failed to register user"]);

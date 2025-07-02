@@ -106,7 +106,8 @@ if (isset($_POST['submit'])) {
     if ($account_balance < $adjustedPrice) {
         $transaction_id = "EP".time();
         logTransaction($conn, $user_id, $transaction_id, $adjustedPrice, "Insufficient Funds", "Failed", $item, "Data", $phoneNumber);
-
+        
+        handleReferralCredit($conn, $user_id);
         transactionHandler('failure', "Transaction failed: Fund your eaziplux wallet.");
     } else {
         // If the balance is sufficient, proceed with the purchase
@@ -117,8 +118,66 @@ if (isset($_POST['submit'])) {
 // Function to handle the purchase logic
 function purchaseData($adjustedPrice, $phoneNumber, $user_id, $selectedPlanValue, $conn, $serviceID, $item)
 {
-    $curl = curl_init();
+    // Fetch the user's balance and referral earnings
+    $query = "SELECT balance, referral_earnings FROM virtual_accounts WHERE acct_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        $balance = $row['balance'];
+        $referral_earnings = $row['referral_earnings'];
+    } else {
+        transactionHandler('failure', "Transaction failed: Unable to fetch account details.");
+        return;
+    }
+    $stmt->close();
+
+    // Determine the source of funds
+    $remainingAmount = $adjustedPrice;
+    $useReferralEarnings = false;
+
+    if ($balance >= $adjustedPrice) {
+        // Deduct from balance
+        $new_balance = $balance - $adjustedPrice;
+        $update_balance_query = "UPDATE virtual_accounts SET balance = ? WHERE acct_id = ?";
+        $stmt = $conn->prepare($update_balance_query);
+        $stmt->bind_param("ds", $new_balance, $user_id);
+        $stmt->execute();
+        $stmt->close();
+    } elseif ($balance + $referral_earnings >= $adjustedPrice) {
+        // Deduct from both balance and referral earnings
+        $useReferralEarnings = true;
+
+        if ($balance > 0) {
+            $remainingAmount -= $balance;
+            $new_balance = 0;
+            $update_balance_query = "UPDATE virtual_accounts SET balance = ? WHERE acct_id = ?";
+            $stmt = $conn->prepare($update_balance_query);
+            $stmt->bind_param("ds", $new_balance, $user_id);
+            $stmt->execute();
+            $stmt->close();
+        }
+
+        // Deduct the remaining amount from referral earnings
+        $new_referral_earnings = $referral_earnings - $remainingAmount;
+        $update_referral_earnings_query = "UPDATE virtual_accounts SET referral_earnings = ? WHERE acct_id = ?";
+        $stmt = $conn->prepare($update_referral_earnings_query);
+        $stmt->bind_param("ds", $new_referral_earnings, $user_id);
+        $stmt->execute();
+        $stmt->close();
+    } else {
+        // Insufficient funds
+        $transaction_id = "EP" . time();
+        logTransaction($conn, $user_id, $transaction_id, $adjustedPrice, "Insufficient Funds", "Failed", $item, "Data", $phoneNumber);
+        transactionHandler('failure', "Transaction failed: Insufficient funds in wallet and referral earnings.");
+        return;
+    }
+
+    // Proceed with the purchase
+    $curl = curl_init();
     curl_setopt_array(
         $curl,
         array(
@@ -138,7 +197,7 @@ function purchaseData($adjustedPrice, $phoneNumber, $user_id, $selectedPlanValue
                 'phone' => $phoneNumber
             ),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer '.$_ENV['GSUBZ'],
+                'Authorization: Bearer ' . $_ENV['GSUBZ'],
             ),
         )
     );
@@ -156,18 +215,62 @@ function purchaseData($adjustedPrice, $phoneNumber, $user_id, $selectedPlanValue
     )) {
         handleTransactionFailure($user_id, $responseArray, 'Server error!', $phoneNumber, $adjustedPrice, $conn, $item);
     } else {
-        // Transaction was successful, update the balance in the database
-        $new_balance = $_SESSION['ACCT'] - $adjustedPrice;
-        $update_balance_query = "UPDATE virtual_accounts SET balance = ? WHERE acct_id = ?";
-        $stmt = $conn->prepare($update_balance_query);
-        $stmt->bind_param("ds", $new_balance, $_SESSION['USER_ID']);
-        $stmt->execute();
-        $stmt->close();
-
-        $transaction_id = "EP".time();
+        // Transaction was successful
+        $transaction_id = "EP" . time();
         logTransaction($conn, $user_id, $transaction_id, $adjustedPrice, "Transaction Successful", "Successful", $item, "Data", $phoneNumber);
 
-        transactionHandler('success', 'Successfully purchased ₦'.$adjustedPrice." worth of ".$item." data");
+        // Handle referral credit only if not using referral earnings
+        if (!$useReferralEarnings) {
+            handleReferralCredit($conn, $user_id);
+        }
+
+        transactionHandler('success', 'Successfully purchased ₦' . $adjustedPrice . " worth of " . $item . " data");
     }
+}
+
+// Function to handle referral credit
+function handleReferralCredit($conn, $user_id)
+{
+    // Fetch the referred_by referral code for the current user
+    $query = "SELECT referred_by FROM users WHERE user_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $referred_by_code = $row['referred_by'];
+
+        if ($referred_by_code) {
+            // Fetch the referee's user_id using the referral code
+            $referee_query = "SELECT user_id FROM users WHERE referral_code = ?";
+            $stmt2 = $conn->prepare($referee_query);
+            $stmt2->bind_param("s", $referred_by_code);
+            $stmt2->execute();
+            $referee_result = $stmt2->get_result();
+
+            if ($referee_result->num_rows > 0) {
+                $referee_row = $referee_result->fetch_assoc();
+                $referee_user_id = $referee_row['user_id'];
+
+                // Credit the referee's referral_earnings in the virtual_accounts table
+                $update_referral_earnings_query = "UPDATE virtual_accounts SET referral_earnings = referral_earnings + 5 WHERE acct_id = ?";
+                $stmt3 = $conn->prepare($update_referral_earnings_query);
+                $stmt3->bind_param("s", $referee_user_id);
+                $stmt3->execute();
+                $stmt3->close();
+
+                // Log the referral earning transaction
+                $description = "Referral earning credited for user purchase";
+                $transaction_id = "REF".time();
+                logTransaction($conn, $user_id, $transaction_id, 5, $description, "Successful", "Referral Credit", "Referral", $referee_user_id);
+            }
+
+            $stmt2->close();
+        }
+    }
+
+    $stmt->close();
 }
 ?>

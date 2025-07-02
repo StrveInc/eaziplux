@@ -4,6 +4,7 @@ $isInvalid = false;
 $errorMsg = "";
 
 include '../config.php'; // Include your database connection details
+
 // Check for database connection errors
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -27,13 +28,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION['username'] = $user['username'];
             $_SESSION['email'] = $user['email'];
 
-            // echo json_encode([
-            //     "status" => "success",
-            //     "message" => "Login successful",
-            //     "user_id" => $_SESSION['user_id'],
-            //     "username" => $_SESSION['username'],
-            //     "email" => $_SESSION['email']
-            // ]);
+            // Check if the referral_code is empty
+            if (empty($user['referral_code'])) {
+                // Generate a unique referral code
+                $referral_code = strtoupper(substr(md5(uniqid($user['user_id'], true)), 0, 8));
+
+                // Update the user's referral_code in the database
+                $update_referral_sql = "UPDATE users SET referral_code = ? WHERE user_id = ?";
+                $update_stmt = $conn->prepare($update_referral_sql);
+                $update_stmt->bind_param("ss", $referral_code, $user['user_id']);
+                $update_stmt->execute();
+                $update_stmt->close();
+
+                // Optionally, store the referral code in the session
+                $_SESSION['referral_code'] = $referral_code;
+            } else {
+                // Store the existing referral code in the session
+                $_SESSION['referral_code'] = $user['referral_code'];
+            }
+
             // Redirect to dashboard or home
             header("Location: ../home/dashboard.php");
             exit;

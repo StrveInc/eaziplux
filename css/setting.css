@@ -37,6 +37,7 @@ body{
 .container a{
     text-decoration: none;
     color: #043927;
+    /* border: 1px solid white; */
 }
 
 
@@ -44,7 +45,7 @@ body{
 
 .tab{
     border-radius: .5rem;
-    /* width: 90%; */
+    width: 97%;
     align-items: center;
     /* padding: .2rem; */
     display: flex;
@@ -56,12 +57,13 @@ body{
     backdrop-filter: blur(-16px) saturate(110.5);
     box-shadow: -3px 20px 20px 13px #00000080;
     margin-top: 1.4rem;
+    /* border: 1px solid white; */
 }
 
 .tab i{
     font-size: 15px;
     color: #cccccc;
-    margin-left: 13px;
+    /* margin-left: 13px; */
 }
 
 

@@ -74,6 +74,11 @@ if (isset($_POST["check_email"])) {
         i{
             color: white
         }
+
+        #referralInput[readonly] {
+            background-color: #f0f0f0; /* Light gray background for non-editable input */
+            cursor: not-allowed; /* Change cursor to indicate non-editable */
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -168,16 +173,27 @@ if (isset($_POST["check_email"])) {
                 firebase.auth().signInWithPopup(provider)
                     .then((result) => {
                         const user = result.user;
-                        // Send user details to the server
+
+                        // Get referral code from the URL or input field
+                        const urlParams = new URLSearchParams(window.location.search);
+                        let referralCode = urlParams.get("ref");
+
+                        // If no referral code in the URL, get it from the input field
+                        if (!referralCode) {
+                            referralCode = document.getElementById("referralInput").value || null;
+                        }
+
+                        // Send user details and referral code to the server
                         fetch("../api/firebaseGoogleAuth.php", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
                             },
-                            body:  JSON.stringify({
+                            body: JSON.stringify({
                                 email: user.email,
                                 username: user.displayName,
-                                firebase_uid: user.uid      
+                                firebase_uid: user.uid,
+                                referral_code: referralCode // Include referral code
                             })
                         })
                             .then((response) => {
@@ -242,6 +258,21 @@ if (isset($_POST["check_email"])) {
                     errorDiv.style.display = "block";
                     console.error("Google sign-in error via redirect:", error);
                 });
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const referralCode = urlParams.get("ref");
+            const referralInput = document.getElementById("referralInput");
+
+            if (referralCode) {
+                // If referral code is present in the URL, populate the input and make it non-editable
+                referralInput.value = referralCode;
+                referralInput.readOnly = true; // Make the input non-editable
+                referralInput.style.backgroundColor = "#f0f0f0"; // Optional: Change background color to indicate non-editable
+            } else {
+                // If no referral code is present, allow the user to enter one (optional)
+                referralInput.placeholder = "Referral Code (Optional)";
+                referralInput.readOnly = false; // Make the input editable
+            }
         });
     </script>
 </head>
@@ -257,7 +288,7 @@ if (isset($_POST["check_email"])) {
             <div class="column2">
                 <div class="container">
                     <div id="errorDiv" class="error-message"></div>
-                    <form method="post" action="../api/signupApi.php" id="signupForm">
+                    <form method="post" action="../api/signupApi" id="signupForm">
                         <div style="color: white; padding-left: 15px; font-size: 25px; font-weight: 700;">Create an Account</div>
                         <div class="txt-field" id="emailField">
                             <input type="email" placeholder="Email" name="email" required>
@@ -273,6 +304,9 @@ if (isset($_POST["check_email"])) {
                             <span class="toggle-eye" onclick="togglePassword('signup_password', this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;">
                                 <i class="fa fa-eye-slash"></i>
                             </span>
+                        </div>
+                        <div class="txt-field" id="referralField">
+                            <input type="text" placeholder="Referral Code (Optional)" name="referral_code" id="referralInput">
                         </div>
                         <div class="loginCont">
                             <button id="proceedButton" class="login">Proceed</button>

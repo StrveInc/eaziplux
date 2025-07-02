@@ -169,7 +169,7 @@ if (isset($_SESSION['username'])) {
             text-align: center;
             position: fixed;
             top: -5px;
-            border-bottom: .4px solid #ccc;
+            /* border-bottom: .4px solid #ccc; */
             width: 100%;
             left: -1px;
             background: rgb(0, 0, 0);

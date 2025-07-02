@@ -65,9 +65,9 @@
     <main>
         <div class="heroSection" style="color: white;">
         <div class="dynamic-text-box">
-  <h2 id="dynamic-heading">Fast, Reliable & Secure Payments</h2>
-  <p id="dynamic-subtext">
-    Eaziplux ensures your bills and recharges are processed instantly with bank-grade security and uptime.
+        <h2 id="dynamic-heading">Fast, Reliable & Secure Payments</h2>
+        <p id="dynamic-subtext">
+        Eaziplux ensures your bills and recharges are processed instantly with bank-grade security and uptime.
   </p>
 </div>
 <button class="getStartedButton" onclick="window.location.href='./home/signup.php';">

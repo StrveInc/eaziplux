@@ -17,7 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
 // Database connection details
 include '../config.php';
 
-
 // Check for database connection errors
 if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
@@ -47,6 +46,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" || $_SERVER["REQUEST_METHOD"] === "GET
         $_SESSION['username'] = $user['username'];
         $_SESSION['email'] = $user['email'];
         $_SESSION['phone'] = $user['phone'] ?? null;
+
+        // Check if the referral_code is empty
+        if (empty($user['referral_code'])) {
+            // Generate a unique referral code
+            $referral_code = strtoupper(substr(md5(uniqid($firebase_uid, true)), 0, 8));
+
+            // Update the user's referral_code in the database
+            $update_referral_sql = "UPDATE users SET referral_code = ? WHERE user_id = ?";
+            $update_stmt = $conn->prepare($update_referral_sql);
+            $update_stmt->bind_param("ss", $referral_code, $firebase_uid);
+            $update_stmt->execute();
+            $update_stmt->close();
+
+            // Optionally, store the referral code in the session
+            $_SESSION['referral_code'] = $referral_code;
+        } else {
+            // Store the existing referral code in the session
+            $_SESSION['referral_code'] = $user['referral_code'];
+        }
 
         header("Location: ../home/dashboard.php"); // Redirect to the dashboard
         exit;
