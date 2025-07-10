@@ -57,7 +57,7 @@
                 <div class="li"><a href="index.php" class="<?php echo $current_page == 'index.php' ? 'active' : ''; ?>">Home</a></div>
                 <div class="li"><a href="priceList.php">Data Prices</a></div>
                 <div class="li"><a href="rateCalculator.php">Rate Calculator</a></div>
-                <!-- <div class="li"><a href="./home/signup.php">Join Us</a></div> -->
+                <div class="li"><a href="./home/signup.php">Join Us</a></div>
             </div>
         </div>  
     </header>
