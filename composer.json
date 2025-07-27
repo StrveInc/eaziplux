@@ -1,12 +1,16 @@
 {
-    "require": {
-        "twig/twig": "^3.7",
-        "yabacon/paystack-php": "^2.2",
-        "rmccue/requests": "*",
-        "flutterwavedev/flutterwave-v3": "*",
-        "wildbit/postmark-php": "^6.0",
-        "phpmailer/phpmailer": "^6.10",
-        "symfony/mailer": "^7.3",
-        "vlucas/phpdotenv": "^5.5"
-    }
+    "name": "striveinc/eaziplux",
+    "description": "Best VTU website worldwide",
+    "autoload": {
+        "psr-4": {
+            "Striveinc\\Eaziplux\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "StrveInc",
+            "email": "strveinc@gmail.com"
+        }
+    ],
+    "require": {}
 }

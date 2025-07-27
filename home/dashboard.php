@@ -78,7 +78,7 @@ if ($currentHour >= 1 && $currentHour < 12) {
         <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/variable.css">
-    <link rel="icon" type="image/png" size="662x662" href="../css/imgs/eaziplux.png">
+    <link rel="icon" type="image/png" size="662x662" href="../css/imgs/eazipluxpure.png">
     <script src="https://kit.fontawesome.com/49c5823e25.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

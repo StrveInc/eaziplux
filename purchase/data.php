@@ -85,11 +85,20 @@ if (isset($_POST['submit'])) {
         case 'mtn':
             $serviceID = 'mtn_gifting';
             break;
+        case 'mtn-sme':
+            $serviceID = 'mtn_sme';
+            break;
         case 'airtel':
             $serviceID = 'airtel_gifting';
             break;
+        case 'airtel-sme':
+            $serviceID = 'airtel_sme';
+            break;
         case 'glo':
             $serviceID = 'glo_data';
+            break;
+        case 'glo-sme':
+            $serviceID = 'glo_sme';
             break;
         case '9mobile':
             $serviceID = 'etisalat_data';
@@ -139,43 +148,7 @@ function purchaseData($adjustedPrice, $phoneNumber, $user_id, $selectedPlanValue
     $remainingAmount = $adjustedPrice;
     $useReferralEarnings = false;
 
-    if ($balance >= $adjustedPrice) {
-        // Deduct from balance
-        $new_balance = $balance - $adjustedPrice;
-        $update_balance_query = "UPDATE virtual_accounts SET balance = ? WHERE acct_id = ?";
-        $stmt = $conn->prepare($update_balance_query);
-        $stmt->bind_param("ds", $new_balance, $user_id);
-        $stmt->execute();
-        $stmt->close();
-    } elseif ($balance + $referral_earnings >= $adjustedPrice) {
-        // Deduct from both balance and referral earnings
-        $useReferralEarnings = true;
-
-        if ($balance > 0) {
-            $remainingAmount -= $balance;
-            $new_balance = 0;
-            $update_balance_query = "UPDATE virtual_accounts SET balance = ? WHERE acct_id = ?";
-            $stmt = $conn->prepare($update_balance_query);
-            $stmt->bind_param("ds", $new_balance, $user_id);
-            $stmt->execute();
-            $stmt->close();
-        }
-
-        // Deduct the remaining amount from referral earnings
-        $new_referral_earnings = $referral_earnings - $remainingAmount;
-        $update_referral_earnings_query = "UPDATE virtual_accounts SET referral_earnings = ? WHERE acct_id = ?";
-        $stmt = $conn->prepare($update_referral_earnings_query);
-        $stmt->bind_param("ds", $new_referral_earnings, $user_id);
-        $stmt->execute();
-        $stmt->close();
-    } else {
-        // Insufficient funds
-        $transaction_id = "EP" . time();
-        logTransaction($conn, $user_id, $transaction_id, $adjustedPrice, "Insufficient Funds", "Failed", $item, "Data", $phoneNumber);
-        transactionHandler('failure', "Transaction failed: Insufficient funds in wallet and referral earnings.");
-        return;
-    }
-
+    
     // Proceed with the purchase
     $curl = curl_init();
     curl_setopt_array(
@@ -216,6 +189,7 @@ function purchaseData($adjustedPrice, $phoneNumber, $user_id, $selectedPlanValue
         handleTransactionFailure($user_id, $responseArray, 'Server error!', $phoneNumber, $adjustedPrice, $conn, $item);
     } else {
         // Transaction was successful
+        debitUser($adjustedPrice, $phoneNumber, $user_id, $selectedPlanValue, $conn, $serviceID, $item);
         $transaction_id = "EP" . time();
         logTransaction($conn, $user_id, $transaction_id, $adjustedPrice, "Transaction Successful", "Successful", $item, "Data", $phoneNumber);
 
@@ -227,6 +201,75 @@ function purchaseData($adjustedPrice, $phoneNumber, $user_id, $selectedPlanValue
         transactionHandler('success', 'Successfully purchased ₦' . $adjustedPrice . " worth of " . $item . " data");
     }
 }
+
+//Debit user
+
+function debitUser($adjustedPrice, $phoneNumber, $user_id, $selectedPlanValue, $conn, $serviceID, $item)
+{
+
+    // Fetch the user's balance and referral earnings
+    $query = "SELECT balance, referral_earnings FROM virtual_accounts WHERE acct_id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        $balance = $row['balance'];
+        $referral_earnings = $row['referral_earnings'];
+    } else {
+        transactionHandler('failure', "Transaction failed: Unable to fetch account details.");
+        return;
+    }
+    $stmt->close();
+
+    // Determine the source of funds
+    $remainingAmount = $adjustedPrice;
+    $useReferralEarnings = false;
+
+
+
+    if ($balance >= $adjustedPrice) {
+        // Deduct from balance
+        $new_balance = $balance - $adjustedPrice;
+        $update_balance_query = "UPDATE virtual_accounts SET balance = ? WHERE acct_id = ?";
+        $stmt = $conn->prepare($update_balance_query);
+        $stmt->bind_param("ds", $new_balance, $user_id);
+        $stmt->execute();
+        $stmt->close();
+    } elseif ($balance + $referral_earnings >= $adjustedPrice) {
+        // Deduct from both balance and referral earnings
+        $useReferralEarnings = true;
+
+        if ($balance > 0) {
+            $remainingAmount -= $balance;
+            $new_balance = 0;
+            $update_balance_query = "UPDATE virtual_accounts SET balance = ? WHERE acct_id = ?";
+            $stmt = $conn->prepare($update_balance_query);
+            $stmt->bind_param("ds", $new_balance, $user_id);
+            $stmt->execute();
+            $stmt->close();
+        }
+
+        // Deduct the remaining amount from referral earnings
+        $new_referral_earnings = $referral_earnings - $remainingAmount;
+        $update_referral_earnings_query = "UPDATE virtual_accounts SET referral_earnings = ? WHERE acct_id = ?";
+        $stmt = $conn->prepare($update_referral_earnings_query);
+        $stmt->bind_param("ds", $new_referral_earnings, $user_id);
+        $stmt->execute();
+        $stmt->close();
+    } else {
+        // Insufficient funds
+        $transaction_id = "EP" . time();
+        logTransaction($conn, $user_id, $transaction_id, $adjustedPrice, "Insufficient Funds", "Failed", $item, "Data", $phoneNumber);
+        transactionHandler('failure', "Transaction failed: Insufficient funds in wallet and referral earnings.");
+        return;
+    }
+
+}
+
+
 
 // Function to handle referral credit
 function handleReferralCredit($conn, $user_id)

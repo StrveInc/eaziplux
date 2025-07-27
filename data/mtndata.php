@@ -60,7 +60,7 @@ session_start();
             display: flex;
             /* gap: 10px; */
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 0px;
             height: 40px;
             justify-content: left;
             width: 90%;
@@ -105,10 +105,13 @@ session_start();
             top: 110%;
             left: 0;
             width: 250px;
+            height: 150px;
             background: #000;
             border: 1px solid #ccc;
             border-radius: 5px;
             z-index: 10;
+            border: 1px solid #ffbf00;
+            overflow-y: auto;
             font-weight: 500;
         }
 
@@ -117,7 +120,7 @@ session_start();
         }
 
         .custom-select .options div {
-            padding: 6px 10px;
+            padding: 6px 5px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -193,7 +196,7 @@ background: linear-gradient(180deg, #043927, #6d945e);
                     <p style="color: #ccc; ">Recharge your phone with ease.</p>
                 </div>
                 <form method="post" action="../purchase/data.php" id="dataForm">
-                <span id="phoneError" style="width: 95%; text-align: right; color: red; font-size: 13px; display: block; margin-top: 3px; border: px solid white; height: 20px;"></span>    
+                <span id="phoneError" style="width: 95%; text-align: right; color: #ffbf00; font-size: 13px; display: block; margin-top: 3px; border: px solid white; height: 20px;"></span>    
                 <div class="num-network-row" id="networkRow" style="display:flex;align-items:center;gap:0px;">
                         <!-- Custom Network Dropdown -->
                         <div class="custom-select-wrapper">
@@ -207,13 +210,22 @@ background: linear-gradient(180deg, #043927, #6d945e);
                                 </div>
                                 <div class="options">
                                     <div data-value="mtn" data-label="MTN">
-                                        <img src="../css/svg/MTN.svg" style="width:24px;height:24px;vertical-align:middle;"> MTN
+                                        <img src="../css/svg/MTN.svg" style="width:24px;height:24px;vertical-align:middle;"> MTN - Gifting
+                                    </div>
+                                    <div data-value="mtn-sme" data-label="MTN-SME">
+                                        <img src="../css/svg/MTN.svg" style="width:24px;height:24px;vertical-align:middle;"> MTN - SME (Cheap)
                                     </div>
                                     <div data-value="airtel" data-label="Airtel">
-                                        <img src="../css/svg/Airtel.svg" style="width:24px;height:24px;vertical-align:middle;"> Airtel
+                                        <img src="../css/svg/Airtel.svg" style="width:24px;height:24px;vertical-align:middle;"> Airtel - Gifting
+                                    </div>
+                                    <div data-value="airtel-sme" data-label="Airtel-SME">
+                                        <img src="../css/svg/Airtel.svg" style="width:24px;height:24px;vertical-align:middle;"> Airtel - SME (Cheap)
                                     </div>
                                     <div data-value="glo" data-label="Glo">
                                         <img src="../css/svg/Glo.svg" style="width:24px;height:24px;vertical-align:middle;"> Glo
+                                    </div>
+                                    <div data-value="glo-sme" data-label="Glo-SME">
+                                        <img src="../css/svg/Glo.svg" style="width:24px;height:24px;vertical-align:middle;"> Glo - SME (Cheap)
                                     </div>
                                     <div data-value="9mobile" data-label="9mobile">
                                         <img src="../css/svg/9mobile.svg" style="width:24px;height:24px;vertical-align:middle;"> 9mobile
@@ -227,12 +239,14 @@ background: linear-gradient(180deg, #043927, #6d945e);
                             <input type="number" class="number" name="number" placeholder="08012345678" required>
                         </div>
                     </div>
-                    <div class="fig" id="planDiv">
+
+                    <div class="fig"  id="planDiv">
                         <!-- <p>PLAN</p> -->
                         <select id="plans" style="font-family: poppins; border: 0px solid white; width: 95%; font-size: 16px;" name="plans">
                             <!-- Options will be loaded dynamically -->
                         </select>
                     </div>
+                    
                     <input type="hidden" class="hidden-input" name="item" value="data">
                     <input type="hidden" name="price" id="planPrice" value="">
                     <input class="submit" name="submit"  type="submit" value="Buy Data">
@@ -267,6 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const fig = document.querySelector('.fig');
     const itemInput = document.querySelector('input[name="item"]');
     const planPriceInput = document.getElementById('planPrice');
+    const error = document.getElementById('phoneError');
 
     // Initial load for MTN
     loadPlans('mtn');
@@ -298,9 +313,15 @@ document.addEventListener('DOMContentLoaded', function () {
     function loadPlans(network) {
         plansDropdown.innerHTML = '<option>Loading...</option>';
         let service = '';
+        error.textContent = '';
         switch (network) {
             case 'mtn':
                 service = 'mtn_gifting';
+                networkRow.style.borderColor = '#ffbf00';
+                fig.style.borderColor = '#ffbf00';
+                break;
+            case 'mtn-sme':
+                service = 'mtn_sme';
                 networkRow.style.borderColor = '#ffbf00';
                 fig.style.borderColor = '#ffbf00';
                 break;
@@ -309,8 +330,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 networkRow.style.borderColor = '#e60000';
                 fig.style.borderColor = '#e60000';
                 break;
+            case 'airtel-sme':
+                service = 'airtel_sme';
+                networkRow.style.borderColor = '#e60000';
+                fig.style.borderColor = '#e60000';
+                error.textContent = '⚠️Do not purchase if you are owing (loan)';
+                break;
             case 'glo':
                 service = 'glo_data';
+                networkRow.style.borderColor = '#008000';
+                fig.style.borderColor = '#008000';
+                break;
+            case 'glo-sme':
+                service = 'glo_sme';
                 networkRow.style.borderColor = '#008000';
                 fig.style.borderColor = '#008000';
                 break;
