@@ -56,7 +56,7 @@ function logTransaction($conn, $user_id, $transaction_id, $amount, $description,
 }
 
 // Handle transaction failure
-function handleTransactionFailure($conn, $user_id, $amount, $item, $number, $description = "Error in Transaction", $status = "Failed") {
+function handleTransactionFailure($conn, $user_id, $amount, $item, $number, $description = "Error in Transaction", $status = "failure") {
     $transaction_id = "EP".time();
     logTransaction($conn, $user_id, $transaction_id, $amount, $description, $status, $item, "Airtime", $number);
     header("Location: ../success.php");
@@ -94,69 +94,103 @@ switch (strtolower($network)) {
 // Check if the account balance is sufficient and process the transaction
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     if (!is_numeric($amount) || $amount < 100 || !preg_match('/^\d{11}$/', $number)) {
-    $_SESSION['status_type'] = 'failure';
-    $_SESSION['status_message'] = 'Airtime purchase failed. Please try again.';
-    header("Location: ../success.php");
+        $_SESSION['status_type'] = 'failure';
+        $_SESSION['status_message'] = 'Airtime purchase failed. Please try again.';
+        header("Location: ../success.php");
         exit;
-    } elseif ($account_balance < $amount) {
-            $_SESSION['status_message'] = 'Insufficient funds for this transaction.';
-        handleTransactionFailure($conn, $user_id, $amount, $network, $number, "Insufficient Funds", "Failed");
-    } else {
-        // Proceed with the transaction via the API
-        $curl = curl_init();
+    }
 
-        curl_setopt_array(
-            $curl,
-            array(
-                CURLOPT_URL => 'https://gsubz.com/api/pay/',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => array(
-                    'serviceID' => $serviceID,
-                    'api' => $_ENV['GSUBZ'],
-                    'amount' => $amount,
-                    'phone' => $number
-                ),
-                CURLOPT_HTTPHEADER => array(
-                    'api: Bearer ap_3f856a5b46bb740150d03c990ce2f5d7'
-                ),
-            )
-        );
+    // Begin transaction
+    $conn->begin_transaction();
 
-        $responses = curl_exec($curl);
-        curl_close($curl);
+    try {
+        // Lock the user's balance row
+        $stmt = $conn->prepare("SELECT balance FROM virtual_accounts WHERE acct_id = ? FOR UPDATE");
+        $stmt->bind_param("s", $user_id);
+        $stmt->execute();
+        $balance_result = $stmt->get_result();
 
-        $response = json_decode($responses, true);
+        if ($balance_result->num_rows == 1) {
+            $balance_row = $balance_result->fetch_assoc();
+            $current_balance = $balance_row["balance"];
 
-        if (isset($response['status']) && $response['status'] === 'TRANSACTION_FAILED') {
-                logTransaction($conn, $user_id, "EP".time(), $amount, "Transaction Failed", "Failed", $network, "Airtime", $number);
-                $_SESSION['status_type'] = 'failure';
-                $_SESSION['status_message'] = 'Server not responding. Try again!'; 
-                header("Location: ../success.php");
+            if ($current_balance < $amount) {
+                $conn->rollback();
+                $_SESSION['status_message'] = 'Insufficient funds for this transaction.';
+                handleTransactionFailure($conn, $user_id, $amount, $network, $number, "Insufficient Funds", "failure");
+            } else {
+                // Proceed with the transaction via the API
+                $curl = curl_init();
+                curl_setopt_array(
+                    $curl,
+                    array(
+                        CURLOPT_URL => 'https://gsubz.com/api/pay/',
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => '',
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 0,
+                        CURLOPT_FOLLOWLOCATION => true,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => 'POST',
+                        CURLOPT_POSTFIELDS => array(
+                            'serviceID' => $serviceID,
+                            'api' => $_ENV['GSUBZ'],
+                            'amount' => $amount,
+                            'phone' => $number
+                        ),
+                        CURLOPT_HTTPHEADER => array(
+                            'api: Bearer ap_3f856a5b46bb740150d03c990ce2f5d7'
+                        ),
+                    )
+                );
+
+                $responses = curl_exec($curl);
+                curl_close($curl);
+
+                $response = json_decode($responses, true);
+
+                if (isset($response['status']) && $response['status'] === 'TRANSACTION_FAILED') {
+                    $conn->rollback();
+                    logTransaction($conn, $user_id, "EP".time(), $amount, "Transaction Failed", "Server Error!", $network, "Airtime", $number);
+                    $_SESSION['status_type'] = 'failure';
+                    $_SESSION['status_message'] = 'Server not responding. Try again!';
+                    header("Location: ../success.php");
+                    exit;
+                } else {
+                    // Deduct the amount from the user's balance
+                    $new_balance = intval($current_balance) - intval($amount);
+
+                    // Update the balance in the database using prepared statement
+                    $update_balance_query = "UPDATE virtual_accounts SET balance = ? WHERE acct_id = ?";
+                    $stmt2 = $conn->prepare($update_balance_query);
+                    $stmt2->bind_param("ds", $new_balance, $user_id);
+                    $stmt2->execute();
+                    $stmt2->close();
+
+                    $transaction_id = "EP".time();
+                    logTransaction($conn, $user_id, $transaction_id, $amount, "Transaction Successful", "Successful", $network, "Airtime", $number);
+
+                    $conn->commit();
+
+                    $_SESSION['status_type'] = 'success';
+                    $_SESSION['status_message'] = 'Airtime purchase successful!';
+                    header("Location: ../success.php");
+                    exit;
+                }
+            }
         } else {
-            // Deduct the amount from the user's balance
-            $new_balance = intval($account_balance) - intval($amount);
-
-            // Update the balance in the database using prepared statement
-            $update_balance_query = "UPDATE virtual_accounts SET balance = ? WHERE acct_id = ?";
-            $stmt = $conn->prepare($update_balance_query);
-            $stmt->bind_param("ds", $new_balance, $user_id);
-            $stmt->execute();
-            $stmt->close();
-
-            $transaction_id = "EP".time();
-            logTransaction($conn, $user_id, $transaction_id, $amount, "Transaction Successful", "Successful", $network, "Airtime", $number);
-
-                $_SESSION['status_type'] = 'success';
-                $_SESSION['status_message'] = 'Airtime purchase successful!';
-                header("Location: ../success.php");    
+            $conn->rollback();
+            $_SESSION['status_type'] = 'failure';
+            $_SESSION['status_message'] = 'Account not found.';
+            header("Location: ../success.php");
             exit;
         }
+    } catch (Exception $e) {
+        $conn->rollback();
+        $_SESSION['status_type'] = 'failure';
+        $_SESSION['status_message'] = 'Transaction error. Please try again.';
+        header("Location: ../success.php");
+        exit;
     }
 }
 ?>

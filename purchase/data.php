@@ -127,78 +127,96 @@ if (isset($_POST['submit'])) {
 // Function to handle the purchase logic
 function purchaseData($adjustedPrice, $phoneNumber, $user_id, $selectedPlanValue, $conn, $serviceID, $item)
 {
-    // Fetch the user's balance and referral earnings
-    $query = "SELECT balance, referral_earnings FROM virtual_accounts WHERE acct_id = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("s", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    // Begin transaction
+    $conn->begin_transaction();
 
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        $balance = $row['balance'];
-        $referral_earnings = $row['referral_earnings'];
-    } else {
-        transactionHandler('failure', "Transaction failed: Unable to fetch account details.");
-        return;
-    }
-    $stmt->close();
+    try {
+        // Lock the user's balance row
+        $query = "SELECT balance, referral_earnings FROM virtual_accounts WHERE acct_id = ? FOR UPDATE";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    // Determine the source of funds
-    $remainingAmount = $adjustedPrice;
-    $useReferralEarnings = false;
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            $balance = $row['balance'];
+            $referral_earnings = $row['referral_earnings'];
+        } else {
+            $conn->rollback();
+            transactionHandler('failure', "Transaction failed: Unable to fetch account details.");
+            return;
+        }
+        $stmt->close();
 
-    
-    // Proceed with the purchase
-    $curl = curl_init();
-    curl_setopt_array(
-        $curl,
-        array(
-            CURLOPT_URL => 'https://gsubz.com/api/pay/',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array(
-                'serviceID' => $serviceID,
-                'plan' => $selectedPlanValue,
-                'api' => $_ENV['GSUBZ'],
-                'amount' => '',
-                'phone' => $phoneNumber
-            ),
-            CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer ' . $_ENV['GSUBZ'],
-            ),
-        )
-    );
-
-    $response = curl_exec($curl);
-    curl_close($curl);
-
-    $responseArray = json_decode($response, true);
-
-    // Handle transaction status
-    if (isset($responseArray["status"]) && (
-        $responseArray["status"] === "TRANSACTION_FAILED" ||
-        $responseArray["status"] === "failed" ||
-        $responseArray["status"] === "Reversed"
-    )) {
-        handleTransactionFailure($user_id, $responseArray, 'Server error!', $phoneNumber, $adjustedPrice, $conn, $item);
-    } else {
-        // Transaction was successful
-        debitUser($adjustedPrice, $phoneNumber, $user_id, $selectedPlanValue, $conn, $serviceID, $item);
-        $transaction_id = "EP" . time();
-        logTransaction($conn, $user_id, $transaction_id, $adjustedPrice, "Transaction Successful", "Successful", $item, "Data", $phoneNumber);
-
-        // Handle referral credit only if not using referral earnings
-        if (!$useReferralEarnings) {
+        // Check if the user's virtual account balance is sufficient
+        if ($balance < $adjustedPrice) {
+            $transaction_id = "EP".time();
+            logTransaction($conn, $user_id, $transaction_id, $adjustedPrice, "Insufficient Funds", "Failed", $item, "Data", $phoneNumber);
+            $conn->rollback();
             handleReferralCredit($conn, $user_id);
+            transactionHandler('failure', "Transaction failed: Fund your eaziplux wallet.");
         }
 
-        transactionHandler('success', 'Successfully purchased ₦' . $adjustedPrice . " worth of " . $item . " data");
+        // Proceed with the purchase
+        $curl = curl_init();
+        curl_setopt_array(
+            $curl,
+            array(
+                CURLOPT_URL => 'https://gsubz.com/api/pay/',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => array(
+                    'serviceID' => $serviceID,
+                    'plan' => $selectedPlanValue,
+                    'api' => $_ENV['GSUBZ'],
+                    'amount' => '',
+                    'phone' => $phoneNumber
+                ),
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer ' . $_ENV['GSUBZ'],
+                ),
+            )
+        );
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+
+        $responseArray = json_decode($response, true);
+
+        // Handle transaction status
+        if (isset($responseArray["status"]) && (
+            $responseArray["status"] === "TRANSACTION_FAILED" ||
+            $responseArray["status"] === "failed" ||
+            $responseArray["status"] === "Reversed"
+        )) {
+            $conn->rollback();
+            handleTransactionFailure($user_id, $responseArray, 'Server error!', $phoneNumber, $adjustedPrice, $conn, $item);
+        } else {
+            // Transaction was successful, now debit the user
+            $new_balance = $balance - $adjustedPrice;
+            $update_balance_query = "UPDATE virtual_accounts SET balance = ? WHERE acct_id = ?";
+            $stmt = $conn->prepare($update_balance_query);
+            $stmt->bind_param("ds", $new_balance, $user_id);
+            $stmt->execute();
+            $stmt->close();
+
+            $transaction_id = "EP" . time();
+            logTransaction($conn, $user_id, $transaction_id, $adjustedPrice, "Transaction Successful", "Successful", $item, "Data", $phoneNumber);
+
+            $conn->commit();
+
+            handleReferralCredit($conn, $user_id);
+            transactionHandler('success', 'Successfully purchased ₦' . $adjustedPrice . " worth of " . $item . " data");
+        }
+    } catch (Exception $e) {
+        $conn->rollback();
+        transactionHandler('failure', "Transaction error. Please try again.");
     }
 }
 
